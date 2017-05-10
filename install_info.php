@@ -10,4 +10,6 @@ $_INFO = array( "servername" => "",
                 "username"   => "",
                 "password"   => "",
                 "dbname"     => "");
+/*设置时区*/
+ini_set('date.timezone','Asia/Shanghai');
 ?>
