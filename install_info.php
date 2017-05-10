@@ -6,6 +6,8 @@
  * 数据库密码
  * 数据库名
  */
-
-
+$_INFO = array( "servername" => "",
+                "username"   => "",
+                "password"   => "",
+                "dbname"     => "");
 ?>

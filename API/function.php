@@ -1,5 +1,5 @@
 <?php
-include "sql.php";
+include_once "sql.php";
 session_start();
 
 class T_function{

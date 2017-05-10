@@ -1,9 +1,15 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
-include "function.php";
+include_once "function.php";
 
 $mysql = new sql();
 $t = new T_function();
+$art = array();
+$art["title"] = "文章标题";
+$art["cate"] = 1;
+$art["content"] = "#测试";
+$art["cover"] = "http://www.iimt.me/usr/themes/iimT//img/avatar.jpg";
+$mysql->publishArticle($art);
 
 
 /*数据库操作类*/
@@ -83,8 +89,45 @@ class sql{
         return $sql_res;
     }
     /*
-     *
+     * 发布文章  参数为一个包装好的文章信息数组
+     * 必填四个属性
+     * article["title"] 文章标题
+     * article["cate"]  文章分类id
+     * article["content"] 文章内容 MD格式
+     * article["cover"] 文章封面图片地址
      */
+    public function publishArticle($article){
+        $this->init();
+        //如果传过来的值已经存在就不需要重新赋值
+        if(!array_key_exists("publishAt",$article))
+            $article["publishAt"] = date("Y-m-d H:i:s");
+        if(!array_key_exists("lastEdit",$article))
+            $article["lastEdit"] = date("Y-m-d H:i:s");
+        if(!array_key_exists("author",$article));
+            $article["author"] = 1;
+        if(!array_key_exists("viewed",$article));
+            $article["viewed"] = 0;
+        if(!array_key_exists("comments",$article));
+            $article["comments"] = 0;
+        if(!array_key_exists("likes",$article));
+            $article["likes"] = 0;
+        //$title = $article["title"];
+        //组装sql语句
+        $sql  = "INSERT INTO `article` (`title`, `cate`, `content`, `publishAt`, `lastEdit`, `author`, `viewed`, `comments`, `likes`, `cover`) VALUES (";
+        $sql .= "'" . $article["title"] . "',"; //标题
+        $sql .= "'" . $article["cate"] . "',"; //分类id
+        $sql .= "'" . $article["content"] . "',"; //内容
+        $sql .= "'" . $article["publishAt"] . "',"; //发布时间
+        $sql .= "'" . $article["lastEdit"] . "',"; //上次编辑
+        $sql .= "'" . $article["author"] . "',"; //作者id
+        $sql .= "'" . $article["viewed"] . "',"; //浏览数
+        $sql .= "'" . $article["comments"] . "',"; //评论数
+        $sql .= "'" . $article["likes"] . "',"; //喜欢数
+        $sql .= "'" . $article["cover"] . "'"; //封面地址
+        $sql .= ")";
+        $sql_res = $this->conn->query($sql);
+        return $sql_res;
+    }
 }
 
 ?>

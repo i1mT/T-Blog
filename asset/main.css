@@ -1,23 +1,10 @@
-html{
-	background: #000;
-    margin: 0;
-    padding: 0;
-}
-body{
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-ul li{
-    list-style: none;
-}
 @keyframes blink {
-	50% {
-	    color: #000;
-	    background: #0c0;
-	    -webkit-box-shadow: 0 0 5px rgba(0,100,0,50);
-	    box-shadow: 0 0 5px rgba(0,100,0,50);
-		}
+    50% {
+        color: #000;
+        background: #0c0;
+        -webkit-box-shadow: 0 0 5px rgba(0,100,0,50);
+        box-shadow: 0 0 5px rgba(0,100,0,50);
+        }
 }
 @-webkit-keyframes blink {
     50% {
@@ -42,6 +29,73 @@ ul li{
         -webkit-box-shadow: 0 0 5px rgba(0,100,0,50);
         box-shadow: 0 0 5px rgba(0,100,0,50);
     }
+}
+
+html{
+	background: #000;
+    margin: 0;
+    padding: 0;\
+    font-size: 62.5%;
+}
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    list-style: none;
+}
+nav{
+    height:  30rem;
+    background: url("./images/yasuko.jpg");
+    background-size: cover;
+}
+.container{
+    width:  55%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.avatar{
+    margin-top: 2rem;
+    padding: 0rem;
+}
+.avatar a:hover{
+    opacity: 0.7;
+}
+.avatar a{
+    height: 2.5rem;
+    width: 2.5rem;
+    overflow: hidden;
+    display: block;
+}
+.avatar a:focus{
+    outline: none;
+}
+.avatar img{
+    width:  2.5rem;
+}
+.blogname{
+    padding-top: 6rem;
+    margin-bottom: 0;
+    font-size: 2.6rem;
+}
+.blogname a{
+    text-decoration: none;
+    color: #efefef;
+}
+.motto{
+    margin-top: 1rem;
+    color: #fff;
+    font-size: 1.5rem;
+}
+.blogname,.motto{
+    text-align: center;
+    text-shadow: 0 .1rem .1rem #000;
+    font-weight: 200;
+    font-family: "Consolas","Youyuan",Helvetica,Arial,sans-serif;
+}
+.blogname:hover,.motto:hover{
+    text-shadow: 0 .2rem .1rem #000;
 }
 .cmd{
     width: 95%;
@@ -99,4 +153,15 @@ ul.cmd li span{
     position: fixed;
     right: 0;
     bottom: 0;
+}
+.myinfo div.avatar{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: .2rem solid #fff;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.myinfo div.avatar img{
+    width: 5rem;
 }
