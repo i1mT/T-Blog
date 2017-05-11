@@ -27,7 +27,9 @@ function init(){
 		"height" : (pageHeight - parseInt(padding_top))
 	});
 }
-
+/*
+ * 获取指令内容并发送给处理类
+ */
 function getText(){
 	var textarea = $("#getText");
 	var output = $("#onInput span");
@@ -41,8 +43,7 @@ function getText(){
 		textarea.val("");
 		textarea.blur();
 		var command = output.html().trim();
-		var res = processCmd(command);
-        outPut(res);
+		processCmd(command);
 		//继续
 		window.timer = setInterval(function(){
 			getText();
@@ -65,5 +66,6 @@ function outPut(msg) {
 }
 //处理命令
 function processCmd(request){
-	return "return~" + request;
+	var response = t.commandHandler(request);
+	outPut(response);
 }
