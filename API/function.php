@@ -5,6 +5,8 @@ session_start();
 class T_function{
     /*
      * 输出前端日志  相当于js中的console.log()
+     * 参数
+     * 1.msg   string
      */
     public function webLog($msg){
         $msg = (string)$msg;
@@ -14,11 +16,12 @@ class T_function{
         echo $str;
     }
     /*
-     *登录
+     *登录  参数
+     * 1.用户名  string
+     * 2.密码    string
      */
     public function login($username,$password){
         $sql = new sql();
-        $sql->init();
         $login_res = $sql->login($username,$password);
         if(!$login_res){
             //$this->webLog("登录失败。");
@@ -29,7 +32,8 @@ class T_function{
         return $login_res;
     }
     /*
-     * 设置登录状态
+     * 设置登录状态 参数
+     * 1.状态 布尔值
      */
     public function setLogStatus($status){
         $_SESSION["logStatus"] = $status;
@@ -54,6 +58,33 @@ class T_function{
     public function logout(){
         $_SESSION["logStatus"] = false;
         return true;
+    }
+    /*
+     * 设置博客名 参数
+     * 1.博客名 string
+     */
+    public function setBlogname($blogname){
+        $sql = new sql();
+        $res = $sql->editBlogName($blogname);
+        return $res;
+    }
+    /*
+     * 设置博客介绍  参数
+     * 1.博客描述  string
+     */
+    public function setBlogdesc($blogdesc){
+        $sql = new sql();
+        $res = $sql->editBlogDesc($blogdesc);
+        return $res;
+    }
+    /*
+     * 设置博客地址  参数
+     * 1.地址  string
+     */
+    public function setBlogurl($blogurl){
+        $sql = new sql();
+        $res = $sql->editBlogSiteurl($blogurl);
+        return $res;
     }
 }
 ?>

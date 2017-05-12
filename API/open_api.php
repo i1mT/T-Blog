@@ -17,6 +17,24 @@ switch ($method) {
         $t->logout();
         echo "true";
         break;
+    case 'setBlogname':
+        $blogname = $_GET["blogname"];
+        $res = $t->setBlogname($blogname);
+        if ($res) echo "true";
+        else echo "false";
+        break;
+    case 'setBlogdesc':
+        $blogdesc = $_GET["blogdesc"];
+        $res = $t->setBlogdesc($blogdesc);
+        if ($res) echo "true";
+        else echo "false";
+        break;
+    case 'setBlogurl':
+        $blogurl = $_GET["blogurl"];
+        $res = $t->setBlogurl($blogurl);
+        if ($res) echo "true";
+        else echo "false";
+        break;
 	default:
 		break;
 }

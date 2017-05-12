@@ -77,12 +77,77 @@ t.iimt.set = {
     //设置博客标题
     blogname : function (name) {
         console.log("将博客名设置为：" + name);
+        var data = {
+            method : "setBlogname",
+            blogname : name
+        };
+        var return_text;
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data) {
+                if(data == "true")
+                    return_text = "博客名设置成功。";
+                else
+                    return_text = "博客名设置失败。";
+            },
+            error : function () {
+                return_text = "请求失败。";
+            }
+        });
+        return return_text;
     },
+    //设置博客介绍
     blogdesc : function (desc) {
         console.log("将博客描述设置为：" + desc);
+        var data = {
+            method : "setBlogdesc",
+            blogdesc : desc
+        };
+        var return_text;
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function(data){
+                if(data == "true")
+                    return_text = "博客介绍设置成功。";
+                else
+                    return_text = "博客介绍设置失败。";
+            },
+            error : function () {
+                return_text = "请求失败。";
+            }
+        });
+        return return_text;
     },
+    //设置博客站点地址
     blogurl　: function (url){
         console.log("将博客地址设置为：" + url);
+        var data = {
+            method : "setBlogurl",
+            blogurl : url
+        };
+        var return_text;
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data) {
+                if(data == "true")
+                    return_text = "博客地址设置成功。";
+                else
+                    return_text = "博客地址设置失败。";
+            },
+            error : function () {
+                return_text = "请求失败。";
+            }
+        });
+        return return_text;
     }
 };
 /**********文章类**********/
@@ -135,7 +200,7 @@ t.iimt.login = function(username,password){
     };
     console.log(data);
     var ajax_status = false;
-    var return_val;
+    var return_text;
     $.ajax({
         url : "../API/open_api.php",
         type : "GET",
@@ -144,19 +209,16 @@ t.iimt.login = function(username,password){
         success : function(data){
             if(data.trim() == "true"){
                 window.loginStatus = true;
-                return_val = "登录成功~";
+                return_text = "登录成功~";
             }
             else
-                return_val = "用户名或密码错误。";
+                return_text = "用户名或密码错误。";
         },
         error : function () {
-            return_val = "请求失败。";
+            return_text = "请求失败。";
         },
-        processData : function(){
-            console.log("正在登录");
-        }
     });
-    return return_val;
+    return return_text;
 }
 /********登出方法**********/
 t.iimt.logout = function(){
