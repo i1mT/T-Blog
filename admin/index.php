@@ -1,13 +1,22 @@
+<?php 
+include_once "../API/function.php";
+$t = new T_function();
+?>
 <!DOCTYPE html> 
 <head> 
 <meta charset="utf-8" /> 
 <title>T-blog</title>
 <link href="../asset/main.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-
 </style>
 </head>
-<body> 
+<body>
+	<div id="islogin" style="display:none">
+		<?php 
+			if($t->isLogin()) echo "1";
+			else echo "0";
+		?>
+	</div>
 <div class="terminal">
 	<div class="terminal-output">
 	</div>

@@ -1,8 +1,8 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
-include_once "function.php";
 include_once "../install_info.php";
-
+$a = new sql();
+$a->init();
 
 /****************************数据库操作类*****************************/
 class sql{
@@ -22,14 +22,11 @@ class sql{
         $this->username = "root";
         $this->password = "";
         $this->dbname = "t-blog";
-        $this->t =  new T_function();
         $this->conn = new mysqli($this->servername, $this->username, $this->password,$this->dbname);
         $this->conn->set_charset("utf8");
         if($this->conn->connect_error){
-            $this->t->webLog("数据库链接失败~");
             die("连接失败: " . $this->conn->connect_error);
         }else{
-            $this->t->webLog("数据库链接成功~");
         }
     }
     /*
@@ -42,10 +39,8 @@ class sql{
         $this->init();
         $sql = "SELECT * FROM `admin` WHERE `username` = '" . $user . "' AND `pwd` = '" . $pwd . "'";
         $sql_res = $this->conn->query($sql);
-        if($sql_res->num_rows > 0){
-            $this->t->setLogStatus(true);
+        if($sql_res->num_rows > 0)
             return true;
-        }
         else
             return false;
     }
@@ -55,7 +50,6 @@ class sql{
      */
     public function editBlogName($name){
         $this->init();
-        $this->t->webLog("设置name:".$name);
         $sql = "UPDATE `bloginfo` SET `name` = '$name' WHERE `bloginfo`.`id` = 1";
         $sql_res = $this->conn->query($sql);
         return $sql_res;
@@ -66,7 +60,6 @@ class sql{
      */
     public function editBlogDesc($desc){
         $this->init();
-        $this->t->webLog("设置description:".$desc);
         $sql = "UPDATE `bloginfo` SET `description` = '$desc' WHERE `bloginfo`.`id` = 1";
         $sql_res = $this->conn->query($sql);
         return $sql_res;
@@ -77,7 +70,6 @@ class sql{
      */
     public function editBlogSiteurl($url){
         $this->init();
-        $this->t->webLog("设置siteurl:".$url);
         $sql = "UPDATE `bloginfo` SET `siteurl` = '$url' WHERE `bloginfo`.`id` = 1";
         $sql_res = $this->conn->query($sql);
         return $sql_res;

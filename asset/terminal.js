@@ -15,6 +15,10 @@ $(document).ready(function(){
  * 页面初始化
  */
 function init(){
+	//设置登录状态
+	var loginstatus = $("#islogin").html().trim();
+	window.loginStatus = loginstatus=="0"? false : true;
+	console.log("登录状态：" + window.loginStatus);
 	var textarea = $("#getText");
 	var output = $("#onInput span");
 	textarea.focus();
@@ -26,25 +30,30 @@ function init(){
 	terminal.css({
 		"height" : (pageHeight - parseInt(padding_top))
 	});
+
 }
 /*
  * 获取指令内容并发送给处理类
  */
 function getText(){
 	var textarea = $("#getText");
+
 	var output = $("#onInput span");
 	textarea.focus();
 	var text = textarea.val();
 	output.html(text);
+	//将光标定位到行末
+    $('#getText').focusEnd();
+
 	console.log(text);
 	if(text[text.length-1]=="\n"){
 		clearInterval(timer);
-		//提交了
+		//回车=>提交
 		textarea.val("");
 		textarea.blur();
 		var command = output.html().trim();
 		processCmd(command);
-		//继续
+		//继续监听
 		window.timer = setInterval(function(){
 			getText();
 		},fresh_time);
@@ -68,4 +77,31 @@ function outPut(msg) {
 function processCmd(request){
 	var response = t.commandHandler(request);
 	outPut(response);
+}
+//设置textarea的位置到文本末
+$.fn.setCursorPosition = function(position){
+    if(this.lengh == 0) return this;
+    return $(this).setSelection(position, position);
+}
+
+$.fn.setSelection = function(selectionStart, selectionEnd) {
+    if(this.lengh == 0) return this;
+    input = this[0];
+
+    if (input.createTextRange) {
+        var range = input.createTextRange();
+        range.collapse(true);
+        range.moveEnd('character', selectionEnd);
+        range.moveStart('character', selectionStart);
+        range.select();
+    } else if (input.setSelectionRange) {
+        input.focus();
+        input.setSelectionRange(selectionStart, selectionEnd);
+    }
+
+    return this;
+}
+
+$.fn.focusEnd = function(){
+    this.setCursorPosition(this.val().length);
 }
