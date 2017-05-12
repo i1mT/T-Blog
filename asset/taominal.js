@@ -1,11 +1,16 @@
 /*
  * 处理指令
+ * 分页中：默认每页十个数据
  */
 
 /***************定义处理类***************/
 var t = {};
 /***************分析指令方法****************/
 t.commandHandler = function (cmd) {
+    if(window.iimt_mood == "edit"){
+        //编辑模式下
+
+    }
     if(cmd == "clear"){
         //清屏
         var lis = $(".cmd li");
@@ -15,7 +20,6 @@ t.commandHandler = function (cmd) {
     }
     cmd = cmd.trim();
     var cmds = cmd.split(' ');
-    console.log(cmds);
     var return_text = "";
     if(cmds.length>1){
         var level_1 = cmds[0];//一级指令  iimt
@@ -153,6 +157,28 @@ t.iimt.set = {
 /**********文章类**********/
 t.iimt.article = {
     publish : function () {
+        //开启编辑模式
+        window.iimt_mood = "edit";
+        //文章对象
+        var article = {
+            title : {
+                val : "",
+                state : false
+            },
+            cate : {
+                val : "",
+                state : false
+            },
+            content : {
+                val : "",
+                state : false
+            },
+            cover : {
+                val : "",
+                state : false
+            }
+        };
+        return "文章标题：";
         console.log("发布文章");
     },
     update : function (id) {

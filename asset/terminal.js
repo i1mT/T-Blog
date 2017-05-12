@@ -12,6 +12,10 @@ $(document).ready(function(){
 	});
 });
 /*
+ * 全局变量
+ */
+var iimt_mood = "command"; //command模式 指令模式   edit模式  编辑模式
+/*
  * 页面初始化
  */
 function init(){
@@ -37,7 +41,6 @@ function init(){
  */
 function getText(){
 	var textarea = $("#getText");
-
 	var output = $("#onInput span");
 	textarea.focus();
 	var text = textarea.val();
@@ -52,7 +55,12 @@ function getText(){
 		textarea.val("");
 		textarea.blur();
 		var command = output.html().trim();
-		processCmd(command);
+		if (window.iimt_mood == "edit"){
+			//在编辑模式下
+		}else{
+			//在指令模式下
+            processCmd(command);
+        }
 		//继续监听
 		window.timer = setInterval(function(){
 			getText();
@@ -79,13 +87,13 @@ function processCmd(request){
 	outPut(response);
 }
 //设置textarea的位置到文本末
-$.fn.setCursorPosition = function(position){
-    if(this.lengh == 0) return this;
-    return $(this).setSelection(position, position);
+$.fn.setCursorPosition = function( position ){
+    if(this.length == 0) return this;
+    return $(this).setSelection( position, position );
 }
 
 $.fn.setSelection = function(selectionStart, selectionEnd) {
-    if(this.lengh == 0) return this;
+    if(this.length == 0) return this;
     input = this[0];
 
     if (input.createTextRange) {
