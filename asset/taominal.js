@@ -7,10 +7,6 @@
 var t = {};
 /***************分析指令方法****************/
 t.commandHandler = function (cmd) {
-    if(window.iimt_mood == "edit"){
-        //编辑模式下
-
-    }
     if(cmd == "clear"){
         //清屏
         var lis = $(".cmd li");
@@ -160,26 +156,30 @@ t.iimt.article = {
         //开启编辑模式
         window.iimt_mood = "edit";
         //文章对象
-        var article = {
+        window.article = {
+            start : false,
             title : {
                 val : "",
-                state : false
+                state : false,
+                text : "标题："
             },
             cate : {
                 val : "",
-                state : false
+                state : false,
+                text : "分类："
             },
             content : {
                 val : "",
-                state : false
+                state : false,
+                text : "正文内容："
             },
             cover : {
                 val : "",
-                state : false
+                state : false,
+                text : "封面地址："
             }
-        };
-        return "文章标题：";
-        console.log("发布文章");
+        };//定义全局article空对象
+        return "要进入编辑模式并发布新文章吗?(Y/N)";
     },
     update : function (id) {
         console.log("更新文章，文章id：" + id);
@@ -269,4 +269,43 @@ t.iimt.logout = function(){
         }
     });
     return return_text;
+}
+/********************编辑模式下**********************/
+t.iimt.editHandler  = function(val){
+    val = val.trim();
+    if(!article.start){
+        switch (val){
+            case "N":
+                return "你已取消。";
+            case "Y":
+                break;
+            default:
+                return "输入有误，默认取消。";
+        }
+    }
+    if (!article.start){
+        article.start = true;
+        return article.title.text;
+    }
+    //先遍历  遇到空的用val填充
+    for(var item in article){
+        if(item == "start") continue;
+        if(article[item].val == ""){
+            article[item].val = val;
+            break;
+        }
+    }
+    var book = false;
+    //再遍历，遇到空的提示下一次输出这个
+    for(var item in article){
+        if(item == "start") continue;
+        if(article[item].val == ""){
+            book = true;
+            return article[item].text;
+        }
+    }
+    if(!book){
+        window.iimt_mood = "command";
+        return "文章信息收录完成，进入编辑模式。";
+    }
 }

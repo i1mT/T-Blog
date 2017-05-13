@@ -55,12 +55,7 @@ function getText(){
 		textarea.val("");
 		textarea.blur();
 		var command = output.html().trim();
-		if (window.iimt_mood == "edit"){
-			//在编辑模式下
-		}else{
-			//在指令模式下
-            processCmd(command);
-        }
+		processCmd(command);
 		//继续监听
 		window.timer = setInterval(function(){
 			getText();
@@ -83,7 +78,7 @@ function outPut(msg) {
 }
 //处理命令
 function processCmd(request){
-	var response = t.commandHandler(request);
+	var response = window.iimt_mood=="edit" ? t.iimt.editHandler(request):t.commandHandler(request);
 	outPut(response);
 }
 //设置textarea的位置到文本末
