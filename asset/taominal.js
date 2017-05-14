@@ -276,10 +276,12 @@ t.iimt.editHandler  = function(val){
     if(!article.start){
         switch (val){
             case "N":
+                window.iimt_mood = "command";
                 return "你已取消。";
             case "Y":
                 break;
             default:
+                window.iimt_mood = "command";
                 return "输入有误，默认取消。";
         }
     }
@@ -301,11 +303,35 @@ t.iimt.editHandler  = function(val){
         if(item == "start") continue;
         if(article[item].val == ""){
             book = true;
+            if(item == "content") iimt_break = true;
             return article[item].text;
         }
     }
     if(!book){
         window.iimt_mood = "command";
-        return "文章信息收录完成，进入编辑模式。";
+        //发布文章
+        var push_article = {};
+        for(var key in article){
+            if(item == "start") continue;
+            push_article[key] = article[key].val;
+        };
+        console.log(push_article);
+        var data = {method:"publishArticle",article:push_article};
+        var return_text;
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data) {
+                console.log(data);
+                return_text = data.trim()=="true" ? "发布成功" : "发布失败";
+            },
+            error : function () {
+                return_text = "请求数据库失败";
+            }
+        })
     }
+    return_text += "，进入指令模式。";
+    return return_text;
 }

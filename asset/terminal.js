@@ -15,6 +15,9 @@ $(document).ready(function(){
  * 全局变量
  */
 var iimt_mood = "command"; //command模式 指令模式   edit模式  编辑模式
+var iimt_break = false;
+//false时输出新行不换行，true时输出新行换行且不再监听回车，而是给回车加</br>
+
 /*
  * 页面初始化
  */
@@ -48,15 +51,28 @@ function getText(){
 	//将光标定位到行末
     $('#getText').focusEnd();
 
-	console.log(text);
 	if(text[text.length-1]=="\n"){
 		clearInterval(timer);
-		//回车=>提交
-		textarea.val("");
-		textarea.blur();
-		var command = output.html().trim();
-		processCmd(command);
-		//继续监听
+        var sub_book = text.substr(text.length-5);
+		if(iimt_break && sub_book != "@END\n"){
+			//换行模式  并且不结束
+			textarea.val(text + "<br>");
+		}else{
+            //非换行模式下，或者换行模式下但是提交了 回车=>提交
+            var command = output.html().trim();
+            console.log(command);
+			if(sub_book == "@END\n"){
+                console.log("break~");
+                iimt_break = false;
+                command = command.substr(0,command.length-4);
+                command = command.replace(/<br>/g,"");
+                console.log(command);
+			}
+            textarea.val("");
+            textarea.blur();
+            processCmd(command);
+		}
+        //继续监听
 		window.timer = setInterval(function(){
 			getText();
 		},fresh_time);
@@ -75,6 +91,11 @@ function outPut(msg) {
         '<div class="cursor blink">&nbsp;</div>'+
         '</li>';
     cmd.append(new_line_temp);
+    if(iimt_break){
+    	//新行的话在textarea里添加</br>
+        var textarea = $("#getText");
+        textarea.val("<br>");
+	}
 }
 //处理命令
 function processCmd(request){

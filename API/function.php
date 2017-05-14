@@ -86,5 +86,18 @@ class T_function{
         $res = $sql->editBlogSiteurl($blogurl);
         return $res;
     }
+    /*
+     * 发布文章 参数
+     * 1.article  数组  必须包含以下属性
+     * article["title"]   文章标题
+     * article["cate"]    文章分类id
+     * article["content"] 文章内容 MD格式
+     * article["cover"]   文章封面图片地址
+     */
+    public function publishArticle($article){
+        $sql = new sql();
+        $res = $sql->publishArticle($article);
+        return $res;
+    }
 }
 ?>
