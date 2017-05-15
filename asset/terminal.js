@@ -72,7 +72,7 @@ function getText(){
                 iimt_break = false;
 			    console.log("上传md文件");
                 command = command.substr(0,command.length-4);
-                var path = command.replace(/<br>/g,"");
+                var path = command.replace(/<br>/g,"").trim();
                 var data = {method:"readMD",path:path};
                 $.ajax({
                     url : "../API/open_api.php",
@@ -106,11 +106,6 @@ function outPut(msg) {
         '<div class="cursor blink">&nbsp;</div>'+
         '</li>';
     cmd.append(new_line_temp);
-    if(iimt_break){
-    	//新行的话在textarea里添加</br>
-        var textarea = $("#getText");
-        textarea.val("<br>");
-	}
 }
 //处理命令
 function processCmd(request){

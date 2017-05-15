@@ -241,10 +241,22 @@ class sql{
     /*
      * 添加分类 参数
      * 1.分类名
+     * 返回布尔 表示成功与否
      */
     public function addCate($name){
         $this->init();
         $sql = "INSERT INTO `cate` (`name`) VALUES ('$name')";
+        $sql_res = $this->conn->query($sql);
+        return $sql_res;
+    }
+    /*
+     * 根据关键字查询文章  参数
+     * 1.关键字
+     * 返回值  mysqli查询结果对象
+     */
+    public function searchArticle($key){
+        $this->init();
+        $sql = "SELECT * FROM `article` WHERE title LIKE '%$key%'";
         $sql_res = $this->conn->query($sql);
         return $sql_res;
     }

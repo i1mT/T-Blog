@@ -2,6 +2,7 @@
 include_once "sql.php";
 session_start();
 
+
 class T_function{
     /*
      * 输出前端日志  相当于js中的console.log()
@@ -69,7 +70,8 @@ class T_function{
         return $res;
     }
     /*
-     * 设置博客介绍  参数
+     * 设置博客介绍
+     * 参数
      * 1.博客描述  string
      */
     public function setBlogdesc($blogdesc){
@@ -78,7 +80,8 @@ class T_function{
         return $res;
     }
     /*
-     * 设置博客地址  参数
+     * 设置博客地址
+     * 参数
      * 1.地址  string
      */
     public function setBlogurl($blogurl){
@@ -87,8 +90,10 @@ class T_function{
         return $res;
     }
     /*
-     * 发布文章 参数
-     * 1.article  数组  必须包含以下属性
+     * 发布文章
+     * 参数
+     * 1.article  数组
+     * 数组必须包含以下属性
      * article["title"]   文章标题
      * article["cate"]    文章分类id
      * article["content"] 文章内容 MD格式
@@ -100,9 +105,10 @@ class T_function{
         return $res;
     }
     /*
-     * 更新文章 参数
-     * push_article 对象
-     * 必含属性
+     * 更新文章
+     * 参数
+     * 1.push_article 对象
+     * 对象必含属性
      * article["id"]      要更新的文章id
      * article["title"]   文章标题
      * article["cate"]    文章分类id
@@ -114,6 +120,33 @@ class T_function{
         $sql = new sql();
         $res = $sql->updateArticle($id,$push_article);
         return $res;
+    }
+    /*
+     * 删除文章
+     * 参数
+     * 1.id
+     */
+    public function deleteArticle($id){
+        $sql = new sql();
+        $res = $sql->deleteArticle($id);
+        return $res;
+    }
+    /*
+     * 搜索标题中含有关键字的文章
+     * 参数
+     * 1.key 关键字
+     * 返回所有关键字的文章 一个数组，数组元素为article对象
+     */
+    public function searchArticle($key){
+        $sql = new sql();
+        $res = $sql->searchArticle($key);
+        $result = array();
+        while($row = $res->fetch_array()){
+            array_push($result,$row);
+        }
+        //将数组包装为json格式
+        $result = urldecode(json_encode($result));
+        return $result;
     }
 }
 ?>

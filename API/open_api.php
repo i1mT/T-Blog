@@ -47,14 +47,23 @@ switch ($method) {
         if ($res) echo "true";
         else echo "false";
         break;
-    case 'uploadMD':
-        //上传md格式文件，并返回内容
-        break;
     case 'readMD':
         $path = $_GET["path"];
         $con = file_get_contents($path);
         $con = iconv("gb2312","utf-8",$con);
         echo $con;
+        break;
+    case 'deleteArticle':
+        $id = $_GET["id"];
+        $res = $t->deleteArticle($id);
+        if ($res) echo "true";
+        else echo "false";
+        break;
+    case 'searchArticle':
+        $key = $_GET["key"];
+        $res = $t->searchArticle($key);
+        echo $res;
+        break;
 	default:
 		break;
 }

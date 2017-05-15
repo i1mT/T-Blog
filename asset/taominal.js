@@ -214,9 +214,40 @@ t.iimt.article = {
     },
     delete : function (id) {
         console.log("删除文章，文章id：" + id);
+        var return_text = "";
+        var data = {method : "deleteArticle",id:id};
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data) {
+                if(data.trim() == "true"){
+                    return_text = "删除成功。";
+                }else {
+                    return_text = "删除失败";
+                }
+            },
+            error : function () {
+                return_text = "请求失败。";
+            }
+        })
+        return return_text;
     },
     search : function (keyword) {
         console.log("搜索文章，关键词：" + keyword);
+        var data = {method : "searchArticle",key:keyword};
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data) {
+                data = decodeURI(data);
+                data = JSON.parse(data);
+                //查询结果已包装为js对象
+            }
+        })
     },
     showbycate : function (catename,page_num) {
         if(!page_num) page_num = 1;
