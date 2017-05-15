@@ -154,6 +154,11 @@ ul.cmd li span{
     right: 0;
     bottom: 0;
 }
+#file{
+    position: fixed;
+    height: 0;
+    bottom: 0;
+}
 .myinfo div.avatar{
     width: 5rem;
     height: 5rem;

@@ -41,6 +41,20 @@ switch ($method) {
         if ($res) echo "true";
         else echo "false";
         break;
+    case 'updateArticle':
+        $article = $_GET["article"];
+        $res = $t->updateArticle($article);
+        if ($res) echo "true";
+        else echo "false";
+        break;
+    case 'uploadMD':
+        //上传md格式文件，并返回内容
+        break;
+    case 'readMD':
+        $path = $_GET["path"];
+        $con = file_get_contents($path);
+        $con = iconv("gb2312","utf-8",$con);
+        echo $con;
 	default:
 		break;
 }

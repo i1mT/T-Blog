@@ -183,6 +183,34 @@ t.iimt.article = {
     },
     update : function (id) {
         console.log("更新文章，文章id：" + id);
+        //开启编辑模式
+        window.iimt_mood = "edit";
+        window.article = {
+            start : false,
+            id : id,
+            title : {
+                val : "",
+                state : false,
+                text : "标题："
+            },
+            cate : {
+                val : "",
+                state : false,
+                text : "分类："
+            },
+            content : {
+                val : "",
+                state : false,
+                text : "正文内容："
+            },
+            cover : {
+                val : "",
+                state : false,
+                text : "封面地址："
+            }
+        };//定义全局article空对象
+        console.log(article);
+        return "确认更新?(Y/N)";
     },
     delete : function (id) {
         console.log("删除文章，文章id：" + id);
@@ -291,7 +319,7 @@ t.iimt.editHandler  = function(val){
     }
     //先遍历  遇到空的用val填充
     for(var item in article){
-        if(item == "start") continue;
+        if(item == "start"||item == "id") continue;
         if(article[item].val == ""){
             article[item].val = val;
             break;
@@ -300,7 +328,7 @@ t.iimt.editHandler  = function(val){
     var book = false;
     //再遍历，遇到空的提示下一次输出这个
     for(var item in article){
-        if(item == "start") continue;
+        if(item == "start"||item == "id") continue;
         if(article[item].val == ""){
             book = true;
             if(item == "content") iimt_break = true;
@@ -312,11 +340,16 @@ t.iimt.editHandler  = function(val){
         //发布文章
         var push_article = {};
         for(var key in article){
-            if(item == "start") continue;
+            if(item == "start"||item == "id") continue;
             push_article[key] = article[key].val;
         };
-        console.log(push_article);
         var data = {method:"publishArticle",article:push_article};
+        if(article.hasOwnProperty("id")){
+            //更新文章
+            data.method = "updateArticle";
+            push_article.id = article.id;
+        }
+        console.log(data);
         var return_text;
         $.ajax({
             url : "../API/open_api.php",

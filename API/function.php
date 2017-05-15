@@ -99,5 +99,21 @@ class T_function{
         $res = $sql->publishArticle($article);
         return $res;
     }
+    /*
+     * 更新文章 参数
+     * push_article 对象
+     * 必含属性
+     * article["id"]      要更新的文章id
+     * article["title"]   文章标题
+     * article["cate"]    文章分类id
+     * article["content"] 文章内容 MD格式
+     * article["cover"]   文章封面图片地址
+     */
+    public function updateArticle($push_article){
+        $id = $push_article["id"];
+        $sql = new sql();
+        $res = $sql->updateArticle($id,$push_article);
+        return $res;
+    }
 }
 ?>

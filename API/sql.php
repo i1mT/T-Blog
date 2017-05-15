@@ -137,8 +137,7 @@ class sql{
         $sql .= "`lastEdit` = '" . $edittime . "'";
         $sql .= " WHERE `article`.`id` = " . $id;
         $sql_res = $this->conn->query($sql);
-        var_dump($sql);
-        var_dump($sql_res);
+        return $sql_res;
     }
     /*
      * 删除文章 参数

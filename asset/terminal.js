@@ -54,7 +54,7 @@ function getText(){
 	if(text[text.length-1]=="\n"){
 		clearInterval(timer);
         var sub_book = text.substr(text.length-5);
-		if(iimt_break && sub_book != "@END\n"){
+		if(iimt_break && sub_book != "@END\n" && sub_book != "@UPF\n"){
 			//换行模式  并且不结束
 			textarea.val(text + "<br>");
 		}else{
@@ -68,6 +68,21 @@ function getText(){
                 command = command.replace(/<br>/g,"");
                 console.log(command);
 			}
+			if(sub_book == "@UPF\n"){
+                iimt_break = false;
+			    console.log("上传md文件");
+                command = command.substr(0,command.length-4);
+                var path = command.replace(/<br>/g,"");
+                var data = {method:"readMD",path:path};
+                $.ajax({
+                    url : "../API/open_api.php",
+                    async : false,
+                    data : data,
+                    success : function (data) {
+                        command = data;
+                    }
+                })
+            }
             textarea.val("");
             textarea.blur();
             processCmd(command);
