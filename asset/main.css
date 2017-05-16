@@ -50,6 +50,18 @@ nav{
     background: url("./images/yasuko.jpg");
     background-size: cover;
 }
+table{
+    text-align: right;
+}
+table td{
+    padding: .1rem .3rem;
+}
+table td.id,table td.num{
+    text-align: center;
+}
+table td.title,table td.sum{
+    text-align: left;
+}
 .container{
     width:  55%;
     margin: 0 auto;

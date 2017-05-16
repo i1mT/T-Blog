@@ -237,6 +237,7 @@ t.iimt.article = {
     search : function (keyword) {
         console.log("搜索文章，关键词：" + keyword);
         var data = {method : "searchArticle",key:keyword};
+        var table_temp;
         $.ajax({
             url : "../API/open_api.php",
             type : "GET",
@@ -245,9 +246,35 @@ t.iimt.article = {
             success : function (data) {
                 data = decodeURI(data);
                 data = JSON.parse(data);
-                //查询结果已包装为js对象
+                console.log(data);
+                table_temp = "<table>" +
+                    "<tr>" +
+                    "<td class='id'>ID</td>" +
+                    "<td class='title'>标题</td>" +
+                    "<td>发布时间</td>" +
+                    "<td>上次编辑</td>" +
+                    "<td class='num'>浏览数</td>" +
+                    "<td class='num'>喜欢数</td>" +
+                    "<td class='num'>评论数</td>" +
+                    "</tr>";
+                for(var i = 0; i < data.length; i++){
+                    console.log(i);
+                    table_temp += "<tr>" +
+                        "<td class='id'>" + data[i].id + "</td>" +
+                        "<td class='title'>" + data[i].title + "</td>" +
+                        "<td>" + data[i].publishAt.substr(2,data[i].publishAt.length-5) + "</td>" +
+                        "<td>" + data[i].lastEdit.substr(2,data[i].publishAt.length-5) + "</td>" +
+                        "<td class='num'>" + data[i].viewed + "</td>" +
+                        "<td class='num'>" + data[i].likes + "</td>" +
+                        "<td class='num'>" + data[i].comments + "</td>" +
+                        "</tr>";
+                }
+                table_temp += "<tr><td class='sum' colspan='7'>共查询到" + data.length + "篇博文。</td></tr>"
+                table_temp += "</table>";
+                console.log(table_temp);
             }
-        })
+        });
+        return table_temp;
     },
     showbycate : function (catename,page_num) {
         if(!page_num) page_num = 1;
