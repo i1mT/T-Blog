@@ -62,6 +62,7 @@ function getText(){
             var command = output.html().trim();
             console.log(command);
 			if(sub_book == "@END\n"){
+			    //文本结束标志
                 console.log("break~");
                 iimt_break = false;
                 command = command.substr(0,command.length-4);
@@ -69,6 +70,7 @@ function getText(){
                 console.log(command);
 			}
 			if(sub_book == "@UPF\n"){
+			    //上传文件标志
                 iimt_break = false;
 			    console.log("上传md文件");
                 command = command.substr(0,command.length-4);
@@ -138,4 +140,94 @@ $.fn.setSelection = function(selectionStart, selectionEnd) {
 
 $.fn.focusEnd = function(){
     this.setCursorPosition(this.val().length);
+}
+
+/*
+ * 将查询文章返回的json包装为table_temp
+ * 参数
+ * 1.json
+ * 2.page 页数
+ * 返回相应页table   string
+ */
+function makeUpArticleTable(json,page) {
+    var start,limit,tips;
+    if(json == "nocate"){
+        return "没有此分类";
+    }
+    json = JSON.parse(decodeURI(json));
+    console.log(json);
+    if(!json.length) {
+        return "该分类下共有0篇文章";
+    }
+    if(!page) {
+        page = 1;
+        start = 0;
+        tips = "共有" + json.length + "篇文章，" + "共"+ (parseInt(json.length/10)+1) +"页，默认显示第1页。"
+    }else{
+        start = (page-1)*10;
+        tips = "共有" + json.length + "篇文章，" + "共"+ (parseInt(json.length/10)+1) +"页，当前第"+ page +"页。";
+    }
+    limit = (start+10) >= json.length ? json.length:(start+10);
+    var table_temp = "<table class='article'>" +
+        "<tr>" +
+        "<td class='id'>ID</td>" +
+        "<td class='title'>标题</td>" +
+        "<td>发布时间</td>" +
+        "<td>上次编辑</td>" +
+        "<td class='num'>浏览数</td>" +
+        "<td class='num'>喜欢数</td>" +
+        "<td class='num'>评论数</td>" +
+        "</tr>";
+    for(var i = start; i < limit; i++){
+        table_temp += "<tr>" +
+            "<td class='id'>" + json[i].id + "</td>" +
+            "<td class='title'>" + json[i].title + "</td>" +
+            "<td>" + json[i].publishAt.substr(2,json[i].publishAt.length-5) + "</td>" +
+            "<td>" + json[i].lastEdit.substr(2,json[i].publishAt.length-5) + "</td>" +
+            "<td class='num'>" + json[i].viewed + "</td>" +
+            "<td class='num'>" + json[i].likes + "</td>" +
+            "<td class='num'>" + json[i].comments + "</td>" +
+            "</tr>";
+    }
+    table_temp += "<tr><td class='sum' colspan='7'>" + tips + "</td></tr>"
+    table_temp += "</table>";
+    return table_temp;
+}
+/*
+ * 
+ */
+function makeUpCommentTable(json,page) {
+    var start,limit,tips;
+    json = JSON.parse(decodeURI(json));
+    console.log(json);
+    if(!json.length) {
+        return "该分类下共有0篇文章";
+    }
+    if(!page) {
+        page = 1;
+        start = 0;
+        tips = "共有" + json.length + "个评论，" + "共"+ (parseInt(json.length/10)+1) +"页，默认显示第1页。"
+    }else{
+        start = (page-1)*10;
+        tips = "共有" + json.length + "个评论，" + "共"+ (parseInt(json.length/10)+1) +"页，当前第"+ page +"页。";
+    }
+    limit = (start+10) >= json.length ? json.length:(start+10);
+    var table_temp = "<table class='comment'>" +
+        "<tr>" +
+        "<td class='id'>ID</td>" +
+        "<td class='title'>评论时间</td>" +
+        "<td>内容</td>" +
+        "<td>赞</td>" +
+        "</tr>";
+    for(var i = start; i < limit; i++){
+        table_temp += "<tr>" +
+            "<td class='id'>" + json[i].id + "</td>" +
+            "<td>" + json[i].commenttime.substr(2,json[i].commenttime.length-5) + "</td>" +
+            "<td class='num'>" + json[i].content.substr(0,10) + "</td>" +
+            "<td class='num'>" + json[i].likes + "</td>" +
+            "</tr>";
+    }
+    table_temp += "<tr><td class='sum' colspan='7'>" + tips + "</td></tr>"
+    table_temp += "</table>";
+    return table_temp;
 }

@@ -1,21 +1,7 @@
 <?php
 include_once "sql.php";
 session_start();
-
-
 class T_function{
-    /*
-     * 输出前端日志  相当于js中的console.log()
-     * 参数
-     * 1.msg   string
-     */
-    public function webLog($msg){
-        $msg = (string)$msg;
-        $str = "<script>";
-        $str .= "console.log('" . $msg . "');";
-        $str .= "</script>";
-        echo $str;
-    }
     /*
      *登录  参数
      * 1.用户名  string
@@ -25,9 +11,8 @@ class T_function{
         $sql = new sql();
         $login_res = $sql->login($username,$password);
         if(!$login_res){
-            //$this->webLog("登录失败。");
+            $this->setLogStatus(false);
         }else{
-            //$this-webLog("登录成功。");
             $this->setLogStatus(true);
         }
         return $login_res;
@@ -145,6 +130,56 @@ class T_function{
             array_push($result,$row);
         }
         //将数组包装为json格式
+        $result = urldecode(json_encode($result));
+        return $result;
+    }
+    /*
+     * 根据分类名查找文章
+     * 参数
+     * 1.分类名  string
+     * 返回值 查询结果的数组对象
+     */
+    public function searchByCate($cate){
+        $sql = new sql();
+        //获取分类对应的id
+        $cateId = $sql->getCateId($cate);
+        if($cateId < 0) return -1;
+        $result = array();
+        $res = $sql->searchByCate($cateId);
+        while($row = $res->fetch_array()){
+            array_push($result,$row);
+        }
+        return $result;
+    }
+    /*
+     * 获取所有文章
+     * 无参数
+     * 返回值
+     * json   string
+     */
+    public function getAllArticle(){
+        $sql = new sql();
+        $result = array();
+        $res = $sql->showArticleAll();
+        while($row = $res->fetch_array()){
+            array_push($result,$row);
+        }
+        $result = urldecode(json_encode($result));
+        return $result;
+    }
+    /*
+     * 获取文章下所有评论
+     * 无参数
+     * 返回值
+     * json string
+     */
+    public function getArticleComment($id){
+        $sql = new sql();
+        $result = array();
+        $res = $sql->showArticleComment($id);
+        while($row = $res->fetch_array()){
+            array_push($result,$row);
+        }
         $result = urldecode(json_encode($result));
         return $result;
     }

@@ -244,49 +244,59 @@ t.iimt.article = {
             data : data,
             async : false,
             success : function (data) {
-                data = decodeURI(data);
-                data = JSON.parse(data);
-                console.log(data);
-                table_temp = "<table>" +
-                    "<tr>" +
-                    "<td class='id'>ID</td>" +
-                    "<td class='title'>标题</td>" +
-                    "<td>发布时间</td>" +
-                    "<td>上次编辑</td>" +
-                    "<td class='num'>浏览数</td>" +
-                    "<td class='num'>喜欢数</td>" +
-                    "<td class='num'>评论数</td>" +
-                    "</tr>";
-                for(var i = 0; i < data.length; i++){
-                    console.log(i);
-                    table_temp += "<tr>" +
-                        "<td class='id'>" + data[i].id + "</td>" +
-                        "<td class='title'>" + data[i].title + "</td>" +
-                        "<td>" + data[i].publishAt.substr(2,data[i].publishAt.length-5) + "</td>" +
-                        "<td>" + data[i].lastEdit.substr(2,data[i].publishAt.length-5) + "</td>" +
-                        "<td class='num'>" + data[i].viewed + "</td>" +
-                        "<td class='num'>" + data[i].likes + "</td>" +
-                        "<td class='num'>" + data[i].comments + "</td>" +
-                        "</tr>";
-                }
-                table_temp += "<tr><td class='sum' colspan='7'>共查询到" + data.length + "篇博文。</td></tr>"
-                table_temp += "</table>";
-                console.log(table_temp);
+                table_temp = makeUpArticleTable(data);
             }
         });
         return table_temp;
     },
     showbycate : function (catename,page_num) {
-        if(!page_num) page_num = 1;
-        console.log("显示分类下的文章，分类：" + catename + "页数：" + page_num);
+        var table_temp;
+        console.log("显示分类下的文章，分类：" + catename);
+        var data = {
+            method : "searchByCate",
+            val : catename
+        };
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data){
+                table_temp = makeUpArticleTable(data,page_num);
+            }
+        })
+        return table_temp;
     },
     showall : function (page_num) {
-        if(!page_num) page_num = 1;
-        console.log("显示所有文章，页数：" + page_num);
+        var table_temp;
+        var data = {method : "showArticleAll"};
+        console.log("显示所有文章。");
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data){
+                table_temp = makeUpArticleTable(data,page_num);
+            }
+        })
+        return table_temp;
     },
     showcomment : function (id,page_num) {
         if(!page_num) page_num = 1;
-        console.log("显示文章评论，文章id：" + id + "页数：" + page_num);
+        var table_temp;
+        var data = {method : "showArticleComment",id : id};
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data){
+                table_temp = makeUpCommentTable(data,page_num);
+            }
+        })
+        console.log("显示文章评论，文章id：" + id);
+        return table_temp;
     },
     deletecomment : function (article_id,comment_id) {
         console.log("删除文章下的评论，文章id：" + article_id + "评论id：" + comment_id);

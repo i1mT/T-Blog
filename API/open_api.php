@@ -64,6 +64,25 @@ switch ($method) {
         $res = $t->searchArticle($key);
         echo $res;
         break;
+    case 'searchByCate':
+        $cate = $_GET["val"];
+        $res = $t->searchByCate($cate);
+        if($res == -1){
+            echo "nocate";
+            break;
+        }
+        $res = urldecode(json_encode($res));
+        echo $res;
+        break;
+    case 'showArticleAll':
+        $res = $t->getAllArticle();
+        echo $res;
+        break;
+    case 'showArticleComment':
+        $id = $_GET["id"];
+        $res = $t->getArticleComment($id);
+        echo $res;
+        break;
 	default:
 		break;
 }

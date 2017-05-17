@@ -34,7 +34,7 @@
 html{
 	background: #000;
     margin: 0;
-    padding: 0;\
+    padding: 0;
     font-size: 62.5%;
 }
 body{
@@ -50,16 +50,16 @@ nav{
     background: url("./images/yasuko.jpg");
     background-size: cover;
 }
-table{
+table.article{
     text-align: right;
 }
-table td{
+table.article td{
     padding: .1rem .3rem;
 }
-table td.id,table td.num{
+table.article td.id,table td.num{
     text-align: center;
 }
-table td.title,table td.sum{
+table.article td.title,table td.sum{
     text-align: left;
 }
 .container{

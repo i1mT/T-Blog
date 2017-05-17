@@ -1,8 +1,6 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
 include_once "../install_info.php";
-$a = new sql();
-$a->init();
 
 /****************************数据库操作类*****************************/
 class sql{
@@ -257,6 +255,57 @@ class sql{
     public function searchArticle($key){
         $this->init();
         $sql = "SELECT * FROM `article` WHERE title LIKE '%$key%'";
+        $sql_res = $this->conn->query($sql);
+        return $sql_res;
+    }
+    /*
+     * 根据分类名称得到分类id
+     * 参数
+     * 1.分类名称 string
+     * 返回值 id
+     * 如果id为-1则没有此分类
+     */
+    public function getCateId($cateName){
+        $this->init();
+        $sql = "SELECT * FROM `cate` WHERE `name` = '$cateName'";
+        $sql_res = $this->conn->query($sql);
+        if(!$sql_res->num_rows) //没有找到分类
+            return -1;
+        $sql_res = $sql_res->fetch_array();
+        return $sql_res["id"];
+    }
+    /*
+     * 根据分类名称查询文章
+     * 参数
+     * 1.分类id int
+     * 返回值  mysqli_result 对象
+     */
+    public function searchByCate($cate){
+        $this->init();
+        $sql = "SELECT * FROM `article` WHERE `cate` = $cate";
+        $sql_res = $this->conn->query($sql);
+        return $sql_res;
+    }
+    /*
+     * 返回所有文章
+     * 参数无
+     * 返回值   mysqli_result对象
+     */
+    public function showArticleAll(){
+        $this->init();
+        $sql = "SELECT * FROM `article` WHERE 1";
+        $sql_res = $this->conn->query($sql);
+        return $sql_res;
+    }
+    /*
+     * 返回文章下所有评论
+     * 参数
+     * 1.id 文章id
+     * 返回值   mysqli_result对象
+     */
+    public function showArticleComment($id){
+        $this->init();
+        $sql = "SELECT * FROM `comment` WHERE `articleid`=$id";
         $sql_res = $this->conn->query($sql);
         return $sql_res;
     }
