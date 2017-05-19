@@ -83,6 +83,18 @@ switch ($method) {
         $res = $t->getArticleComment($id);
         echo $res;
         break;
+    case 'deleteComment':
+        $id = $_GET["id"];
+        $res = $t->deleteComment($id);
+        if($res)
+            echo "true";
+        else
+            echo "false";
+        break;
+    case 'showComment':
+        $res = $t->getCommentAll();
+        echo $res;
+        break;
 	default:
 		break;
 }

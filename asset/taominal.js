@@ -2,7 +2,6 @@
  * 处理指令
  * 分页中：默认每页十个数据
  */
-
 /***************定义处理类***************/
 var t = {};
 /***************分析指令方法****************/
@@ -245,6 +244,9 @@ t.iimt.article = {
             async : false,
             success : function (data) {
                 table_temp = makeUpArticleTable(data);
+            },
+            error : function () {
+                comment_table = "请求失败。";
             }
         });
         return table_temp;
@@ -263,6 +265,9 @@ t.iimt.article = {
             async : false,
             success : function (data){
                 table_temp = makeUpArticleTable(data,page_num);
+            },
+            error : function () {
+                comment_table = "请求失败。";
             }
         })
         return table_temp;
@@ -278,6 +283,9 @@ t.iimt.article = {
             async : false,
             success : function (data){
                 table_temp = makeUpArticleTable(data,page_num);
+            },
+            error : function () {
+                comment_table = "请求失败。";
             }
         })
         return table_temp;
@@ -293,23 +301,54 @@ t.iimt.article = {
             async : false,
             success : function (data){
                 table_temp = makeUpCommentTable(data,page_num);
+            },
+            error : function () {
+                comment_table = "请求失败。";
             }
         })
         console.log("显示文章评论，文章id：" + id);
         return table_temp;
-    },
-    deletecomment : function (article_id,comment_id) {
-        console.log("删除文章下的评论，文章id：" + article_id + "评论id：" + comment_id);
     }
 };
 /*************评论类**********/
 t.iimt.comment = {
     show : function (page_num) {
-        if(!page_num) page_num = 1;
         console.log("显示所有评论，页数：" + page_num);
+        var data = {method : "showComment"};
+        var comment_table;
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data){
+                comment_table = makeUpCommentTable(data,page_num);
+            },
+            error : function () {
+                comment_table = "请求失败。";
+            }
+        })
+        return comment_table;
     },
-    delete : function (id) {
-        console.log("删除评论，评论id：" + id);
+    delete : function (comment_id) {
+        var return_text;
+        var data = {method : "deleteComment", id : comment_id};
+        $.ajax({
+            url : "../API/open_api.php",
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data){
+                if(data == "true")
+                    return_text = "删除成功。";
+                else
+                    return_text = "删除失败。";
+            },
+            error : function () {
+                return_text = "请求失败。";
+            }
+        })
+        return return_text;
     }
 };
 /*********登录方法*********/

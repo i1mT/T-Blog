@@ -309,6 +309,17 @@ class sql{
         $sql_res = $this->conn->query($sql);
         return $sql_res;
     }
+    /*
+     * 返回所有评论
+     * 无参数
+     * 返回值   mysqli_result对象
+     */
+    public function showComment(){
+        $this->init();
+        $sql = "SELECT * FROM `comment` WHERE 1";
+        $sql_res = $this->conn->query($sql);
+        return $sql_res;
+    }
 }
 
 ?>

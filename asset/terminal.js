@@ -47,6 +47,30 @@ function getText(){
 	var output = $("#onInput span");
 	textarea.focus();
 	var text = textarea.val();
+    //检查是否是登录  需要隐藏密码
+    var isLog = false;
+    if(text.substr(0,10) == "iimt login"){
+        isLog = true;
+        var pwd = "";
+        var sym_time = 0,book_pos;
+        var start = 0,end = 0;
+        for(var j = 0; j < text.length; j++){
+            if(text[j] == '"'){
+                sym_time++;
+                if(sym_time==3){
+                    book_pos = j;
+                    break;
+                }
+            }
+        }
+        for(var j = book_pos+1; j < text.length; j++){
+            if(text[j] == '"'){
+                break;
+            }
+            pwd += text[j];
+            text = text.substr(0,j)+ '*' + text.substr(j+1);
+        }
+    }
 	output.html(text);
 	//将光标定位到行末
     $('#getText').focusEnd();
@@ -84,6 +108,9 @@ function getText(){
                         command = data;
                     }
                 })
+            }
+            if(isLog){
+			    command = command.replace(/"\**"/,'"'+pwd+'"');
             }
             textarea.val("");
             textarea.blur();

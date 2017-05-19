@@ -183,5 +183,31 @@ class T_function{
         $result = urldecode(json_encode($result));
         return $result;
     }
+    /*
+     * 根据评论id删除评论
+     * 参数
+     * 1.id
+     * 返回bool
+     */
+    public function deleteComment($id){
+        $sql = new sql();
+        $res = $sql->deleteComment($id);
+        return $res;
+    }
+    /*
+     * 获取所有评论
+     * 参数无
+     * 返回json  string
+     */
+    public function getCommentAll(){
+        $sql = new sql();
+        $result = array();
+        $res = $sql->showComment();
+        while($row = $res->fetch_array()){
+            array_push($result,$row);
+        }
+        $result = urldecode(json_encode($result));
+        return $result;
+    }
 }
 ?>
