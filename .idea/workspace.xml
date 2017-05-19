@@ -74,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/API/function.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="6432">
-              <caret line="201" column="36" lean-forward="true" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
+              <caret line="201" column="36" lean-forward="false" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -83,8 +83,8 @@
       <file leaf-file-name="taominal.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/asset/taominal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+            <state relative-caret-position="672">
+              <caret line="267" column="36" lean-forward="false" selection-start-line="267" selection-start-column="36" selection-end-line="267" selection-end-column="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -95,10 +95,10 @@
       <file leaf-file-name="terminal.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/asset/terminal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="67" column="22" lean-forward="true" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
+            <state relative-caret-position="585">
+              <caret line="278" column="25" lean-forward="true" selection-start-line="278" selection-start-column="25" selection-end-line="278" selection-end-column="25" />
               <folding>
-                <marker date="1495158386488" expanded="true" signature="3639:3645" ph=" " />
+                <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
               </folding>
             </state>
           </provider>
@@ -114,6 +114,7 @@
       <find>makeUpTable</find>
       <find>删除</find>
       <find>评论</find>
+      <find>cannotFind</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -347,12 +348,13 @@
       <workItem from="1494930180331" duration="6542000" />
       <workItem from="1495002344631" duration="8518000" />
       <workItem from="1495019244179" duration="603000" />
-      <workItem from="1495152942225" duration="4925000" />
+      <workItem from="1495152942225" duration="5162000" />
+      <workItem from="1495167874515" duration="4670000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92534000" />
+    <option name="totallyTimeSpent" value="97441000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -367,7 +369,7 @@
     <frame x="-9" y="-9" width="1858" height="1098" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16591929" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16816144" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -487,7 +489,7 @@
         <state relative-caret-position="3200">
           <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
           <folding>
-            <marker date="1495158386488" expanded="true" signature="3639:3645" ph=" " />
+            <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
           </folding>
         </state>
       </provider>
@@ -514,7 +516,7 @@
         <state relative-caret-position="2144">
           <caret line="67" column="31" lean-forward="false" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
           <folding>
-            <marker date="1495158386488" expanded="true" signature="3639:3645" ph=" " />
+            <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
           </folding>
         </state>
       </provider>
@@ -584,7 +586,7 @@
         <state relative-caret-position="2144">
           <caret line="67" column="31" lean-forward="false" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
           <folding>
-            <marker date="1495158386488" expanded="true" signature="3639:3645" ph=" " />
+            <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
           </folding>
         </state>
       </provider>
@@ -654,7 +656,7 @@
         <state relative-caret-position="2144">
           <caret line="67" column="31" lean-forward="false" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
           <folding>
-            <marker date="1495158386488" expanded="true" signature="3639:3645" ph=" " />
+            <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
           </folding>
         </state>
       </provider>
@@ -718,7 +720,7 @@
         <state relative-caret-position="2144">
           <caret line="67" column="31" lean-forward="false" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
           <folding>
-            <marker date="1495158386488" expanded="true" signature="3639:3645" ph=" " />
+            <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
           </folding>
         </state>
       </provider>
@@ -790,7 +792,7 @@
         <state relative-caret-position="2144">
           <caret line="67" column="31" lean-forward="false" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
           <folding>
-            <marker date="1495158386488" expanded="true" signature="3639:3645" ph=" " />
+            <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
           </folding>
         </state>
       </provider>
@@ -891,7 +893,7 @@
     <entry file="file://$PROJECT_DIR$/API/function.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6432">
-          <caret line="201" column="36" lean-forward="true" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
+          <caret line="201" column="36" lean-forward="false" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -906,8 +908,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/asset/taominal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+        <state relative-caret-position="672">
+          <caret line="267" column="36" lean-forward="false" selection-start-line="267" selection-start-column="36" selection-end-line="267" selection-end-column="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -916,10 +918,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/asset/terminal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="67" column="22" lean-forward="true" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
+        <state relative-caret-position="585">
+          <caret line="278" column="25" lean-forward="true" selection-start-line="278" selection-start-column="25" selection-end-line="278" selection-end-column="25" />
           <folding>
-            <marker date="1495158386488" expanded="true" signature="3639:3645" ph=" " />
+            <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
           </folding>
         </state>
       </provider>

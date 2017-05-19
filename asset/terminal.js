@@ -67,6 +67,8 @@ function getText(){
             if(text[j] == '"'){
                 break;
             }
+            if(text[j] =='\n')
+                break;
             pwd += text[j];
             text = text.substr(0,j)+ '*' + text.substr(j+1);
         }
@@ -257,4 +259,74 @@ function makeUpCommentTable(json,page) {
     table_temp += "<tr><td class='sum' colspan='7'>" + tips + "</td></tr>"
     table_temp += "</table>";
     return table_temp;
+}
+/*
+ * 检查指令是否规范
+ * 返回布尔值
+ */
+function checkCommand(cmd){
+    var lv = cmd.split(" ");
+    var lackVal = "缺少值或值不完整。  tips:使用英文符";
+    var cmdWrone = "指令错误";
+    var cannotFind = "没有找到指令";
+
+    if(lv.length <= 1)
+        return cmdWrone;
+    if(lv[0] != "iimt")
+        return cannotFind + (!lv[0] ? '""':lv[0]);
+    if(!t.iimt.hasOwnProperty(lv[1]))
+        return cannotFind + (!lv[1] ? '""':lv[1]);
+    if(lv[1] == "login"){
+        if(lv.length != 4)
+            return cmdWrone;
+        if(lv[2][0] != '"' || lv[2][lv[2].length-1] != '"')
+            return lackVal;
+        if(lv[3][0] != '"' || lv[3][lv[3].length-1] != '"')
+            return lackVal;
+    }
+    if(lv[1] == "logout"){
+        if(lv.length != 2)
+            return cmdWrone;
+    }
+    if(lv[1] == "set"){
+        if(!t.iimt.set.hasOwnProperty(lv[2]))
+            return cannotFind + (!lv[2] ? '""':lv[2]);
+        if(lv.length != 4 || lv[3][0] != '"' || lv[3][lv[3].length-1] != '"')
+            return lackVal;
+    }
+    if(lv[1] == "article"){
+        if(!t.iimt.article.hasOwnProperty(lv[2]))
+            return cannotFind + (!lv[2] ? '""':lv[2]);
+        if(lv[2] == "publish" || lv[2] == "showall"){
+            if(lv.length != 3)
+                return cmdWrone;
+        }
+        if(lv[2] == "update" || lv[2] == "delete" || lv[2] == "search"){
+            if(lv.length != 4 || lv[3][0] != '"' || lv[3][lv[3].length-1] != '"')
+                return lackVal;
+        }
+        if(lv[2] == "showbycate" || lv[2] == "showcomment"){
+            if(lv.length < 4 || lv.length > 5)
+                return cmdWrone;
+            if(lv[3][0] != '"' || lv[3][lv[3].length-1] != '"')
+                return lackVal;
+            if(lv.length == 5){
+                if(lv[4][0] != '"' || lv[4][lv[4].length-1] != '"')
+                    return lackVal;
+            }
+        }
+    }
+    if(lv[1] == "comment"){
+        if(!t.iimt.comment.hasOwnProperty(lv[2]))
+            return cannotFind + (!lv[2] ? '""':lv[2]);
+        if(lv[2] == "delete"){
+            if(lv.length != 4 || lv[3][0] != '"' || lv[3][lv[3].length-1] != '"')
+                return lackVal;
+        }
+        if(lv[2] == "show"){
+            if(lv.length != 3)
+                return cmdWrone;
+        }
+    }
+    return true;
 }

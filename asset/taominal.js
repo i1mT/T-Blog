@@ -6,27 +6,29 @@
 var t = {};
 /***************分析指令方法****************/
 t.commandHandler = function (cmd) {
+    //清屏
     if(cmd == "clear"){
-        //清屏
         var lis = $(".cmd li");
         lis.remove();
         console.log("清屏");
         return "Clear ok.";
     }
     cmd = cmd.trim();
+    console.log(cmd);
     var cmds = cmd.split(' ');
     var return_text = "";
     if(cmds.length>1){
         var level_1 = cmds[0];//一级指令  iimt
         var level_2 = cmds[1];//二级指令  set/article/comment
         var level_3 = cmds[2];//三级指令
-    }else{
-        return "指令不正确！";
+    }
+    if(checkCommand(cmd) != true){
+        return checkCommand(cmd);
     }
     if (!loginStatus) {
         if(level_1!="iimt"||level_2!="login")
             return "未登录,不能进行操作！";
-    };
+    }
     var param_1,param_2;  //两个参数
     /*
      * 指令最少有两级
