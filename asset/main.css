@@ -1,4 +1,4 @@
-@keyframes blink {
+﻿@keyframes blink {
     50% {
         color: #000;
         background: #0c0;
@@ -47,7 +47,7 @@ ul li{
 }
 nav{
     height:  30rem;
-    background: url("./images/yasuko.jpg");
+    background: url("./images/yasuko.jpeg");
     background-size: cover;
 }
 table.article{
@@ -87,7 +87,7 @@ table.article td.title,table td.sum{
     width:  2.5rem;
 }
 .blogname{
-    padding-top: 6rem;
+    padding-top: 12rem;
     margin-bottom: 0;
     font-size: 2.6rem;
 }
@@ -178,7 +178,26 @@ ul.cmd li span{
     border: .2rem solid #fff;
     overflow: hidden;
     margin: 0 auto;
+    margin-top: 3rem;
 }
 .myinfo div.avatar img{
     width: 5rem;
+}
+ul.desc-tab{
+    width: 100%;
+    overflow: hidden;
+    padding:0;
+    padding-top: 1rem;
+}
+ul.desc-tab li{
+    cursor: default;
+    padding:.1rem 0;
+    margin: 0;
+    box-sizing: border-box;
+    float: left;
+    width: 25%;
+    border-left: .1rem solid rgba(250,250,250, 0.9);
+    border-right: .1rem solid rgba(250,250,250, 0.9);
+    text-align: center;
+    background: rgba(240,240,240, 0.7);
 }

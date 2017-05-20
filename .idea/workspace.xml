@@ -23,88 +23,122 @@
     <favorites_list name="T-Blog" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="sql.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/API/sql.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10112">
-              <caret line="316" column="34" lean-forward="false" selection-start-line="316" selection-start-column="34" selection-end-line="316" selection-end-column="34" />
-              <folding>
-                <marker date="1495010063994" expanded="true" signature="989:1072" ph="SELECT * FRO... admin" />
-                <marker date="1495010063994" expanded="true" signature="1352:1416" ph="UPDATE `blog... " />
-                <marker date="1495010063994" expanded="true" signature="1623:1694" ph="UPDATE `blog... " />
-                <marker date="1495010063994" expanded="true" signature="1901:1967" ph="UPDATE `blog... " />
-                <marker date="1495010063994" expanded="true" signature="2997:3131" ph="INSERT INTO `article`... " />
-                <marker date="1495010063994" expanded="true" signature="4088:4108" ph="UPDATE `arti... " />
-                <marker date="1495010063994" expanded="true" signature="4670:4715" ph="DELETE FROM " />
-                <marker date="1495010063994" expanded="true" signature="4965:5031" ph="UPDATE `arti... " />
-                <marker date="1495010063994" expanded="true" signature="5284:5352" ph="UPDATE `arti... " />
-                <marker date="1495010063994" expanded="true" signature="5622:5694" ph="UPDATE `arti... " />
-                <marker date="1495010063994" expanded="true" signature="5960:6048" ph="INSERT INTO `comment_user`... " />
-                <marker date="1495010063994" expanded="true" signature="6452:6585" ph="INSERT INTO `comment`... " />
-                <marker date="1495010063994" expanded="true" signature="6810:6855" ph="DELETE FROM " />
-                <marker date="1495010063994" expanded="true" signature="7089:7155" ph="UPDATE `comm... " />
-                <marker date="1495010063994" expanded="true" signature="7374:7418" ph="INSERT INTO `cate`... " />
-                <marker date="1495010063994" expanded="true" signature="7651:7700" ph="SELECT * FRO... article" />
-                <marker date="1495010063994" expanded="true" signature="7961:7998" ph="SELECT * FRO... cate" />
-                <marker date="1495010063994" expanded="true" signature="7961:7999" ph="SELECT * FRO... cate" />
-                <marker date="1495010063994" expanded="true" signature="7961:8008" ph="SELECT * FRO... cate" />
-                <marker date="1495010063994" expanded="true" signature="8354:8369" ph="SELECT * FRO... cate" />
-                <marker date="1495010063994" expanded="true" signature="8371:8410" ph="SELECT * FRO... article" />
-                <marker date="1495010063994" expanded="true" signature="8640:8671" ph="SELECT * FRO... article" />
-                <marker date="1495010063994" expanded="true" signature="8922:8964" ph="SELECT * FRO... comment" />
-                <marker date="1495010063994" expanded="true" signature="8922:8965" ph="SELECT * FRO... comment" />
-                <marker date="1495010063994" expanded="true" signature="9189:9220" ph="SELECT * FRO... comment" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="open_api.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/API/open_api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2944">
-              <caret line="92" column="14" lean-forward="false" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="function.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/API/function.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6432">
-              <caret line="201" column="36" lean-forward="false" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="taominal.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asset/taominal.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="267" column="36" lean-forward="false" selection-start-line="267" selection-start-column="36" selection-end-line="267" selection-end-column="36" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="terminal.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/asset/terminal.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="278" column="25" lean-forward="true" selection-start-line="278" selection-start-column="25" selection-end-line="278" selection-end-column="25" />
-              <folding>
-                <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.43463612">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file leaf-file-name="sql.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/API/sql.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="10112">
+                  <caret line="316" column="34" lean-forward="false" selection-start-line="316" selection-start-column="34" selection-end-line="316" selection-end-column="34" />
+                  <folding>
+                    <marker date="1495010063994" expanded="true" signature="989:1072" ph="SELECT * FRO... admin" />
+                    <marker date="1495010063994" expanded="true" signature="1352:1416" ph="UPDATE `blog... " />
+                    <marker date="1495010063994" expanded="true" signature="1623:1694" ph="UPDATE `blog... " />
+                    <marker date="1495010063994" expanded="true" signature="1901:1967" ph="UPDATE `blog... " />
+                    <marker date="1495010063994" expanded="true" signature="2997:3131" ph="INSERT INTO `article`... " />
+                    <marker date="1495010063994" expanded="true" signature="4088:4108" ph="UPDATE `arti... " />
+                    <marker date="1495010063994" expanded="true" signature="4670:4715" ph="DELETE FROM " />
+                    <marker date="1495010063994" expanded="true" signature="4965:5031" ph="UPDATE `arti... " />
+                    <marker date="1495010063994" expanded="true" signature="5284:5352" ph="UPDATE `arti... " />
+                    <marker date="1495010063994" expanded="true" signature="5622:5694" ph="UPDATE `arti... " />
+                    <marker date="1495010063994" expanded="true" signature="5960:6048" ph="INSERT INTO `comment_user`... " />
+                    <marker date="1495010063994" expanded="true" signature="6452:6585" ph="INSERT INTO `comment`... " />
+                    <marker date="1495010063994" expanded="true" signature="6810:6855" ph="DELETE FROM " />
+                    <marker date="1495010063994" expanded="true" signature="7089:7155" ph="UPDATE `comm... " />
+                    <marker date="1495010063994" expanded="true" signature="7374:7418" ph="INSERT INTO `cate`... " />
+                    <marker date="1495010063994" expanded="true" signature="7651:7700" ph="SELECT * FRO... article" />
+                    <marker date="1495010063994" expanded="true" signature="7961:7998" ph="SELECT * FRO... cate" />
+                    <marker date="1495010063994" expanded="true" signature="7961:7999" ph="SELECT * FRO... cate" />
+                    <marker date="1495010063994" expanded="true" signature="7961:8008" ph="SELECT * FRO... cate" />
+                    <marker date="1495010063994" expanded="true" signature="8354:8369" ph="SELECT * FRO... cate" />
+                    <marker date="1495010063994" expanded="true" signature="8371:8410" ph="SELECT * FRO... article" />
+                    <marker date="1495010063994" expanded="true" signature="8640:8671" ph="SELECT * FRO... article" />
+                    <marker date="1495010063994" expanded="true" signature="8922:8964" ph="SELECT * FRO... comment" />
+                    <marker date="1495010063994" expanded="true" signature="8922:8965" ph="SELECT * FRO... comment" />
+                    <marker date="1495010063994" expanded="true" signature="9189:9220" ph="SELECT * FRO... comment" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="open_api.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/API/open_api.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2944">
+                  <caret line="92" column="14" lean-forward="false" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="function.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/API/function.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="449">
+                  <caret line="205" column="42" lean-forward="true" selection-start-line="205" selection-start-column="42" selection-end-line="205" selection-end-column="42" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="header.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/header.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="655">
+                  <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/index.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="64">
+                  <caret line="2" column="30" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/footer.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="96">
+                  <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/asset/script.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="416">
+                  <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/asset/main.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="239">
+                  <caret line="89" column="19" lean-forward="false" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -115,6 +149,7 @@
       <find>删除</find>
       <find>评论</find>
       <find>cannotFind</find>
+      <find>blogname</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,15 +161,19 @@
         <option value="$PROJECT_DIR$/script.js" />
         <option value="$PROJECT_DIR$/css.css" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/header.php" />
         <option value="$PROJECT_DIR$/install_info.php" />
         <option value="$PROJECT_DIR$/admin/index.php" />
-        <option value="$PROJECT_DIR$/asset/main.css" />
         <option value="$PROJECT_DIR$/API/sql.php" />
         <option value="$PROJECT_DIR$/API/function.php" />
         <option value="$PROJECT_DIR$/API/open_api.php" />
-        <option value="$PROJECT_DIR$/asset/taominal.js" />
         <option value="$PROJECT_DIR$/asset/terminal.js" />
+        <option value="$PROJECT_DIR$/asset/taominal.js" />
+        <option value="$PROJECT_DIR$/foter.html" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/asset/script.js" />
+        <option value="$PROJECT_DIR$/footer.php" />
+        <option value="$PROJECT_DIR$/asset/main.css" />
+        <option value="$PROJECT_DIR$/header.php" />
       </list>
     </option>
   </component>
@@ -349,12 +388,12 @@
       <workItem from="1495002344631" duration="8518000" />
       <workItem from="1495019244179" duration="603000" />
       <workItem from="1495152942225" duration="5162000" />
-      <workItem from="1495167874515" duration="4670000" />
+      <workItem from="1495167874515" duration="10079000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97441000" />
+    <option name="totallyTimeSpent" value="102850000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -367,7 +406,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1858" height="1098" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16816144" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -401,23 +439,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/asset/taominal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5376">
-          <caret line="168" column="39" lean-forward="false" selection-start-line="168" selection-start-column="39" selection-end-line="168" selection-end-column="39" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/API/sql.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -817,14 +838,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/index.html" />
-    <entry file="file://$PROJECT_DIR$/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/install_info.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -838,21 +851,6 @@
         <state relative-caret-position="896">
           <caret line="28" column="53" lean-forward="false" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="48" column="19" lean-forward="true" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -890,14 +888,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/API/function.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6432">
-          <caret line="201" column="36" lean-forward="false" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/API/open_api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2944">
@@ -906,23 +896,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/asset/terminal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="314" column="35" lean-forward="true" selection-start-line="314" selection-start-column="35" selection-end-line="314" selection-end-column="35" />
+          <folding>
+            <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/asset/taominal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="267" column="36" lean-forward="false" selection-start-line="267" selection-start-column="36" selection-end-line="267" selection-end-column="36" />
+        <state relative-caret-position="352">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asset/terminal.js">
+    <entry file="file://$PROJECT_DIR$/API/function.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="278" column="25" lean-forward="true" selection-start-line="278" selection-start-column="25" selection-end-line="278" selection-end-column="25" />
-          <folding>
-            <marker date="1495178427254" expanded="true" signature="3693:3699" ph=" " />
-          </folding>
+        <state relative-caret-position="449">
+          <caret line="205" column="42" lean-forward="true" selection-start-line="205" selection-start-column="42" selection-end-line="205" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="2" column="30" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="89" column="19" lean-forward="false" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="655">
+          <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>

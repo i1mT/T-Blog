@@ -14,7 +14,6 @@ t.commandHandler = function (cmd) {
         return "Clear ok.";
     }
     cmd = cmd.trim();
-    console.log(cmd);
     var cmds = cmd.split(' ');
     var return_text = "";
     if(cmds.length>1){
@@ -36,7 +35,6 @@ t.commandHandler = function (cmd) {
     if(!level_3 || level_3[0] == '"'){
         //如果三级指令是参数的话，就是全局设置
         var params = cmd.split('"');
-        console.log(params.length);
         if(params.length > 1){
             //有参数，获取参数并调用接口
             param_1 = params[1];
