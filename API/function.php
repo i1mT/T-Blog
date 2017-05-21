@@ -209,5 +209,26 @@ class T_function{
         $result = urldecode(json_encode($result));
         return $result;
     }
+    /*
+     * 前端获取文章信息方法
+     * 接受参数
+     * 1.page = 1
+     * 2.cate = null
+     */
+    public function getArticle($page = 1, $cate = null){
+        $article = array();//要push过去的数据
+        if(!$cate){
+            $art = $this->getAllArticle();
+            $art = json_decode($art);
+        }else{
+            $art = $this->searchByCate($cate);
+        }
+        $start = ($page-1)*10;
+        $end = ($start+10)>count($art) ? count($art) : ($start+10);
+        for($i = $end-1; $i >= $start; $i--){
+            array_push($article,$art[$i]);
+        }
+        return $article;
+    }
 }
 ?>

@@ -30,12 +30,65 @@
         box-shadow: 0 0 5px rgba(0,100,0,50);
     }
 }
-
+@font-face {
+    font-family: Exo-regular;
+    src: url(font/Exo-Regular.otf);
+}
+@font-face {
+    font-family: Exo-light;
+    src: url(font/Exo-Light.otf);
+}
+@font-face {
+    font-family: Exo-bold;
+    src: url(font/Exo-Bold.otf);
+}
+@font-face {
+    font-family: Exo-thin;
+    src: url(font/Exo-Thin.otf);
+}
+@keyframes animate-bg
+{
+    from {
+        background-position: 0% 0%;
+    }
+    to {
+        background-position: 18% 18%;
+    }
+}
+/******美化滚动条样式********/
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar{
+    width: 7px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+/*定义滚动条的轨道，内阴影及圆角*/
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+/*定义滑块，内阴影及圆角*/
+::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+/******iconfont样式*********/
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
 html{
-	background: #000;
     margin: 0;
     padding: 0;
     font-size: 62.5%;
+    font-family: Exo-regular;
 }
 body{
     height: 100%;
@@ -47,7 +100,7 @@ ul li{
 }
 nav{
     height:  30rem;
-    background: url("./images/yasuko.jpeg");
+    background-image: url("./images/yasuko.jpeg");
     background-size: cover;
 }
 table.article{
@@ -84,30 +137,32 @@ table.article td.title,table td.sum{
     outline: none;
 }
 .avatar img{
-    width:  2.5rem;
+    width:  10rem;
 }
 .blogname{
-    padding-top: 12rem;
+    padding-top: 20rem;
     margin-bottom: 0;
-    font-size: 2.6rem;
+    font-size: 5rem;
 }
 .blogname a{
+    font-family:Exo-thin,'-apple-system';
     text-decoration: none;
     color: #efefef;
 }
 .motto{
-    margin-top: 1rem;
+    font-family:Exo-thin,'-apple-system';
+    margin-top: 2rem;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 .blogname,.motto{
     text-align: center;
-    text-shadow: 0 .1rem .1rem #000;
+    text-shadow: 0 1px 1px #595959;
     font-weight: 200;
     font-family: "Consolas","Youyuan",Helvetica,Arial,sans-serif;
 }
 .blogname:hover,.motto:hover{
-    text-shadow: 0 .2rem .1rem #000;
+    text-shadow:  0 1px 1px #262626;
 }
 .cmd{
     width: 95%;
@@ -172,22 +227,22 @@ ul.cmd li span{
     bottom: 0;
 }
 .myinfo div.avatar{
-    width: 5rem;
-    height: 5rem;
+    width: 7rem;
+    height: 7rem;
     border-radius: 50%;
     border: .2rem solid #fff;
     overflow: hidden;
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 .myinfo div.avatar img{
-    width: 5rem;
+    width: 7rem;
 }
 ul.desc-tab{
     width: 100%;
     overflow: hidden;
     padding:0;
-    padding-top: 1rem;
+    padding-top: 2rem;
 }
 ul.desc-tab li{
     cursor: default;
@@ -196,8 +251,133 @@ ul.desc-tab li{
     box-sizing: border-box;
     float: left;
     width: 25%;
-    border-left: .1rem solid rgba(250,250,250, 0.9);
-    border-right: .1rem solid rgba(250,250,250, 0.9);
+    min-height: 1.7rem;
+    line-height: 1.9rem;
+    border-left: .1rem solid rgba(210,210,210, 0.9);
+    border-right: .1rem solid rgba(210,210,210, 0.9);
     text-align: center;
-    background: rgba(240,240,240, 0.7);
+    background: rgba(250,250,250, 0.4);
+    font-size: 1.4rem;
 }
+ul.desc-tab .li-e{
+    border-right: 0;
+}
+ul.desc-tab .li-f{
+    border-left: 0;
+}
+.banner-mask:after {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    transition: background-color .5s ease-out 2s;
+    -webkit-animation-name: animate-bg;
+    -webkit-animation-duration: 20s;
+    -webkit-animation-iteration-count: infinite;
+    opacity: .25;
+    background: url(images/escheresque_ste.png);
+    background-color: rgba(0,0,0,.05);
+}
+.banner-mask{
+    z-index: 0;
+    position: relative;
+}
+.banner-mask .header{
+    height:100%;
+}
+.art-card-container{
+    overflow: hidden;
+    background-size: cover;
+    height: 50rem;
+    overflow: hidden;
+}
+.article-list{
+    position: relative;
+    margin: 3rem auto;
+    min-width: 50rem;
+}
+footer{
+    margin-top: 3rem;
+    background: #111;
+    padding:0;
+    overflow: hidden;
+}
+footer p{
+    color: #fff;
+    text-align: center;
+}
+footer p a{
+    color: #ccc;
+    text-shadow: 0 .1rem .1rem #565656;
+    text-decoration: none;
+}
+.article-list .art-info{
+    width: 100%;
+    position: absolute;
+    bottom:0;
+    color: #fff;
+    overflow: hidden;
+    padding: .3rem 0rem;
+    padding-top: 1rem;
+    border-top-left-radius:0rem;
+    border-top-right-radius:0rem;
+    background: linear-gradient(to top,
+                                rgba(0,0,0,1) 10%,
+                                rgba(0,0,0,0));
+}
+.article-list img.art-cover{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.art-info .art-viewed{
+    padding-left: 1rem;
+}
+.art-info p{
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+.art-info p a{
+    width: 100%;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 3rem;
+}
+.art-info span{
+    margin: .3rem .5rem;
+    padding-bottom: 1rem;
+    font-size: 1.5rem;
+}
+.art-info span a{
+    color: #fff;
+    background: #555;
+    border-radius: .3rem;
+    text-decoration: none;
+    padding: 0 .3rem;
+}
+.art-info span a:hover{
+    box-shadow: 0 .1rem .5rem 0rem #444;
+    background: #444;
+}
+.art-info .art-info-detail{
+    margin-bottom: .5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
