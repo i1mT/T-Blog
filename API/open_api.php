@@ -95,6 +95,12 @@ switch ($method) {
         $res = $t->getCommentAll();
         echo $res;
         break;
+    case 'raiseArticleLikes':
+        $id = $_GET['id'];
+        $res = $t->raiseArticleLikes($id);
+        if($res) echo "true";
+        else echo "false";
+        break;
 	default:
 		break;
 }

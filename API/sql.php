@@ -274,6 +274,18 @@ class sql{
         return $sql_res["id"];
     }
     /*
+     * 根据分类id得到分类名
+     */
+    public function getCateNameById($id){
+        $this->init();
+        $sql = "SELECT * FROM `cate` WHERE `id`=$id";
+        $res = $this->conn->query($sql);
+        if(!$res->num_rows)
+            return "";
+        $res = $res->fetch_array();
+        return $res['name'];
+    }
+    /*
      * 根据分类名称查询文章
      * 参数
      * 1.分类id int
@@ -316,6 +328,18 @@ class sql{
     public function showComment(){
         $this->init();
         $sql = "SELECT * FROM `comment` WHERE 1";
+        $sql_res = $this->conn->query($sql);
+        return $sql_res;
+    }
+    /*
+     * 获取文章信息
+     * 参数
+     * 1. id
+     * 返回值 mysqli_result 对象
+     */
+    public function getArticleById($id){
+        $this->init();
+        $sql = "SELECT * FROM `article` WHERE `id`=$id";
         $sql_res = $this->conn->query($sql);
         return $sql_res;
     }

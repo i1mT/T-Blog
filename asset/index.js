@@ -4,7 +4,6 @@ $(document).ready(function () {
 
 function init() {
     //设置nav的高度为窗口高度
-    console.log("set nav height")
     var winHeight;
     if (window.innerHeight)
         winHeight = window.innerHeight;

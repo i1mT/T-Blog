@@ -243,5 +243,29 @@ class T_function{
         }
         return count($art);
     }
+    /*
+     * 根据id获取文章详细信息
+     * 参数
+     * 1.id
+     * 返回值 article数组
+     */
+    public function getArticleById($id){
+        $sql = new sql();
+        $res = $sql->getArticleById($id);
+        $res = $res->fetch_array();
+        $cate_name = $sql->getCateNameById($res['cate']);
+        $res['cate'] = $cate_name;
+        return $res;
+    }
+    /*
+     * 增加文章喜欢数
+     * 参数
+     * 1.id 文章id
+     */
+    public function raiseArticleLikes($id){
+        $sql = new sql();
+        $res = $sql->creaseArticleLike($id);
+        return $res;
+    }
 }
 ?>

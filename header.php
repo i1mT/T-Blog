@@ -9,6 +9,7 @@
     <script src="asset/jquery-3.1.1.min.js"></script>
     <script src="asset/HyperDown.js/Parser.js"></script>
     <script src="asset/iconfont.js"></script>
+    <script src="asset/index.js"></script>
     <title>博客名</title>
 </head>
 <body>
