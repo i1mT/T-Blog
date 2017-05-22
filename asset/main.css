@@ -370,6 +370,27 @@ footer p a{
 .art-info .art-info-detail{
     margin-bottom: .5rem;
 }
+ul.div-page{
+    height: 3rem;
+    padding: 0;
+    margin: 1rem auto;
+}
+ul.div-page li{
+    float: left;
+    margin: 0 .3rem;
+}
+ul.div-page li a{
+    display: block;
+    padding: 1rem;
+    font-size: 1.8rem;
+    color: #000;
+    text-decoration: none;
+    background: #ccc;
+    border-radius: .5rem;
+}
+ul.div-page li a:hover{
+    background: #d9d9d9;
+}
 
 
 

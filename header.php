@@ -43,6 +43,7 @@ $func = new T_function();
 
 //首页，获取第一页
 if(!count($_GET)){
+    $page = 1;
     $articles = $func->getArticle();
 }
 //指定页
@@ -53,11 +54,14 @@ if(@$_GET['page']&& @!$_GET['cate']){
 //所有该分类下的文章
 if(@$_GET['cate']){
     $cate = $_GET['cate'];
+    echo $cate;
     if(@$_GET['page']){
         //指定分类下的页
         $page = $_GET['page'];
+        echo $page;
         $articles = $func->getArticle($page,$cate);
     }else{
+        $page = 1;
         $articles = $func->getArticle(1,$cate);
     }
 }

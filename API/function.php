@@ -223,12 +223,25 @@ class T_function{
         }else{
             $art = $this->searchByCate($cate);
         }
-        $start = ($page-1)*10;
-        $end = ($start+10)>count($art) ? count($art) : ($start+10);
-        for($i = $end-1; $i >= $start; $i--){
+        $start = count($art) - 8*($page-1);
+        $end = ($start-8)<0 ? 0 : ($start-8);
+        for($i = $start-1; $i >= $end; $i--){
             array_push($article,$art[$i]);
         }
         return $article;
+    }
+    /*
+     * 获取文章总数量  或指定分类下的总数量
+     * 参数cate = null
+     */
+    public function getArticleNum($cate = null){
+        if(!$cate){
+            $art = $this->getAllArticle();
+            $art = json_decode($art);
+        }else{
+            $art = $this->searchByCate($cate);
+        }
+        return count($art);
     }
 }
 ?>

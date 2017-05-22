@@ -31,6 +31,16 @@ function init() {
             } );
         }
     })
+    //设置分页居中问题
+    var div_pages = $(".div-page");
+    var div_pages_lis = div_pages.find('li');
+    var lis_width = 0;
+    for(var i = 0; i < div_pages_lis.length; i++){
+        lis_width += $(div_pages_lis[i]).width()+10;
+    }
+    div_pages.css({
+        'width' : lis_width+10
+    });
 }
 
 function scrollFunc(e) {
