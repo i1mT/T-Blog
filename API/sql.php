@@ -343,6 +343,18 @@ class sql{
         $sql_res = $this->conn->query($sql);
         return $sql_res;
     }
+    /*
+     * 根据评论用户id获取用户详细情况
+     * 参数
+     * 1.id 评论用户id
+     * 返回值 mysqli_result对象
+     */
+    public function getCommentUserInfo($id){
+        $this->init();
+        $sql = "SELECT * FROM `comment_user` WHERE `id`=$id";
+        $sql_res = $this->conn->query($sql);
+        return $sql_res;
+    }
 }
 
 ?>

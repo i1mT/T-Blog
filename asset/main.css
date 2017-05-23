@@ -574,11 +574,61 @@ form.comment button{
     float: right;
     margin-top: .5rem;
     color: #fff;
+    margin-bottom: 2rem;
 }
 form.comment button:hover{
     opacity:0.8;
 }
-
+.comment-list{
+    clear: both;
+    padding-left: 0;
+    padding-top: 1rem;
+}
+.comment-list .count{
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 0;
+    border-bottom: .3rem solid #ccc;
+}
+.comment-list .count span{
+    margin: 0;
+    padding: .5rem;
+    padding-bottom: .1rem;
+    border-bottom: .3rem solid #43CD80;
+}
+.comment-list .divide{
+    width: 20rem;
+    height:.2rem;
+    display: inline-block;
+    background-color: red;
+}
+.comment-list li{
+    padding: 1rem 0;
+    border-bottom: .1rem dashed #ccc;
+}
+.comment-list a{
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 1rem 1rem 0 0;
+    text-decoration: none;
+    color: #000;
+}
+.comment-list a:visited{
+    color: #000;
+}
+.comment-list .comment-con{
+    margin-left: 5rem;
+    font-size: 1.4rem;
+}
+.comment-list .time{
+    color: #999;
+}
+.comment-list .comment-like{
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
 
 
 

@@ -184,6 +184,28 @@ class T_function{
         return $result;
     }
     /*
+     * 获取文章下所有评论
+     * 无参数
+     * 返回值
+     * 数组
+     */
+    public function getArticleCommentArr($id){
+        $sql = new sql();
+        $result = array();
+        $res = $sql->showArticleComment($id);
+        while($row = $res->fetch_array()){
+            array_push($result,$row);
+        }
+        for($i = 0; $i < count($result); $i++) {
+            $user = $sql->getCommentUserInfo($result[$i]['uid']);
+            $user = $user->fetch_array();
+            $result[$i]["name"] = $user['name'];
+            $result[$i]["email"] = $user['email'];
+            $result[$i]['site'] = $user['site'];
+        }
+        return $result;
+    }
+    /*
      * 根据评论id删除评论
      * 参数
      * 1.id
@@ -265,6 +287,16 @@ class T_function{
     public function raiseArticleLikes($id){
         $sql = new sql();
         $res = $sql->creaseArticleLike($id);
+        return $res;
+    }
+    /*
+     * 评论赞+1
+     * 参数
+     * 1.id 评论id
+     */
+    public function addCommentLike($id){
+        $sql = new sql();
+        $res = $sql->creaseCommentLike($id);
         return $res;
     }
 }

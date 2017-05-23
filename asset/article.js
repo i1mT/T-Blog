@@ -39,4 +39,29 @@ function init() {
             }
         })
     })
+    /*
+    * 评论喜欢按钮被点击之后
+    */
+    $('.comment-like').click(function (e) {
+        var src = $(this);
+        var url = "API/open_api.php";
+        var id = src.attr('aid');
+        var data = {
+            method : "creaseCommentLike",
+            id : id
+        }
+        $.ajax({
+            url : url,
+            type : "GET",
+            data : data,
+            async : false,
+            success : function (data){
+                    console.log("评论喜欢成功");
+                    src.find('svg').html('<use xlink:href="#icon-jushoucanggift"></use>');
+                    var num = parseInt(src.find('.num').html().trim());
+                    src.find('.num').html(num+1);
+                }
+            }
+        })
+    })
 }

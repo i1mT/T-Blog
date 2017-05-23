@@ -101,6 +101,12 @@ switch ($method) {
         if($res) echo "true";
         else echo "false";
         break;
+    case 'creaseCommentLike':
+        $id = $_GET['id'];
+        $res = $t->addCommentLike($id);
+        if($res) echo "true";
+        else echo "false";
+        break;
 	default:
 		break;
 }
