@@ -1,0 +1,22 @@
+{
+  "name": "hyperdown",
+  "description": "Markdown解析器",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SegmentFault/HyperDown.js.git"
+  },
+  "license": "BSD-4-Clause",
+  "author": "SegmentFault",
+  "version": "2.2.1",
+  "scripts": {
+    "test": "mocha",
+    "build": "cake build"
+  },
+  "main": "Parser.js",
+  "bugs": {
+    "url": "https://github.com/SegmentFault/HyperDown.js/issues"
+  },
+  "homepage": "https://github.com/SegmentFault/HyperDown.js#readme",
+  "dependencies": {
+  }
+}
