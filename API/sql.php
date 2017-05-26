@@ -160,6 +160,19 @@ class sql{
         return $sql_res;
     }
     /*
+    * 文章喜欢数-1
+    * 参数
+    * 1.id 文章id
+    * 会给当前id文章赞数减一
+    * 返回布尔值
+    */
+    public function decreaseArticleLike($id){
+        $this->init();
+        $sql = "UPDATE `article` SET `likes` = `likes`-'1' WHERE `article`.`id` = $id";
+        $sql_res = $this->conn->query($sql);
+        return $sql_res;
+    }
+    /*
      * 文章浏览数增加 参数
      * 1.id
      * 会给当前id的文章浏览数+1
@@ -172,7 +185,8 @@ class sql{
         return $sql_res;
     }
     /*
-     * 文章评论数增加 参数 !此接口只应该在发布评论时调用
+    * !!此接口只应该在发布评论时调用
+     * 文章评论数增加 参数
      * 1.id
      * 会给当前id的文章评论数+1
      * 返回布尔 表示成功与否
@@ -232,6 +246,17 @@ class sql{
     public function creaseCommentLike($id){
         $this->init();
         $sql = "UPDATE `comment` SET `likes` = `likes`+'1' WHERE `comment`.`id` = $id";
+        $sql_res = $this->conn->query($sql);
+        return $sql_res;
+    }
+    /*
+     * 评论赞-1  参数
+     * 1.id  评论id
+     * 返回布尔 表示成功与否
+     */
+    public function decreaseCommentLike($id){
+        $this->init();
+        $sql = "UPDATE `comment` SET `likes` = `likes`-'1' WHERE `comment`.`id` = $id";
         $sql_res = $this->conn->query($sql);
         return $sql_res;
     }

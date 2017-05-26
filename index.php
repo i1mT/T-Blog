@@ -83,5 +83,10 @@ if($page == 1 && $countArt<=$page_art_num*$page){
 echo $templete;
 ?>
 </div>
-
+<!-- 小火箭 -->
+<div class="fly-to-top" style="display: none;">
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-xiangshangjiantou"></use>
+    </svg>
+</div>
 <?php include "footer.php"; ?>

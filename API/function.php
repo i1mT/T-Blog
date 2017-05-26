@@ -290,6 +290,16 @@ class T_function{
         return $res;
     }
     /*
+     * 减少文章喜欢数
+     * 参数
+     * 1.id 文章id
+     */
+    public function deraiseArticleLikes($id){
+        $sql = new sql();
+        $res = $sql->decreaseArticleLike($id);
+        return $res;
+    }
+    /*
      * 评论赞+1
      * 参数
      * 1.id 评论id
@@ -297,6 +307,16 @@ class T_function{
     public function addCommentLike($id){
         $sql = new sql();
         $res = $sql->creaseCommentLike($id);
+        return $res;
+    }
+    /*
+     * 评论赞-1
+     * 参数
+     * 1.id 评论id
+     */
+    public function minusCommentLike($id){
+        $sql = new sql();
+        $res = $sql->decreaseCommentLike($id);
         return $res;
     }
     /*

@@ -576,6 +576,15 @@ form.comment button{
     color: #fff;
     margin-bottom: 2rem;
 }
+form.comment .status{
+    float: right;
+    line-height: 1;
+    font-size: 1.3rem;
+    margin-right:  2rem;
+    padding: .5rem .8rem;
+    margin-top: .8rem;
+    font-weight: bold;
+}
 form.comment button:hover{
     opacity:0.8;
 }
@@ -629,7 +638,25 @@ form.comment button:hover{
     font-size: 1.5rem;
     cursor: pointer;
 }
-
+/*小火箭样式*/
+.fly-to-top{
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+    width: 6rem;
+    height: 6rem;
+    background: rgba(50,50,50,0.7);
+    border-radius: .5rem;
+    font-size: 5rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+.fly-to-top svg{
+    margin: 0 auto;
+    display: block;
+    margin-top: 1.1rem;
+    color: #fff;
+}
 
 
 

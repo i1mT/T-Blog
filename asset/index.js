@@ -15,6 +15,11 @@ function init() {
         'overflow' : 'hidden'
     } );
     //end
+    //设置小火箭点击事件
+    $('.fly-to-top').click(function (){
+        var speed=300;//滑动的速度
+        $('body,html').animate({ scrollTop: 0 }, speed);
+    });
     //设置鼠标滚轮事件
     if(document.addEventListener){
         document.addEventListener('DOMMouseScroll',scrollFunc,false);
@@ -23,11 +28,19 @@ function init() {
     //监听页面滚动事件
     $(window).scroll(function () {
         var h = $(window).scrollTop();
+        console.log(h);
         if(h==0){
             $('html').css( {
                 height : winHeight,
                 'overflow' : 'hidden'
             } );
+        }
+        //如果高度超过900px 就显示火箭头如果小于的话就隐藏
+        if(h > 900){
+            $('.fly-to-top').show();
+            console.log("小火箭出来");
+        }else{
+            $(".fly-to-top").hide();
         }
     })
     //设置分页居中问题

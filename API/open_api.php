@@ -112,6 +112,18 @@ switch ($method) {
         if($res) echo "true";
         else echo "false";
         break;
+    case 'deraiseArticleLikes':
+        $id = $_GET['id'];
+        $res = $t->deraiseArticleLikes($id);
+        if($res) echo "true";
+        else echo "false";
+        break;
+    case 'minusCommentLike':
+        $id = $_GET['id'];
+        $res = $t->minusCommentLike($id);
+        if($res) echo "true";
+        else echo "false";
+        break;
     default:
         break;
 }

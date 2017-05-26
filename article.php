@@ -96,6 +96,12 @@ $func->addArticleViewed($art_id);
     ?>
 </div>
 
+<!-- 小火箭 -->
+<div class="fly-to-top" style="display: none;">
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-xiangshangjiantou"></use>
+    </svg>
+</div>
 <!-- 页脚 -->
 <?php include "footer.php"; ?>
 <script src="asset/article.js"></script>
