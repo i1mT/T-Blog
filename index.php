@@ -1,4 +1,6 @@
-<?php include "header.php"; ?>
+<?php
+include "header.php";
+?>
 
 <?php for($i = 0; $i < count($articles); $i++){ ?>
 <div class="container article-list">

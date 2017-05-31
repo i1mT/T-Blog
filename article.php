@@ -14,6 +14,7 @@ $func->addArticleViewed($art_id);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="asset/main.css">
+    <link rel="stylesheet" href="asset/markdown.css">
     <script src="asset/jquery-3.1.1.min.js"></script>
     <script src="asset/iconfont.js"></script>
     <script src="asset/HyperDown.js/Parser.js"></script>
@@ -24,8 +25,8 @@ $func->addArticleViewed($art_id);
 <nav class="article-nav banner-mask" style='background-image: url("<?php echo $article["cover"]; ?>")'>
     <div class="container">
         <div class="home">
-            <a href="#">
-                <img src="asset/images/avatar.jpg">
+            <a href="<?php $func->bloginfo("siteurl"); ?>">
+                <img src="asset/images/tesla.png">
             </a>
         </div>
         <div class="titles">
@@ -52,7 +53,7 @@ $func->addArticleViewed($art_id);
 </nav>
 <div class="container">
     <!--  正文区域    -->
-    <article>
+    <article class="markdown-body">
         <?php echo $article['content']; ?>
     </article>
     <!--社交-打赏等内容-->

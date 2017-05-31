@@ -138,7 +138,7 @@ function outPut(msg) {
         '</li>';
     cmd.append(new_line_temp);
 }
-//处理命令
+//处理命令 命令分发至编辑处理和命令处理
 function processCmd(request){
 	var response = window.iimt_mood=="edit" ? t.iimt.editHandler(request):t.commandHandler(request);
 	outPut(response);

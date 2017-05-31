@@ -1,6 +1,7 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
-
+$s = new sql();
+$s->init();
 /****************************数据库操作类*****************************/
 class sql{
     private $servername;
@@ -15,16 +16,22 @@ class sql{
      * 初始化数据库
      */
     public function init(){
-        $this->servername = "127.0.0.1";
-        $this->username = "test";
-        $this->password = "1234";
-        $this->dbname = "t-blog";
+        $json = file_get_contents("../install_info.json");
+        $_INFO = json_decode($json);
+        var_dump($_INFO);
+        $_INFO->servername = "127.0.0.1";
+        $_INFO->username = "test";
+        $_INFO->password = "1234";
+        $_INFO->dbname = "t-blog";
+        $this->servername = $_INFO->servername;
+        $this->username = $_INFO->username;
+        $this->password = $_INFO->password;
+        $this->dbname = $_INFO->dbname;
         $this->conn = new mysqli($this->servername, $this->username, $this->password,$this->dbname);
         $this->conn->set_charset("utf8");
         if($this->conn->connect_error){
             die("连接失败: " . $this->conn->connect_error);
-        }else{
-        }
+        }else{}
     }
     /*
      * 登录 参数
@@ -391,6 +398,16 @@ class sql{
             return false;
         $sql_res = $sql_res->fetch_array();
         return $sql_res['id'];
+    }
+    /*
+    *获取博客信息
+    */
+    public function getBlogInfo(){
+        $this->init();
+        $sql = "SELECT * FROM `bloginfo` WHERE `id`=1";
+        $sql_res = $this->conn->query($sql);
+        $sql_res = $sql_res->fetch_array();
+        return $sql_res;
     }
 }
 

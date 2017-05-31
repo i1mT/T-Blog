@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.6deb4
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 2017-05-11 07:53:12
--- 服务器版本： 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- Host: localhost:3306
+-- Generation Time: 2017-05-31 22:03:02
+-- 服务器版本： 10.1.23-MariaDB-8
+-- PHP Version: 7.0.19-1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `t-blog`
+-- Database: `blog`
 --
 
 -- --------------------------------------------------------
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `nickname`, `pic`, `username`, `pwd`) VALUES
-(1, 'iimT', '', 'iimT', 'ATyangguang');
+(1, 'admin', '', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -66,8 +66,7 @@ CREATE TABLE `article` (
 --
 
 INSERT INTO `article` (`id`, `title`, `cate`, `content`, `publishAt`, `lastEdit`, `author`, `viewed`, `comments`, `likes`, `cover`) VALUES
-(1, '更改文章标题1', 1, '#更改测试', '2017-05-10 08:26:37', '2017-05-10 15:07:06', 1, 1, 4, 1, '更改http://www.iimt.me/usr/themes/iimT//img/avatar.jpg'),
-(2, '文章标题', 1, '#测试', '2017-05-10 08:28:24', '2017-05-10 08:28:24', 1, 0, 0, 0, 'http://www.iimt.me/usr/themes/iimT//img/avatar.jpg');
+(1, '安装成功，请阅读这篇文章', 0, 'ashdkldf\ngdlgjl\nNEW', '2017-05-10 08:26:37', '2017-05-15 08:35:25', 1, 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -88,7 +87,7 @@ CREATE TABLE `bloginfo` (
 --
 
 INSERT INTO `bloginfo` (`name`, `description`, `siteurl`, `starttime`, `id`) VALUES
-('iimT', '介绍啊', '地1址', '2017-05-09 16:44:10', 1);
+('个人博客', '记录点滴思想', '', '2017-05-09 16:44:10', 1);
 
 -- --------------------------------------------------------
 
@@ -100,14 +99,6 @@ CREATE TABLE `cate` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `cate`
---
-
-INSERT INTO `cate` (`id`, `name`) VALUES
-(1, '分类1'),
-(2, '测试分类');
 
 -- --------------------------------------------------------
 
@@ -124,13 +115,6 @@ CREATE TABLE `comment` (
   `articleid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- 转存表中的数据 `comment`
---
-
-INSERT INTO `comment` (`id`, `uid`, `likes`, `content`, `commenttime`, `articleid`) VALUES
-(1, 1, 1, '这是一条评论', '2017-05-10 15:34:15', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -143,13 +127,6 @@ CREATE TABLE `comment_user` (
   `email` varchar(20) NOT NULL,
   `site` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `comment_user`
---
-
-INSERT INTO `comment_user` (`id`, `name`, `email`, `site`) VALUES
-(1, 'iimT', 'tfhhh@qq.com', 'www.iimt.me');
 
 --
 -- Indexes for dumped tables
@@ -205,7 +182,7 @@ ALTER TABLE `comment_user`
 -- 使用表AUTO_INCREMENT `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- 使用表AUTO_INCREMENT `cate`
 --
@@ -215,12 +192,12 @@ ALTER TABLE `cate`
 -- 使用表AUTO_INCREMENT `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- 使用表AUTO_INCREMENT `comment_user`
 --
 ALTER TABLE `comment_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -292,12 +292,10 @@ ul.desc-tab .li-f{
     overflow: hidden;
     background-size: cover;
     height: 50rem;
-    overflow: hidden;
 }
 .article-list{
     position: relative;
     margin: 3rem auto;
-    min-width: 50rem;
 }
 footer{
     margin-top: 3rem;
@@ -402,8 +400,10 @@ ul.div-page li a:hover{
     margin-top: 5rem;
 }
 .article-nav .home a{
-    width: 5rem;
-    height: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    padding: 0.8rem;
+    background: rgba(94,94,94,0.6);
     display: block;
     overflow: hidden;
 }
@@ -411,7 +411,7 @@ ul.div-page li a:hover{
     opacity: 0.7;
 }
 .article-nav .home a img{
-    width: 5rem;
+    width: 4.5rem;
 }
 .article-nav .titles{
     margin-top: 15rem;
@@ -657,10 +657,90 @@ form.comment button:hover{
     margin-top: 1.1rem;
     color: #fff;
 }
+/*响应式样式*/
 
+@media screen and (max-width: 600px) {
+    .container{
+        width: 100%;
+    }
+    .article-list{
+        margin: 0 auto;
+    }
+    .art-card-container{
+        height:  30rem;
+    }
+    .myinfo{
+        display: none;
+    }
+    ul.desc-tab li{
+        display: none;
+        width: 10%;
+        margin: 0 7.5%;
+        padding: .8rem;
+        height: 14rem;
+        border: none;
+    }
+    .fly-to-top{
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        width: 4rem;
+        height: 4rem;
+        background: rgba(50,50,50,0.7);
+        border-radius: .2rem;
+        font-size: 3.5rem;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .fly-to-top svg{
+        margin: 0 auto;
+        display: block;
+        margin-top: 0.5rem;
+        color: #fff;
+    }
+    .article-nav .home{
+    margin-top: 0.5rem;
+}
+.article-nav .home a{
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0.4rem;
+    margin-left: 0.5rem;
+    background: rgba(94,94,94,0.6);
+    display: block;
+    overflow: hidden;
+}
+.article-nav .home a img{
+    width: 3.5rem;
+}
+article{
+    width: 96%;
+    margin: 0 auto;
+}
+}
+@media screen and (max-width: 900px) and (min-width: 600px){
+    .container{
+        width: 90%;
+    }
+    .art-card-container{
+        height:  40rem;
+    }
+}
 
+@media screen and (max-width: 1400px) and (min-width: 900px){
+    .container{
+        width: 70%;
+    }
+    .art-card-container{
+        height:  55rem;
+    }
+}
 
-
+@media screen and (min-width: 1400px){
+    .art-card-container{
+        height:  60rem;
+    }
+}
 
 
 

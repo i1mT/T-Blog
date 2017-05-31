@@ -340,5 +340,19 @@ class T_function{
             return false;
         return $sql->publishComment($get['id'],$uid,$get['content']);
     }
+    /*
+    * 输出博客信息
+    * 参数
+    * 信息的名称 可接受的值为:
+    * name 博客名
+    * description 博客介绍
+    * starttime 博客开始时间
+    * siteurl 博客首页地址
+    */
+    public function bloginfo($infoname){
+        $sql = new sql();
+        $bloginfo = $sql->getBlogInfo();
+        echo $bloginfo[$infoname];
+    }
 }
 ?>
