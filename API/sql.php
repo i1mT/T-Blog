@@ -18,7 +18,6 @@ class sql{
     public function init(){
         $json = file_get_contents("../install_info.json");
         $_INFO = json_decode($json);
-        var_dump($_INFO);
         $_INFO->servername = "127.0.0.1";
         $_INFO->username = "test";
         $_INFO->password = "1234";

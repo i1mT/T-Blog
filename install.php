@@ -1,6 +1,6 @@
 <?php
-$json = file_get_contents("install_info.json");
-if($_GET["servername"]){
+
+if(count($_GET) > 0){
 	//有传内容，开始安装
 	$_INFO = array(
 			"install_status"=>1,
@@ -22,21 +22,35 @@ if($_GET["servername"]){
 	}else{
 		echo "connect success";
 		$sql = "CREATE DATABASE `" . $_INFO["dbname"] . "` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ";
-		var_dump($sql);
 		$create_res = $temp_conn->query($sql);
 		var_dump($create_res);
 		echo "切换数据库";
 		$sele = $temp_conn->select_db($_INFO["dbname"]);
-		var_dump($sele);
 		$import_sql = file_get_contents("blog.sql");
 		$sql_arr = GetSqlArr($import_sql);
-		var_dump(count($sql_arr));
 		$import_status = true;
 		for($i = 0; $i < count($sql_arr); $i++){
 			$import_status = $temp_conn->query($sql_arr[$i]);
-			if(!import_status) break;
+			if(!$import_status) break;
 		}
-		var_dump($import_status);
+		if(!$import_status){
+			echo "false";
+			exit();
+		}
+		//插入博客管理用户信息
+		$sql_admininfo = "UPDATE `admin` SET `nickname` = '" . $_INFO["nickname"] . "', `username` = '" . $_INFO["user"] . "', `pwd` = '" . $_INFO["adminpass"] . "' WHERE `admin`.`id` = 1";
+		$sql_res = $temp_conn->query($sql_admininfo);
+		if(!$sql_res) {
+			echo "false";
+			exit();
+		}
+		//更新博客主页域名
+		$sql_index = "UPDATE `bloginfo` SET `siteurl` = '" . $_INFO["siteurl"] . "' WHERE `bloginfo`.`id` = 1";
+		$sql_res = $temp_conn->query($sql_index);
+		if(!$sql_res) {
+			echo "false";
+			exit();
+		}
 	}
 }
 function GetSqlArr($str) {
@@ -193,7 +207,20 @@ function getText(){
 			console.log("收集完成");
 			console.log(info_json);
 			//start request to install
-			outPut("开始安装...");
+			outPut("开始安装.");
+			$("#onInput").remove();
+			var last_output = $(".output:last span");
+			var dot_num = 1;
+			var text_timer = setInterval(function (){
+				var text = "开始安装";
+				dot_num++;
+				if (dot_num > 6) dot_num = 1;
+				for (var i = 0; i < dot_num; i++) {
+					text += ".";
+				}
+				console.log(text);
+				last_output.html(text);
+			},500);
 			var data = {};
 			for (var key in info_json) {
 				data[key] = info_json[key].value;
@@ -205,13 +232,19 @@ function getText(){
 				data: data,
 			})
 			.done(function() {
-				console.log("success");
+				clearInterval(text_timer);
+				var second = 5;
+				last_output.html("安装成功！将会在" + second +"秒之后转到博客首页");
+				setInterval(function (){
+					second--;
+					last_output.html("安装成功！将会在" + second +"秒之后转到博客首页");
+					if(!second){
+						window.location = data.siteurl;
+					}
+				},1000);
 			})
 			.fail(function() {
 				console.log("error");
-			})
-			.always(function() {
-				console.log("complete");
 			});
 		}
 		textarea.val('');
