@@ -1,4 +1,4 @@
-﻿@keyframes blink {
+@keyframes blink {
     50% {
         color: #000;
         background: #0c0;
@@ -219,10 +219,11 @@ ul.cmd li span{
     border: none;
     overflow: hidden;
     height: 0;
-    width: 0;
+    width: 1000px;
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 20px;
+    background: #000;
 }
 #file{
     position: fixed;
@@ -744,10 +745,3 @@ article{
         height:  60rem;
     }
 }
-
-
-
-
-
-
-
