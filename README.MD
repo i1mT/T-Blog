@@ -1,7 +1,7 @@
-Welcome to the T-Blog wiki!
+Welcome to the T-Blog!
 ![博客首页](http://i4.buimg.com/4899/f52e108f18befc7e.png)
 ## 介绍
-这是一个轻量级的个人博客系统，整个系统只有8M。
+这是一个轻量级的个人博客系统，整个系统只有3M。
 
 在我以前用其他博客系统的时候，我就想，一个程序员的博客后台怎么能和别人一样呢？
 
