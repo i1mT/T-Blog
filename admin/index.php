@@ -10,6 +10,7 @@ $t = new T_function();
 <style type="text/css">
 html{
 	background: #000;
+	font-size: 120%;
 }
 </style>
 </head>

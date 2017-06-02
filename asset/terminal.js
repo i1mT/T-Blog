@@ -37,7 +37,7 @@ function init(){
 	terminal.css({
 		"height" : (pageHeight - parseInt(padding_top))
 	});
-
+        //
 }
 /*
  * 获取指令内容并发送给处理类
@@ -137,6 +137,16 @@ function outPut(msg) {
         '<div class="cursor blink">&nbsp;</div>'+
         '</li>';
     cmd.append(new_line_temp);
+    var windowHeight = $(window).height();
+    var cmdHeight = $(".cmd").height() + 20 + 20;
+    var top = $(".cmd").css("margin-top");
+    top = parseInt(top);
+    if( cmdHeight > windowHeight){
+        top -= 56;
+        $(".cmd").css("margin-top",top);
+        console.log(top);
+    }
+    //如果输出行超过了浏览器底部，就向上走
 }
 //处理命令 命令分发至编辑处理和命令处理
 function processCmd(request){

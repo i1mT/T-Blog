@@ -26,7 +26,7 @@ if(count($_GET) > 0){
 		var_dump($create_res);
 		echo "切换数据库";
 		$sele = $temp_conn->select_db($_INFO["dbname"]);
-		$import_sql = file_get_contents("blog.sql");
+		$import_sql = file_get_contents("asset/blog.sql");
 		$sql_arr = GetSqlArr($import_sql);
 		$import_status = true;
 		for($i = 0; $i < count($sql_arr); $i++){

@@ -188,6 +188,9 @@ table.article td.title,table td.sum{
     overflow: hidden;
     padding-top: 20px;
 }
+ul.cmd {
+    overflow-y: auto;
+}
 ul.cmd li{
     width: 95%;
     margin: 5px 0;
@@ -215,10 +218,10 @@ ul.cmd li span{
     resize: none;
     border: none;
     overflow: hidden;
-    height: 100px;
-    width: 100px;
+    height: 0;
+    width: 0;
     position: fixed;
-    right: 0;
+    left: 0;
     bottom: 0;
 }
 #file{
