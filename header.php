@@ -3,11 +3,7 @@
 $json = file_get_contents("install_info.json");
 $_INFO = json_decode($json);
 if($_INFO->install_status == 0){
-    //echo "<script>alert(". $_INFO .");</script>";
     header("Location: install.php");
-    $_INFO->install_status = 1;
-    file_put_contents("install_info.json", json_encode($_INFO));
-    exit;
 }
 include 'API/function.php';
 $page_art_num = 8;//每页8篇博文

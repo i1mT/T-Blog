@@ -45,19 +45,17 @@ function init() {
                 data : data,
                 async : false,
                 success : function (data) {
-                    if(data == "true"){
-                        console.log("减少喜欢成功。");
-                        $('.like').css({
-                            'color' : '#ea6f5a',
-                            'background' : '#fff'
-                        })
-                        var num = $('.like .num').html();
-                        num = parseInt(num);
-                        $('.like .num').html(num-1);
-                        //localStorage中记录此值
-                        localStorage.article = localStorage.article.replace(id.toString(),'');
-                        console.log(localStorage);
-                    }
+                    console.log("减少喜欢成功。");
+                    $('.like').css({
+                        'color' : '#ea6f5a',
+                        'background' : '#fff'
+                    })
+                    var num = $('.like .num').html();
+                    num = parseInt(num);
+                    $('.like .num').html(num-1);
+                    //localStorage中记录此值
+                    localStorage.article = localStorage.article.replace(id.toString(),'');
+                    console.log(localStorage);
                 }
             })
             return;
@@ -72,23 +70,21 @@ function init() {
             data : data,
             async : false,
             success : function (data) {
-                if(data == "true"){
-                    console.log("喜欢成功。");
-                    $('.like').css({
-                        'color' : '#fff',
-                        'background' : '#ea6f5a'
-                    })
-                    var num = $('.like .num').html();
-                    num = parseInt(num);
-                    $('.like .num').html(num+1);
-                    //localStorage中记录此值
-                    if(!localStorage.article){
-                        localStorage.setItem('article', id);
-                    }else{
-                        localStorage.setItem('article',localStorage.getItem('article') + ',' + id);
-                    }
-                    console.log(localStorage);
+                console.log("喜欢成功。");
+                $('.like').css({
+                    'color' : '#fff',
+                    'background' : '#ea6f5a'
+                })
+                var num = $('.like .num').html();
+                num = parseInt(num);
+                $('.like .num').html(num+1);
+                //localStorage中记录此值
+                if(!localStorage.article){
+                    localStorage.setItem('article', id);
+                }else{
+                    localStorage.setItem('article',localStorage.getItem('article') + ',' + id);
                 }
+                console.log(localStorage);
             }
         })
     })
@@ -110,15 +106,13 @@ function init() {
                 data : data,
                 async : false,
                 success : function (data) {
-                    if(data == "true"){
-                        console.log("减少评论喜欢成功。");
-                        src.find('svg').html('<use xlink:href="#icon-jushoucang"></use>');
-                        var num = parseInt(src.find('.num').html().trim());
-                        src.find('.num').html(num-1);
-                        //localStorage中记录此值
-                        localStorage.comment_like = localStorage.comment_like.replace(id.toString(),'');
-                        console.log(localStorage);
-                    }
+                    console.log("减少评论喜欢成功。");
+                    src.find('svg').html('<use xlink:href="#icon-jushoucang"></use>');
+                    var num = parseInt(src.find('.num').html().trim());
+                    src.find('.num').html(num-1);
+                    //localStorage中记录此值
+                    localStorage.comment_like = localStorage.comment_like.replace(id.toString(),'');
+                    console.log(localStorage);
                 }
             })
             return;
@@ -192,42 +186,40 @@ function init() {
             async : false,
             success : function (data) {
                 console.log(data);
-                if(data == "true"){
-                    console.log("评论成功");
-                    $('.comment .status').html('√ 评论成功');
-                    setTimeout(function (){
-                        $('.comment .status').html('');
-                    },3000);
-                    $(".comment input").val('');
-                    $(".comment textarea").val('');
-                    content = removeHTMLTag(content);
-                    var temp = '<li>'+
-                        '<a href="'+ site +'" target="_blank">'+ name + '：</a>'+
-                    '<p class="comment-con">'+ content + '</p>'+
-                    '<span class="time">' + time +
-                    '</span>'+
-                    '<span class="comment-like" aid="">'+
-                        '<svg class="icon" aria-hidden="true">'+
-                        '<use xlink:href="#icon-jushoucang"></use>'+
-                        '</svg>'+
-                       ' <span class="num">'+
+                console.log("评论成功");
+                $('.comment .status').html('√ 评论成功');
+                setTimeout(function (){
+                    $('.comment .status').html('');
+                },3000);
+                $(".comment input").val('');
+                $(".comment textarea").val('');
+                content = removeHTMLTag(content);
+                var temp = '<li>'+
+                    '<a href="'+ site +'" target="_blank">'+ name + '：</a>'+
+                '<p class="comment-con">'+ content + '</p>'+
+                '<span class="time">' + time +
                 '</span>'+
-                    '</span>'+
-                    '</li>';
-                    $('.count').after(temp);
-                    //设置评论过的痕迹
-                    var comment = localStorage.comment;
-                    comment = JSON.parse(comment);
-                    console.log(comment);
-                    //5分钟内同一篇文章只能发布一条评论
-                    var ms = date.getTime() + 1000*60*5;
-                    var element = id.toString() + ':' + ms.toString();
-                    console.log(element);
-                    comment.push(element);
-                    comment = JSON.stringify(comment);
-                    console.log(comment);
-                    localStorage.comment = comment;
-                }
+                '<span class="comment-like" aid="">'+
+                    '<svg class="icon" aria-hidden="true">'+
+                    '<use xlink:href="#icon-jushoucang"></use>'+
+                    '</svg>'+
+                   ' <span class="num">'+
+            '</span>'+
+                '</span>'+
+                '</li>';
+                $('.count').after(temp);
+                //设置评论过的痕迹
+                var comment = localStorage.comment;
+                comment = JSON.parse(comment);
+                console.log(comment);
+                //5分钟内同一篇文章只能发布一条评论
+                var ms = date.getTime() + 1000*60*5;
+                var element = id.toString() + ':' + ms.toString();
+                console.log(element);
+                comment.push(element);
+                comment = JSON.stringify(comment);
+                console.log(comment);
+                localStorage.comment = comment;
             }
         })
     });

@@ -1,7 +1,5 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
-$s = new sql();
-$s->init();
 /****************************数据库操作类*****************************/
 class sql{
     private $servername;
@@ -16,12 +14,9 @@ class sql{
      * 初始化数据库
      */
     public function init(){
-        $json = file_get_contents("../install_info.json");
+        $json = file_get_contents("install_info.json");
+        if(!$json) $json = file_get_contents("../install_info.json");
         $_INFO = json_decode($json);
-        $_INFO->servername = "127.0.0.1";
-        $_INFO->username = "test";
-        $_INFO->password = "1234";
-        $_INFO->dbname = "t-blog";
         $this->servername = $_INFO->servername;
         $this->username = $_INFO->username;
         $this->password = $_INFO->password;
@@ -411,3 +406,4 @@ class sql{
 }
 
 ?>
+
