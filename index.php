@@ -5,7 +5,10 @@ include "header.php";
 <?php for($i = 0; $i < count($articles); $i++){ ?>
 <div class="container article-list">
     <div class="art-card-container" style="background: ;background-size: cover;">
-        <img class="art-cover" src="<?php echo $articles[$i]->cover; ?>">
+        <img class="art-cover" src="<?php if(strlen($articles[$i]->cover) > 0)
+                                    echo $articles[$i]->cover;
+                                else 
+                                    echo "./asset/images/default-cover.jpg";?>">
         <div class="art-info">
             <p class="art-title">
                 <a href="<?php
