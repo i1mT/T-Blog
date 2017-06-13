@@ -50,7 +50,7 @@ switch ($method) {
     case 'readMD':
         $path = $_GET["path"];
         $con = file_get_contents($path);
-        $con = iconv("gb2312","utf-8",$con);
+        //$con = iconv("gb2312","utf-8",$con);
         echo $con;
         break;
     case 'deleteArticle':
