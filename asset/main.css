@@ -100,7 +100,7 @@ ul li{
 }
 nav{
     height:  30rem;
-    background-image: url("./images/yasuko.jpeg");
+    background-image: url("http://oqapmzmc9.bkt.clouddn.com/yasuko.jpeg");
     background-size: cover;
 }
 table.article{
@@ -736,12 +736,6 @@ article{
         width: 70%;
     }
     .art-card-container{
-        height:  55rem;
-    }
-}
-
-@media screen and (min-width: 1400px){
-    .art-card-container{
-        height:  60rem;
+        height:  50rem;
     }
 }

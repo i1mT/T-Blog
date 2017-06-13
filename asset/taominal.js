@@ -460,7 +460,7 @@ t.iimt.editHandler  = function(val){
         var return_text;
         $.ajax({
             url : "../API/open_api.php",
-            type : "GET",
+            type : "POST",
             data : data,
             async : false,
             success : function (data) {

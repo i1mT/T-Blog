@@ -4,6 +4,8 @@ include_once "function.php";
 $t = new T_function();
 
 $method = $_GET["method"];
+if($method == NULL)
+    $method = $_POST["method"];
 
 switch ($method) {
 	case 'login':
@@ -36,7 +38,7 @@ switch ($method) {
         else echo "false";
         break;
     case 'publishArticle':
-        $article = $_GET["article"];
+        $article = $_POST["article"];
         $res = $t->publishArticle($article);
         if ($res) echo "true";
         else echo "false";

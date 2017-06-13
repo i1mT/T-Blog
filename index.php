@@ -9,7 +9,7 @@ include "header.php";
                             <?php if(strlen($articles[$i]->cover) > 0)
                                     echo $articles[$i]->cover;
                                 else 
-                                    echo "./asset/images/default-cover.jpg";?>">
+                                    echo "http://oqapmzmc9.bkt.clouddn.com/default-cover.jpg";?>">
         <div class="art-info">
             <p class="art-title">
                 <a href="<?php
