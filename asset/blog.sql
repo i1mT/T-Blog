@@ -66,7 +66,7 @@ CREATE TABLE `article` (
 --
 
 INSERT INTO `article` (`id`, `title`, `cate`, `content`, `publishAt`, `lastEdit`, `author`, `viewed`, `comments`, `likes`, `cover`) VALUES
-(1, '安装成功，请阅读这篇文章', 0, 'ashdkldf\ngdlgjl\nNEW', '2017-05-10 08:26:37', '2017-05-15 08:35:25', 1, 0, 0, 0, '');
+(1, '安装成功，请阅读这篇文章', 0, '## > 非常感谢你选择了T-Blog，当你看到这篇文章时，表示安装已经成功。\n\n###你可以在/admin下编辑使用后台，如果你不知道后台如何使用，可以先学习一点命令\n\n### [T-Blog的介绍以及使用方法](https://github.com/tfh93121/T-Blog)\n\n### 当你学会如何使用后台命令的时候，相信你会感受到它的爽(bi)快(ge)的\n\n### 祝使用此系统会使你更加愉快~\n\n###如果你是程序员，或者在使用途中遇到了问题，又或你有一些意见，欢迎来一起交流。\n\n### > 联系方式：QQ1298793121', '2017-05-10 08:26:37', '2017-05-15 08:35:25', 1, 0, 0, 0, 'http://oqapmzmc9.bkt.clouddn.com/default-cover.jpg');
 
 -- --------------------------------------------------------
 
