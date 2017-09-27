@@ -18,10 +18,11 @@ function init() {
         //如果高度超过900px 就显示火箭头如果小于的话就隐藏
         if(h > 900){
             $('.fly-to-top').show();
-            console.log("小火箭出来");
         }else{
             $(".fly-to-top").hide();
         }    })
+    //将首页的文章卡片宽高按照背景图片宽高进行调整
+
     //小火箭点击事件
     $('.fly-to-top').click(function (){
         var speed=300;//滑动的速度
@@ -84,7 +85,6 @@ function init() {
                 }else{
                     localStorage.setItem('article',localStorage.getItem('article') + ',' + id);
                 }
-                console.log(localStorage);
             }
         })
     })
@@ -112,7 +112,6 @@ function init() {
                     src.find('.num').html(num-1);
                     //localStorage中记录此值
                     localStorage.comment_like = localStorage.comment_like.replace(id.toString(),'');
-                    console.log(localStorage);
                 }
             })
             return;
@@ -185,7 +184,6 @@ function init() {
             data : data,
             async : false,
             success : function (data) {
-                console.log(data);
                 console.log("评论成功");
                 $('.comment .status').html('√ 评论成功');
                 setTimeout(function (){
@@ -211,14 +209,11 @@ function init() {
                 //设置评论过的痕迹
                 var comment = localStorage.comment;
                 comment = JSON.parse(comment);
-                console.log(comment);
                 //5分钟内同一篇文章只能发布一条评论
                 var ms = date.getTime() + 1000*60*5;
                 var element = id.toString() + ':' + ms.toString();
-                console.log(element);
                 comment.push(element);
                 comment = JSON.stringify(comment);
-                console.log(comment);
                 localStorage.comment = comment;
             }
         })
@@ -262,7 +257,6 @@ function localStorageHandler(){
     for (var i = comment_like.length - 1; i >= 0; i--) {
         comment_like[i] = $(comment_like[i]);
         var id = comment_like[i].attr('cid');
-        console.log("评论id:" + id);
         if(localStorage_comment_like.length > 0){
             //有记录值
             for (var j = localStorage_comment_like.length - 1; j >= 0; j--) {

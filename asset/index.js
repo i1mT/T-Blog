@@ -15,9 +15,12 @@ function init() {
         'overflow' : 'hidden'
     } );
     //end
+    //文章卡片按照图片真实宽高比来确定自身宽高
+    
+    //end
     //设置小火箭点击事件
     $('.fly-to-top').click(function (){
-        var speed=300;//滑动的速度
+        var speed = 300;//滑动的速度
         $('body,html').animate({ scrollTop: 0 }, speed);
     });
     //设置鼠标滚轮事件
@@ -28,7 +31,6 @@ function init() {
     //监听页面滚动事件
     $(window).scroll(function () {
         var h = $(window).scrollTop();
-        console.log(h);
         if(h==0){
             $('html').css( {
                 height : winHeight,
@@ -38,7 +40,6 @@ function init() {
         //如果高度超过900px 就显示火箭头如果小于的话就隐藏
         if(h > 900){
             $('.fly-to-top').show();
-            console.log("小火箭出来");
         }else{
             $(".fly-to-top").hide();
         }
@@ -53,6 +54,10 @@ function init() {
     div_pages.css({
         'width' : lis_width+10
     });
+}
+
+function getWidthRatio(img){//获取图片宽高比，传入图片对象
+    return img.naturalWidth/img.naturalHeight;
 }
 
 function scrollFunc(e) {
