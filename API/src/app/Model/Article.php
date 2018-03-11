@@ -9,16 +9,27 @@ class Article extends NotORM {
 		$this->model = $this->getORM();
 	}
 	protected function getTableName($id) {
-        return 'admin';
+        return 'article';
     }
     public function _insert($data) {
         return $this->model->insert($data);
     }
-    public function _updateById($data) {
-        return $this->model->where("id", 0)->update($data);
+    public function updateById($data, $id) {
+        return $this->model->where("id", $id)->update($data);
     }
     public function getById($id) {
         return $this->model->where("id", $id);
+    }
+    public function deleteById($id) {
+        return $this->model->where("id", $id)->delete();
+    }
+    public function getByLimit($offset, $lines) {
+        $sql = "select * from article where 1=1 limit :offset,:lines";
+        $params = array(
+            ":offset" => $offset,
+            ":lines" => $lines
+        );
+        return $this->model->queryAll($sql, $params);
     }
 }
 
