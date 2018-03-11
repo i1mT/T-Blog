@@ -1,5 +1,7 @@
 <?php
 include "header.php";
+
+var_dump(count($articles));
 ?>
 
 <?php for($i = 0; $i < count($articles); $i++){ ?>

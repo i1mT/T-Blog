@@ -1,11 +1,5 @@
 <?php
 include 'API/function.php';
-//判断是否已经配置好  如果没配置好跳转到安装页面
-$json = file_get_contents("install_info.json");
-$_INFO = json_decode($json);
-if($_INFO->install_status == 0){
-    header("Location: install.php");
-}
 $page_art_num = 8;//每页8篇博文
 $articles = array();//要在页面中循环输出的数组
 $func = new T_function();

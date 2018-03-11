@@ -161,10 +161,13 @@ class T_function{
         $sql = new sql();
         $result = array();
         $res = $sql->showArticleAll();
-        while($row = $res->fetch_array()){
+        while($row = $res->fetch_assoc()){
+            $row["content"] = addslashes($row["content"]);
             array_push($result,$row);
         }
-        $result = urldecode(json_encode($result));
+        //var_dump($result);
+        $result = json_encode($result);
+        //var_dump($result);
         return $result;
     }
     /*
@@ -241,7 +244,7 @@ class T_function{
         $article = array();//要push过去的数据
         if(!$cate){
             $art = $this->getAllArticle();
-            $art = json_decode($art);
+            $art = json_decode($art);                
         }else{
             $art = $this->searchByCate($cate);
         }

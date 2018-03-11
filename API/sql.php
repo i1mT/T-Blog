@@ -14,13 +14,10 @@ class sql{
      * 初始化数据库
      */
     public function init(){
-        $json = file_get_contents("install_info.json");
-        if(!$json) $json = file_get_contents("../install_info.json");
-        $_INFO = json_decode($json);
-        $this->servername = $_INFO->servername;
-        $this->username = $_INFO->username;
-        $this->password = $_INFO->password;
-        $this->dbname = $_INFO->dbname;
+        $this->servername = "localhost";
+        $this->username = "iimt";
+        $this->password = "ATyangguang";
+        $this->dbname = "t-blog";
         $this->conn = new mysqli($this->servername, $this->username, $this->password,$this->dbname);
         $this->conn->set_charset("utf8");
         if($this->conn->connect_error){
@@ -110,6 +107,7 @@ class sql{
         $sql .= "'" . $article["likes"] . "',";     //喜欢数
         $sql .= "'" . $article["cover"] . "'";      //封面地址
         $sql .= ")";
+        var_dump($sql);
         $sql_res = $this->conn->query($sql);
         return $sql_res;
     }
