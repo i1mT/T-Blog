@@ -16,7 +16,7 @@ class Admin extends Api {
     }
     public function getRules() {
         return array(
-            'insert' => array(
+            'initAdmin' => array(
                 'nickname' => array('name' => 'nickname'),
                 'pic' => array('name' => 'pic'),
                 'username' => array('name' => 'username'),
@@ -40,7 +40,7 @@ class Admin extends Api {
      * 
      * @return int 成功返回0
      */
-    public function insert() {
+    public function initAdmin() {
         $data = array(
             'nickname' => $this->nickname,
             'pic' => $this->pic,

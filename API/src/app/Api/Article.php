@@ -22,6 +22,9 @@ class Article extends Api {
                 'content' => array('name' => 'content'),
                 'cover'   => array('name' => 'comments'),
             ),
+            'deleteById' => array(
+                'id'      => array('name' => 'id')
+            )
             'update' => array(
                 'id'      => array('name' => 'id'),
                 'title'   => array('name' => 'title'),
@@ -29,9 +32,16 @@ class Article extends Api {
                 'content' => array('name' => 'content'),
                 'cover'   => array('name' => 'comments'),
             ),
+            'getPage' => array(
+                'page'    => array('name' => 'page'),
+                'pageNum' => array('name' => 'pageNum'),
+            ),
             'addView' => array(
                 'id'      => array('name' => 'id')
-            )
+            ),
+            'addLike' => array(
+                'id'      => array('name' => 'id')
+            ),
         );
     }
     /**
@@ -61,6 +71,16 @@ class Article extends Api {
         return $this->model->insert($data);
     }
     /**
+     * 删除文章
+     * 
+     * @param int id 要删除的文章id
+     * 
+     * @return int 影响的行数
+     */
+    public function deleteById(){
+        return $this->model->deleteById($this->id);
+    }
+     /**
      * 更新文章
      * 
      * @param int    id      要更新的文章id
@@ -81,6 +101,20 @@ class Article extends Api {
         );
         return $this->model->updateById($data, $this->id);
     }
+    
+    /**
+     * 获取一页文章
+     * 
+     * @param int 页数
+     * @param int 一页几个
+     * 
+     * @return array 文章数组
+     */
+    public function getPage() {
+        $page = ($this->page)-1;
+        return $this->model->getByLimite($page, $this->pageNum);
+    }
+
     /**
      * 根据id增加文章访问量
      * 
@@ -105,7 +139,7 @@ class Article extends Api {
      * 
      * @return int 成功返回1 无变化返回0 错误返回false
      */
-    public function addView() {
+    public function addLike() {
         $article = $this->model->getById($this->id);
         $likes = $article["likes"] + 1;
         $data = array(
