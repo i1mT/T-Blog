@@ -21,7 +21,11 @@ class CommentUser extends NotORM {
         return $this->model->where("id", $id);
     }
     public function deleteById($id) {
-        return $this->modele->where('id' $id)->delete();
+        return $this->modele->where('id', $id)->delete();
+    }
+
+    public function getByName($name) {
+        return $this->model->where('name', $name);
     }
 }
 

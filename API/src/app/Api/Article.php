@@ -20,17 +20,17 @@ class Article extends Api {
                 'title'   => array('name' => 'title'),
                 'cate'    => array('name' => 'cate'),
                 'content' => array('name' => 'content'),
-                'cover'   => array('name' => 'comments'),
+                'cover'   => array('name' => 'cover'),
             ),
             'deleteById' => array(
                 'id'      => array('name' => 'id')
-            )
-            'update' => array(
+            ),
+            'updateById' => array(
                 'id'      => array('name' => 'id'),
                 'title'   => array('name' => 'title'),
                 'cate'    => array('name' => 'cate'),
                 'content' => array('name' => 'content'),
-                'cover'   => array('name' => 'comments'),
+                'cover'   => array('name' => 'cover'),
             ),
             'getPage' => array(
                 'page'    => array('name' => 'page'),
@@ -56,11 +56,11 @@ class Article extends Api {
      */
     public function publish() {
         //文章的结构
-        $article_structer = array(
+        $data = array(
             'title'     => $this->title,
             'cate'      => $this->cate,
             'content'   => $this->content,
-            'cover'     => $this->cover
+            'cover'     => $this->cover,
             'publishAt' => date("Y-m-d H:i:s"),
             'lastEdit'  => date("Y-m-d H:i:s"),
             'author'    => 1,
@@ -91,13 +91,13 @@ class Article extends Api {
      * 
      * @return int 成功返回1 无变化返回0 错误返回false
      */
-    public function updateArticle() {
+    public function updateById() {
         $data = array(
-            "title"     => $this->title;
-            "cate"      => $this->cate;
-            "content"   => $this->content;
-            "cover"     => $this->cover;
-            "lastEdit"  => date("Y-m-d H:i:s");
+            "title"     => $this->title,
+            "cate"      => $this->cate,
+            "content"   => $this->content,
+            "cover"     => $this->cover,
+            "lastEdit"  => date("Y-m-d H:i:s"),
         );
         return $this->model->updateById($data, $this->id);
     }
@@ -111,8 +111,8 @@ class Article extends Api {
      * @return array 文章数组
      */
     public function getPage() {
-        $page = ($this->page)-1;
-        return $this->model->getByLimite($page, $this->pageNum);
+        $page = (($this->page)-1) * (int)$this->pageNum;
+        return $this->model->getByLimit($page, (int)$this->pageNum);
     }
 
     /**

@@ -21,9 +21,8 @@ class CommentUser extends Api {
                 'email'  => array('name' => 'email'),
                 'site'   => array('name' => 'site'),
             ),
-            'updateById' => array(
+            'getById' => array(
                 'id'     => array('name' => 'id'),
-                'name'   => array('name' => 'name'),
             )
         );
     }
@@ -53,7 +52,7 @@ class CommentUser extends Api {
      * @return array 评论用户
      */
     public function getById() {
-        return $this->model->getById($this->id);
+        return $this->model->getById($this->id); 
     }
 }
 ?>

@@ -3,6 +3,8 @@ namespace App\Api;
 
 use PhalApi\Api;
 use App\Domain\Admin as AdminDomain;
+use Gregwar\Captcha\CaptchaBuilder;
+use Gregwar\Captcha\PhraseBuilder;
 
 /**
  * admin管理类
@@ -27,6 +29,10 @@ class Admin extends Api {
                 'pic' => array('name' => 'pic'),
                 'username' => array('name' => 'username'),
                 'pwd' => array('name' => 'pwd')
+            ),
+            'login' => array(
+                'user' => array('name' => 'user'),
+                'pwd'  => array('name' => 'pwd')
             )
         );
     }
@@ -81,6 +87,36 @@ class Admin extends Api {
             $data["pwd"] = $this->pwd;
         }
         return $this->model->update($data);
+    }
+
+    /**
+     * 登陆博客
+     * 
+     * @param string user 用户名
+     * @param string pwd  用户密码
+     * 
+     * @return bool 是否允许
+     */
+    public function login() {
+        $adminUser = $this->model->getById(0)[0];
+        if( $adminUser['username'] == $this->user
+            && $adminUser['pwd'] == $this->pwd )
+            return true;
+        return false;
+    }
+    /**
+     * 生成验证码
+     * 
+     * @return array [0]是图像 [1]是验证码
+     */
+    public function getCaptcha() {
+        $phraseBuilder = new PhraseBuilder(4);
+        $CaptchaBuilder = new CaptchaBuilder(null, $phraseBuilder);
+        $data = array(
+            'img'  => $CaptchaBuilder->inline(),
+            'code' => $CaptchaBuilder->getPhrase()
+        );
+        return $data;
     }
 }
 ?>

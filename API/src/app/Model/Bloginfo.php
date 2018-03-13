@@ -14,7 +14,7 @@ class BlogInfo extends NotORM {
     public function _insert($data) {
         return $this->model->insert($data);
     }
-    public function updateById($data, $id) {
+    public function updateById($id, $data) {
         return $this->model->where("id", $id)->update($data);
     }
     public function getById($id) {

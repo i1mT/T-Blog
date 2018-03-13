@@ -34,7 +34,10 @@ class Cate extends Api {
      * @return int 新增分类的id
      */
     public function add() {
-        return $this->model->insert($this->name);
+        $data = array(
+            'name' => $this->name
+        );
+        return $this->model->insert($data);
     }
 
     /**
@@ -48,7 +51,7 @@ class Cate extends Api {
         $data = array(
             'name' => $this->name
         );
-        return $this->model->updateById($id, $data);
+        return $this->model->updateById($this->id, $data);
     }
     /**
      * 获取全部分类

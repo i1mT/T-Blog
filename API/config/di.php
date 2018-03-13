@@ -29,6 +29,11 @@ $di->logger = new FileLogger(API_ROOT . '/runtime', Logger::LOG_LEVEL_DEBUG | Lo
 // 数据操作 - 基于NotORM
 $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->debug);
 
+//access-control-allow-origin 可访问域名设置
+$di->response->addHeaders('Access-Control-Allow-Origin','*');
+$di->response->addHeaders('Access-Control-Allow-Methods','GET, POST');
+$di->response->addHeaders('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
+
 /** ---------------- 定制注册 可选服务组件 ---------------- **/
 
 // 签名验证服务

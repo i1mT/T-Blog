@@ -18,5 +18,8 @@ class CommentUser {
 	public function deleteById($id) {
 		return $this->model->delete($id);
 	}
+	public function getByName($name) {
+		return $this->model->getByName($name);
+	}
 }
 ?>

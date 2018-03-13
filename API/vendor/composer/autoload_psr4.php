@@ -6,9 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
     'PhalApi\\Task\\' => array($vendorDir . '/phalapi/task/src'),
     'PhalApi\\QrCode\\' => array($vendorDir . '/phalapi/qrcode/src'),
     'PhalApi\\NotORM\\' => array($vendorDir . '/phalapi/notorm/src'),
     'PhalApi\\' => array($vendorDir . '/phalapi/kernal/src'),
+    'Gregwar\\' => array($vendorDir . '/gregwar/captcha/src/Gregwar'),
     'App\\' => array($baseDir . '/src/app'),
 );

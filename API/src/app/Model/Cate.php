@@ -21,7 +21,7 @@ class Cate extends NotORM {
         return $this->model->where("id", $id);
     }
     public function deleteById($id) {
-        return $this->modele->where('id' $id)->delete();
+        return $this->modele->where('id', $id)->delete();
     }
     public function getAll() {
         $sql = "select * from cate where 1=1";

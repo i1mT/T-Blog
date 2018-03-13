@@ -19,7 +19,7 @@ class Comment extends Api {
         return array(
             'add' => array(
                 'content'   => array('name' => 'content'),
-                'articleid' => array('name' => 'articleid')
+                'articleid' => array('name' => 'articleid'),
                 'name'      => array('name' => 'name'),
                 'email'     => array('name' => 'email'),
                 'site'      => array('name' => 'site'),
@@ -34,6 +34,9 @@ class Comment extends Api {
             'addLikes' => array(
                 'id' => array('name' => 'id'),
             ),
+            'deleteById' => array(
+                'id' => array('name' => 'id'),
+            ),
         );
     }
 
@@ -44,6 +47,9 @@ class Comment extends Api {
      * @param string name 评论用户的名称
      * @param string email 评论用户的邮箱
      * @param string stie 评论用户的个人主页
+     * @param int articleid 评论的文章id
+     * 
+     * @return array 增加成功返回此条评论
      */
     public function add() {
         //新增一个评论用户
@@ -53,9 +59,9 @@ class Comment extends Api {
             'email' => $this->email,
             'site'  => $this->site,
         );
-        $uid = $commentUser->insert($commentUserData); 
+        $uid = $CommentUser->insert($commentUserData);
         $data = array(
-            'content'     => $this->contnet,
+            'content'     => $this->content,
             'articleid'   => $this->articleid,
             'likes'       => 0,
             'commenttime' => date('Y:m:d H:i:s'),
@@ -95,7 +101,7 @@ class Comment extends Api {
      * @return int 成功返回1 无变化返回0 错误返回false
      */
     public function addLikes() {
-        $comment = $this->model->getById();
+        $comment = $this->model->getById($this->id);
         $likes = $comment['likes'] + 1;
 
         $data = array(

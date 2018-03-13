@@ -13,12 +13,20 @@ class ComposerStaticInit6835957bc29912b8a4cd2dd758af2e80
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Component\\Finder\\' => 25,
+        ),
         'P' => 
         array (
             'PhalApi\\Task\\' => 13,
             'PhalApi\\QrCode\\' => 15,
             'PhalApi\\NotORM\\' => 15,
             'PhalApi\\' => 8,
+        ),
+        'G' => 
+        array (
+            'Gregwar\\' => 8,
         ),
         'A' => 
         array (
@@ -27,6 +35,10 @@ class ComposerStaticInit6835957bc29912b8a4cd2dd758af2e80
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Component\\Finder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/finder',
+        ),
         'PhalApi\\Task\\' => 
         array (
             0 => __DIR__ . '/..' . '/phalapi/task/src',
@@ -42,6 +54,10 @@ class ComposerStaticInit6835957bc29912b8a4cd2dd758af2e80
         'PhalApi\\' => 
         array (
             0 => __DIR__ . '/..' . '/phalapi/kernal/src',
+        ),
+        'Gregwar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar',
         ),
         'App\\' => 
         array (

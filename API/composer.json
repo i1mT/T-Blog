@@ -18,7 +18,8 @@
         "php": ">=5.3.3",
         "phalapi/kernal": "2.2.*",
         "phalapi/qrcode": "dev-master",
-        "phalapi/task": "dev-master"
+        "phalapi/task": "dev-master",
+        "gregwar/captcha": "1.*"
     },
     "autoload": {
         "files": [
