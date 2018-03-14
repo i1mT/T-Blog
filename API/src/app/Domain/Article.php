@@ -21,5 +21,8 @@ class Article {
     public function getByLimit($offset, $lines) {
         return $this->model->getByLimit($offset, $lines);
     }
+    public function getCount() {
+        return $this->model->getCount();
+    }
 }
 ?>

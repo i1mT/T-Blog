@@ -39,6 +39,14 @@
                                 title: '基础表格'
                             },
                             {
+                                index: 'cate',
+                                title: '分类管理'
+                            },
+                            {
+                                index: 'article',
+                                title: '我的创作'
+                            },
+                            {
                                 index: 'vuetable',
                                 title: 'Vue表格组件'
                             }
@@ -64,6 +72,10 @@
                             {
                                 index: 'markdown',
                                 title: 'markdown'
+                            },
+                            {
+                                index: 'publish',
+                                title: '创作'
                             },
                             {
                                 index: 'upload',

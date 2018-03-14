@@ -12,7 +12,7 @@
                 <el-form-item prop="ccap">
                     <el-input type="text" placeholder="请输入验证码" v-model="ruleForm.ccap" @keyup.enter.native="submitForm('ruleForm')">
                         <template slot="append" class="ccap">
-                            <img class="ccap-img" :src=ccap.img>
+                            <img class="ccap-img" :src=ccap.image_src>
                         </template>
                     </el-input>
                 </el-form-item>
@@ -33,11 +33,15 @@
             this.$axios.get('http://localhost/T-Blog/API/public/?s=Admin.getCaptcha')
             .then( (response) => {
                 that.ccap = response.data.data
+                var index = that.ccap.image_src.indexOf('simple-php-captcha.php')
+                that.ccap.image_src = that.ccap.image_src.substr(index)
+                that.ccap.image_src = "/static/" + that.ccap.image_src
                 console.log(response.data.data)
             })
+            console.log(window.location.pathname)
             return {
                 ccap: {
-                    img: '',
+                    image_src: '',
                     code: ''
                 },
                 ruleForm: {

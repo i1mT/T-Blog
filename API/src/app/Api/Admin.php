@@ -3,8 +3,7 @@ namespace App\Api;
 
 use PhalApi\Api;
 use App\Domain\Admin as AdminDomain;
-use Gregwar\Captcha\CaptchaBuilder;
-use Gregwar\Captcha\PhraseBuilder;
+include("simple-php-captcha.php");
 
 /**
  * admin管理类
@@ -110,12 +109,19 @@ class Admin extends Api {
      * @return array [0]是图像 [1]是验证码
      */
     public function getCaptcha() {
-        $phraseBuilder = new PhraseBuilder(4);
-        $CaptchaBuilder = new CaptchaBuilder(null, $phraseBuilder);
-        $data = array(
-            'img'  => $CaptchaBuilder->inline(),
-            'code' => $CaptchaBuilder->getPhrase()
-        );
+        //session_start();
+        $data = simple_php_captcha(array(
+            'min_length' => 4,
+            'max_length' => 4,
+            'characters' => 'ABCDEFGHJKLMNPRSTUVWXYZabcdefghjkmnprstuvwxyz23456789',
+            'color' => '#666',
+            'angle_min' => 0,
+            'angle_max' => 40,
+            'shadow' => true,
+            'shadow_color' => '#fff',
+            'shadow_offset_x' => -5,
+            'shadow_offset_y' => 5
+        ));
         return $data;
     }
 }

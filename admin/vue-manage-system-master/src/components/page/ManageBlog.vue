@@ -7,7 +7,7 @@
             </el-breadcrumb>
         </div>
         <div class="form-box">
-            <el-form ref="form" :model="form" label-width="80px">
+            <el-form ref="form" :model="blogInfo" label-width="80px">
                 <el-form-item label="博客名">
                     <el-input v-model="blogInfo.name"></el-input>
                 </el-form-item>
@@ -23,7 +23,7 @@
                     <el-input v-model="blogInfo.siteurl"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit">提交</el-button>
+                    <el-button type="primary" @click="onSubmit">修改</el-button>
                     <el-button>取消</el-button>
                 </el-form-item>
             </el-form>
@@ -41,8 +41,7 @@
             .then( (response) => {
                 that.blogInfo = response.data.data[0]
                 that.blogInfo.time = that.blogInfo.starttime.substr(11)
-                that.blogInfo.starttime = that.blogInfo.starttime.substr(0,10)
-                console.log(that.blogInfo)
+                //that.blogInfo.starttime = that.blogInfo.starttime.substr(0,10)
             })
             return {
                 blogInfo: {
@@ -51,22 +50,22 @@
                     siteurl: '',
                     starttime: '',
                     time: ''
-                },
-                form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: true,
-                    type: ['步步高'],
-                    resource: '小天才',
-                    desc: ''
                 }
             }
         },
         methods: {
             onSubmit() {
-                this.$message.success('提交成功！');
+                //this.blogInfo.starttime = this.blogInfo.time + " " + this.blogInfo.starttime
+                let that = this
+                this.$axios.post(this.$API.BlogInfo.update, this.blogInfo)
+                .then((response) => {
+                    if(response.data.data == 1)
+                        that.$message.success('修改成功！')
+                    else if(response.data.data == 0)
+                        that.$message.warning("博客信息无变化！")
+                    else
+                        that.$message.error("修改失败！")
+                })
             }
         }
     }

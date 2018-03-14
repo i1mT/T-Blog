@@ -2,6 +2,7 @@
 namespace App\Model;
 
 use PhalApi\Model\NotORMModel as NotORM;
+use App\Model\Cate as CateModel;
 
 class Article extends NotORM {
 	protected $model;
@@ -29,7 +30,25 @@ class Article extends NotORM {
             ":offset" => $offset,
             ":lines" => $lines
         );
-        return $this->model->queryAll($sql, $params);
+        $data = $this->model->queryAll($sql, $params);
+        $res_data = array();
+        foreach($data as $row) {
+            $cateId = $row['cate'];
+            $cateModel = new CateModel();
+
+            $cateName = $cateModel->getNameById($cateId);
+            $row['cateName'] = $cateName['name'];
+
+            array_push($res_data, $row);
+        }
+        return $res_data;
+    }
+    public function getCount() {
+        return $this->model->count('id');
+    }
+    public function countByCateId($id) {
+        $data = $this->model->where('cate',$id);
+        return count($data);
     }
 }
 

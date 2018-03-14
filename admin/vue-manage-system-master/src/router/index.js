@@ -42,12 +42,24 @@ export default new Router({
                     component: resolve => require(['../components/page/Markdown.vue'], resolve)     // Vue-Quill-Editor组件
                 },
                 {
+                    path: '/publish',
+                    component: resolve => require(['../components/page/Publish.vue'], resolve)     // Vue-Quill-Editor组件
+                },
+                {
                     path: '/upload',
                     component: resolve => require(['../components/page/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },
                 {
                     path: '/basecharts',
                     component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   // vue-schart组件
+                },
+                {
+                    path: '/cate',
+                    component: resolve => require(['../components/page/ManageCate.vue'], resolve)   // vue-schart组件
+                },
+                {
+                    path: '/article',
+                    component: resolve => require(['../components/page/ManageArticle.vue'], resolve)   // vue-schart组件
                 },
                 {
                     path: '/drag',

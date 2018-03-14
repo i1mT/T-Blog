@@ -116,6 +116,15 @@ class Article extends Api {
     }
 
     /**
+     * 获取文章总数
+     * 
+     * @return int 总数
+     */
+    public function getCount() {
+        return $this->model->getCount();
+    }
+
+    /**
      * 根据id增加文章访问量
      * 
      * @param int id 文章id

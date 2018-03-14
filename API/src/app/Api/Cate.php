@@ -3,6 +3,7 @@ namespace App\Api;
 
 use PhalApi\Api;
 use App\Domain\Cate as CateDomain;
+use App\Model\Article as ArticleModel;
 
 /**
  * Cate管理类
@@ -59,7 +60,18 @@ class Cate extends Api {
      * @return array 全部分类的数组
      */
     public function getAll(){
-        return $this->model->getAll();
+        $data = $this->model->getAll();
+        //循环获取数量并添加进data
+        $res_data = array();
+        foreach ($data as $row) {
+            $cateId = $row['id'];
+            $articleModel = new ArticleModel();
+
+            $count = $articleModel->countByCateId($cateId);
+            $row['sum'] = $count;
+            array_push($res_data, $row);
+        }
+        return $res_data;
     }
 }
 ?>

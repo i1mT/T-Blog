@@ -21,7 +21,7 @@ class BlogInfo extends Api {
                 'description' => array('name' => 'description'),
                 'siteurl' => array('name' => 'siteurl'),
             ),
-            'updateBlogInfo' => array(
+            'update' => array(
                 'name' => array('name' => 'name'),
                 'description' => array('name' => 'description'),
                 'siteurl' => array('name' => 'siteurl'),
@@ -58,7 +58,7 @@ class BlogInfo extends Api {
      * 
      * @return int 有变化返回1 无变化返回0 错误返回false
      */
-    public function updateBlogInfo() {
+    public function update() {
         $data = array();
         if($this->name != NULL) {
             $data["name"] = $this->name;
