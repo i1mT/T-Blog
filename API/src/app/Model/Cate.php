@@ -21,8 +21,10 @@ class Cate extends NotORM {
         return $this->model->where("id", $id);
     }
     public function getNameById($id) {
-        $data = $this->model->where('id', $id)->fetchOne();
-        return $data;
+        return $this->model->where('id', $id)->fetchOne();
+    }
+    public function getIdByName($name) {
+        return $this->model->where('name', $name)->fetchOne();
     }
     public function deleteById($id) {
         return $this->modele->where('id', $id)->delete();

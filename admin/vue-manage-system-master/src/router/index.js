@@ -46,6 +46,11 @@ export default new Router({
                     component: resolve => require(['../components/page/Publish.vue'], resolve)     // Vue-Quill-Editor组件
                 },
                 {
+                    path: '/publishSuccess',
+                    name: 'publishSuccess',
+                    component: resolve => require(['../components/page/PublishSuccess.vue'], resolve)     // Vue-Quill-Editor组件
+                },
+                {
                     path: '/upload',
                     component: resolve => require(['../components/page/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },

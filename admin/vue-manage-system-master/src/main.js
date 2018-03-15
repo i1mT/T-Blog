@@ -30,7 +30,9 @@ Vue.prototype.$API = {
     },
     Article: {
         'getPage': baseU + "Article.getPage",
-        'getCount': baseU + "Article.getCount"
+        'getCount': baseU + "Article.getCount",
+        'publish': baseU + "Article.publish",
+        'deleteById': baseU + "Article.deleteById"
     }
 }
 new Vue({

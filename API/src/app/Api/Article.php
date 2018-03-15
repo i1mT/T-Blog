@@ -3,7 +3,7 @@ namespace App\Api;
 
 use PhalApi\Api;
 use App\Domain\Article as ArticleDomain;
-
+use App\Model\Cate as CateModel;
 /**
  * article(文章)管理类
  * 
@@ -48,17 +48,25 @@ class Article extends Api {
      * 发表文章
      * 
      * @param string title 文章标题
-     * @param int    cate  文章分类
+     * @param int    cate  文章分类名
      * @param string content 文章内容
      * @param string cover 文章封面地址
      * 
      * @return int 成功返回文章id
      */
     public function publish() {
+        //根据分类名获取分类id
+        $cateModel = new CateModel();
+        $cateId = $cateModel->getIdByName($this->cate)['id'];
+        if(!$cateId) {
+            //新的分类 创建分类
+            $cate = array('name' => $this->cate);
+            $cateId = $cateModel->_insert($cate)['id'];
+        }
         //文章的结构
         $data = array(
             'title'     => $this->title,
-            'cate'      => $this->cate,
+            'cate'      => $cateId,
             'content'   => $this->content,
             'cover'     => $this->cover,
             'publishAt' => date("Y-m-d H:i:s"),

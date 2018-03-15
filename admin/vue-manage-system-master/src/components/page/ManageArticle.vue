@@ -31,8 +31,23 @@
             </el-table-column>
             <el-table-column label="操作" width="80">
                 <template scope="scope">
-                    <el-button size="small" type="danger"
-                            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    <el-popover
+                        ref="deleteConfirm"
+                        placement="top"
+                        width="160"
+                        v-model="scope.row.confirmDeleteVisible">
+                        <p>确定删除吗？</p>
+                        <div style="text-align: right; margin: 0">
+                            <el-button size="mini" type="text" @click="deleteCalcel">取消</el-button>
+                            <el-button type="primary" size="mini" @click="deleteSubmit">确定</el-button>
+                        </div>
+                    </el-popover>
+                    <el-button
+                        size="small"
+                        type="danger"
+                        v-popover:deleteConfirm
+                        @click="handleDelete(scope.$index, scope.row)"
+                    >删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -51,9 +66,9 @@
     export default {
         data() {
             this.getArticalTotal()
-            this.getPage(1, 4)
+            this.getPage(1, 10)
             return {
-                perPageArticles: 4,
+                perPageArticles: 10,
                 totalArticle: 0,
                 Articles: [],
                 ArticleBack: [],
@@ -62,9 +77,28 @@
                 multipleSelection: [],
                 del_list: [],
                 searchKey: "",
+                currentDeleteItem: {},
+                confirmDeleteVisible: false
             }
         },
         methods: {
+            deleteCalcel(){
+                console.log(this.currentDeleteItem)
+                this.Articles[this.currentDeleteItem.index].confirmDeleteVisible = false
+                this.currentDeleteItem = {}
+                console.log("取消")
+            },
+            deleteSubmit() {
+                let id = this.currentDeleteItem.id
+                const that = this
+                this.$axios.post(this.$API.Article.deleteById, {'id': id})
+                .then((res) => {
+                    console.log(res.data.data)
+                    that.$message.success("删除成功！")
+                    that.Articles.splice(that.currentDeleteItem.index,1)
+                })
+                console.log("删除")
+            },
             linkToArticle(row) {
                 this.$router.push({path:'/publish',query:{article:row}})
             },
@@ -85,6 +119,9 @@
                 }
                 this.$axios.post(this.$API.Article.getPage, data)
                 .then((res) => {
+                    for(var i in res.data.data) {
+                        res.data.data.confirmDeleteVisible = false
+                    }
                     that.Articles = res.data.data
                     that.ArticleBack = that.Articles
                 })
@@ -112,9 +149,8 @@
                 this.$message('编辑第'+(index+1)+'行');
             },
             handleDelete(index, row) {
-                console.log(index)
-                console.log(row)
-                this.$message.error('删除第'+(index+1)+'行');
+                row.index = index
+                this.currentDeleteItem = row
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;

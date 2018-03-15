@@ -3,25 +3,46 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i> 表单</el-breadcrumb-item>
-                <el-breadcrumb-item>markdown</el-breadcrumb-item>
+                <el-breadcrumb-item>创作</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="plugins-tips">
             Vue-SimpleMDE：Vue.js的Markdown Editor组件。
             访问地址：<a href="https://github.com/F-loat/vue-simplemde" target="_blank">Vue-SimpleMDE</a>
         </div>
-        <markdown-editor v-model="article.content" :configs="configs" ref="markdownEditor"></markdown-editor>
-        <el-autocomplete
-            v-model="state4"
-            :fetch-suggestions="querySearchAsync"
-            placeholder="请输入内容"
-            @select="handleSelect"
-        ></el-autocomplete>
-        <el-button type="primary" @click="onSubmit">发表</el-button>
-        <el-button>保存草稿</el-button>
+        <el-form>
+            <el-form-item>
+                <el-input size="large" v-model="article.title" placeholder="创作标题">
+                    <template slot="prepend">标题：</template>
+                </el-input>
+            </el-form-item>
+            <markdown-editor v-model="article.content" :configs="configs" ref="markdownEditor"></markdown-editor>
+            <div class="plugins-tips">
+                <p v-if="isReEdit">上次编辑 {{ article.lastEdit }}</p>
+                <p>(自动保存-待开发)</p>
+            </div>
+            <el-form-item>
+                <el-autocomplete
+                    v-model="article.cateName"
+                    :fetch-suggestions="querySearch"
+                    placeholder="选择分类"
+                    @select="handleSelect"
+                >
+                    <template slot="prepend">分类：</template>
+                </el-autocomplete>
+            </el-form-item>
+            <el-form-item>
+                <el-input v-model="article.cover" placeholder="输入封面图片地址...">
+                    <template slot="prepend">封面：</template>
+                </el-input>
+            </el-form-item>
+            
+            <el-form-item>
+                <el-button type="primary" @click="publish">发表</el-button>
+                <el-button>保存草稿</el-button>
+            </el-form-item>
+        </el-form>
         <div class="plugins-tips">
-            <p>既然用了markdown语法了，那么就有一个很实际的问题了。要怎么在前台展示数据呢？</p>
-            <br>
             <p>这个时候就需要解析markdown语法了。可以使用 <a href="https://github.com/miaolz123/vue-markdown" target="_blank">vue-markdown</a>：一个基于vue.js的markdown语法解析插件。（这里不作展开，有需要自行了解）</p>
         </div>
     </div>
@@ -31,7 +52,6 @@
     import { markdownEditor } from 'vue-simplemde';
     export default {
         data: function(){
-            
             return {
                 article: {
                     content: '',
@@ -39,10 +59,12 @@
                     cate: '',
                     cateName: '',
                     lastEdit: '',
+                    cover:'',
                 },
                 cate: [],
-                state4: '',
+                selectCate: '',
                 content:'',
+                isReEdit: false,
                 configs: {
                     status: true,
                     initialValue: '在这里开始你的创作吧~',
@@ -56,6 +78,7 @@
         mounted(){
             //DOM挂载之后
             if(this.$route.query.article) {
+                this.isReEdit = true
                 this.article = this.$route.query.article
                 this.configs.initialValue = this.article.content
             }
@@ -70,25 +93,39 @@
                     that.cate = res.data.data
                 })
             },
-            onSubmit() {
-                console.log(this.content)
+            publish() {
+                console.log(this.article)
+                const that = this
+                this.article.cate = this.article.cateName
+                this.$axios.post(this.$API.Article.publish,this.article)
+                .then((res) => {
+                    if(res.data.data.id) {
+                        //发表成功 跳转到文章
+                        that.$message.success("发表成功！")
+                        that.$router.push({name:'publishSuccess',params:{article:res.data.data}})
+                    } else {
+                        //发表失败
+                        that.$message.error("发表失败！")
+                    }
+                    console.log(res.data.data)
+                })
             },
             handleSelect(item) {
-                console.log(item);
+                this.article.cate = item.id
             },
-            querySearchAsync(queryString, cb) {
+            querySearch(queryString, cb) {
+                this.getAllCate()
                 var cates = this.cate
                 var results = []
 
-                for(cate in cates) {
-                    if(cate.name.indexOf(queryString) != -1)
-                        results.push(cate)
+                for(var i in cates) {
+                    if(cates[i].name.indexOf(queryString) != -1)
+                        results.push( {
+                            'value': cates[i].name,
+                            'id': cates[i].id
+                            })
                 }
-
-                clearTimeout(this.timeout)
-                this.timeout = setTimeout(() => {
-                    cb(results);
-                }, 1000 * Math.random());
+                cb(results);
             }
         },
         components: {
