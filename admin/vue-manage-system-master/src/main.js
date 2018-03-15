@@ -22,7 +22,8 @@ Vue.prototype.$axios = axios;
 var baseU = "http://localhost/T-Blog/API/public/?s="
 Vue.prototype.$API = {
     BlogInfo: {
-        'update': baseU + "BlogInfo.update"
+        'update': baseU + "BlogInfo.update",
+        'getInfo': baseU + "BlogInfo.getBlogInfo"
     },
     Cate: {
         'getAll': baseU + "Cate.getAll" 

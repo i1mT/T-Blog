@@ -37,7 +37,7 @@
         data: function(){
             //获取博客信息
             let that = this
-            this.$axios.get('http://localhost/T-Blog/API/public/?s=BlogInfo.getBlogInfo')
+            this.$axios.get(this.$API.BlogInfo.getInfo)
             .then( (response) => {
                 that.blogInfo = response.data.data[0]
                 that.blogInfo.time = that.blogInfo.starttime.substr(11)

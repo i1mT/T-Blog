@@ -10,13 +10,13 @@
             <el-input v-model="searchKey" placeholder="筛选关键词" class="handle-input mr10"></el-input>
             <el-button type="primary" icon="search" @click="search">搜索</el-button>
         </div>
-        <el-table :data="Articles" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+        <el-table :data="Articles" border ref="multipleTable" @selection-change="handleSelectionChange">
             
             <el-table-column prop="id" label="编号" sortable width="90">
             </el-table-column>
             <el-table-column prop="title" label="博文标题">
                 <template scope="scope">
-                    {{ scope.row.title }}
+                    <a class="article-title" @click="linkToArticle(scope.row)">{{ scope.row.title }}</a>
                 </template>
             </el-table-column>
             <el-table-column prop="cateName" label="分类" width="90">
@@ -40,7 +40,8 @@
             <el-pagination
                     @current-change ="handleCurrentChange"
                     layout="prev, pager, next"
-                    :total="totalPage">
+                    :total="totalArticle"
+                    :page-size="perPageArticles">
             </el-pagination>
         </div>
     </div>
@@ -49,53 +50,60 @@
 <script>
     export default {
         data() {
-            let that = this
-            let data = {
-                page: '1',
-                pageNum: '3'
-            }
-            //获取文章总数
-            this.$axios.get(this.$API.Article.getCount)
-            .then((res) => {
-                that.totalArticle = res.data.data
-                that.totalPage = Math.round(that.totalArticle / that.perPageArticles)
-            })
-            //获取第一页文章
-            this.$axios.post(this.$API.Article.getPage, data)
-            .then((res) => {
-                that.Articles = res.data.data
-            })
+            this.getArticalTotal()
+            this.getPage(1, 4)
             return {
-                perPageArticles: 3,
+                perPageArticles: 4,
                 totalArticle: 0,
-                totalPage: 3,
                 Articles: [],
+                ArticleBack: [],
                 tableData: [],
-                curPage: 1,
+                curPage: '',
                 multipleSelection: [],
                 del_list: [],
                 searchKey: "",
             }
         },
         methods: {
-            add(scope1) {
-                console.log(scope1)
+            linkToArticle(row) {
+                this.$router.push({path:'/publish',query:{article:row}})
+            },
+            getArticalTotal() {
+                //获取文章总数
+                let that = this
+                this.$axios.get(this.$API.Article.getCount)
+                .then((res) => {
+                    that.totalArticle = parseInt(res.data.data)
+                })
+            },
+            getPage(page, pageNum) {
+                //获取第一页文章
+                let that = this
+                let data = {
+                    page: page,
+                    pageNum: pageNum
+                }
+                this.$axios.post(this.$API.Article.getPage, data)
+                .then((res) => {
+                    that.Articles = res.data.data
+                    that.ArticleBack = that.Articles
+                })
             },
             resetEditFlag(flag) {
                 for(var i = 0; i < this.cate.length; i++) 
                     this.cate[i].editFlag = flag
             },
             handleCurrentChange(val){
-                this.curPpage = val;
+                this.getPage(val, this.perPageArticles)
             },
             search(key){
                 key = key.trim()
                 let searchRes = []
-                for(var i = 0; i < this.cateBack.length; i++) {
-                    if(this.cateBack[i].name.indexOf(key) != -1)
-                        searchRes.push(this.cateBack[i])
+                for(var i = 0; i < this.ArticleBack.length; i++) {
+                    if(this.ArticleBack[i].title.indexOf(key) != -1)
+                        searchRes.push(this.ArticleBack[i])
                 }
-                this.cate = searchRes
+                this.Articles = searchRes
             },
             handleEdit(index, row) {
                 this.resetEditFlag(false)
@@ -116,7 +124,7 @@
         watch: {
             searchKey(key) {
                 if(key == "")
-                    this.cate = this.cateBack
+                    this.Articles = this.ArticleBack
                 else
                     this.search(key)
             }
@@ -134,5 +142,12 @@
 .handle-input{
     width: 300px;
     display: inline-block;
+}
+.article-title:hover {
+    cursor: pointer;
+    color: #20a0ff;
+}
+.article-title:visited {
+    color: black;
 }
 </style>

@@ -10,7 +10,13 @@
             Vue-SimpleMDE：Vue.js的Markdown Editor组件。
             访问地址：<a href="https://github.com/F-loat/vue-simplemde" target="_blank">Vue-SimpleMDE</a>
         </div>
-        <markdown-editor v-model="content" :configs="configs" ref="markdownEditor"></markdown-editor>
+        <markdown-editor v-model="article.content" :configs="configs" ref="markdownEditor"></markdown-editor>
+        <el-autocomplete
+            v-model="state4"
+            :fetch-suggestions="querySearchAsync"
+            placeholder="请输入内容"
+            @select="handleSelect"
+        ></el-autocomplete>
         <el-button type="primary" @click="onSubmit">发表</el-button>
         <el-button>保存草稿</el-button>
         <div class="plugins-tips">
@@ -25,7 +31,17 @@
     import { markdownEditor } from 'vue-simplemde';
     export default {
         data: function(){
+            
             return {
+                article: {
+                    content: '',
+                    title: '',
+                    cate: '',
+                    cateName: '',
+                    lastEdit: '',
+                },
+                cate: [],
+                state4: '',
                 content:'',
                 configs: {
                     status: true,
@@ -37,9 +53,42 @@
                 }
             }
         },
+        mounted(){
+            //DOM挂载之后
+            if(this.$route.query.article) {
+                this.article = this.$route.query.article
+                this.configs.initialValue = this.article.content
+            }
+            //获取全部分类
+            this.getAllCate()
+        },
         methods: {
+            getAllCate() {
+                let that = this
+                this.$axios.get(this.$API.Cate.getAll)
+                .then((res) => {
+                    that.cate = res.data.data
+                })
+            },
             onSubmit() {
                 console.log(this.content)
+            },
+            handleSelect(item) {
+                console.log(item);
+            },
+            querySearchAsync(queryString, cb) {
+                var cates = this.cate
+                var results = []
+
+                for(cate in cates) {
+                    if(cate.name.indexOf(queryString) != -1)
+                        results.push(cate)
+                }
+
+                clearTimeout(this.timeout)
+                this.timeout = setTimeout(() => {
+                    cb(results);
+                }, 1000 * Math.random());
             }
         },
         components: {

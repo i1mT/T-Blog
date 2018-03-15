@@ -10,7 +10,7 @@
             <el-input v-model="searchKey" placeholder="筛选关键词" class="handle-input mr10"></el-input>
             <el-button type="primary" icon="search" @click="search">搜索</el-button>
         </div>
-        <el-table :data="cate" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+        <el-table :data="cate" border ref="multipleTable" @selection-change="handleSelectionChange">
             
             <el-table-column prop="id" label="编号" sortable width="120">
             </el-table-column>
