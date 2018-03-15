@@ -16,10 +16,10 @@
             </el-table-column>
             <el-table-column prop="name" label="分类名" width="200">
                 <template scope="scope">
-                    <span v-if="!scope.row.editFlag">{{ scope.row.name }}</span>
                     <span v-if="scope.row.editFlag" class="cell-edit-input">
                         <el-input v-model="scope.row.name"></el-input>
                     </span>
+                    <span v-else>{{ scope.row.name }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="sum" label="文章数">
@@ -27,9 +27,24 @@
             <el-table-column label="操作" width="200">
                 <template scope="scope">
                     <el-button size="small"
-                            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    <el-button size="small" type="danger"
-                            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                            @click="handleEdit(scope.$index, scope.row)">{{ scope.row.editFlag? "完成":"编辑"}}</el-button>
+                    <el-popover
+                        ref="deleteConfirm"
+                        placement="top"
+                        width="160"
+                        v-model="scope.row.confirmDeleteVisible">
+                        <p>确定删除吗？</p>
+                        <div style="text-align: right; margin: 0">
+                            <el-button size="mini" type="text" @click="deleteCalcel">取消</el-button>
+                            <el-button type="primary" size="mini" @click="deleteSubmit">确定</el-button>
+                        </div>
+                    </el-popover>
+                    <el-button
+                        size="small"
+                        type="danger"
+                        v-popover:deleteConfirm
+                        @click="handleDelete(scope.$index, scope.row)"
+                    >删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -46,17 +61,10 @@
 <script>
     export default {
         data() {
-            let that = this
-            this.$axios.get(this.$API.Cate.getAll)
-            .then((res) => {
-                that.cate = res.data.data
-                that.resetEditFlag(true)
-                that.cateBack = that.cate
-                console.log(res.data.data)
-            })
             return {
                 page: 1,
                 cate: [],
+                currentDeleteItem: {},
                 cateBack: [],
                 tableData: [],
                 cur_page: 1,
@@ -65,13 +73,47 @@
                 searchKey: "",
             }
         },
+        mounted() {
+            this.getAllCate()
+        },
         methods: {
+            deleteCalcel(){
+                console.log(this.currentDeleteItem)
+                this.cate[this.currentDeleteItem.index].confirmDeleteVisible = false
+                this.currentDeleteItem = {}
+                console.log("取消")
+            },
+            deleteSubmit() {
+                let id = this.currentDeleteItem.id
+                const that = this
+                this.$axios.post(this.$API.Cate.deleteById, {'id': id})
+                .then((res) => {
+                    console.log(res.data.data)
+                    that.$message.success("删除成功！")
+                    that.cate.splice(that.currentDeleteItem.index,1)
+                })
+            },
+            getAllCate() {
+                let that = this
+                this.$axios.get(this.$API.Cate.getAll)
+                .then((res) => {
+                    for(var i in res.data.data) {
+                        res.data.data[i].confirmDeleteVisible = false
+                    }
+                    that.cate = res.data.data
+                    that.resetEditFlag(false)
+                    that.cateBack = that.cate
+                    console.log(res.data.data)
+
+                    
+                })
+            },
             add(scope1) {
                 console.log(scope1)
             },
             resetEditFlag(flag) {
-                for(var i = 0; i < this.cate.length; i++) 
-                    this.cate[i].editFlag = flag
+                for(var i = 0; i < this.cate.length; i++)
+                    this.$set(this.cate[i], 'editFlag', flag)
             },
             handleCurrentChange(val){
                 this.cur_page = val;
@@ -86,14 +128,37 @@
                 this.cate = searchRes
             },
             handleEdit(index, row) {
-                this.resetEditFlag(false)
-                this.cate[index].editFlag = false
-                console.log(this.cate)
-                this.$message('编辑第'+(index+1)+'行');
+                if(this.cate[index].editFlag) {
+                    //更新分类
+                    this.updateCate(index,row);
+                    return;
+                }
+                this.$set(this.cate[index], 'editFlag', !this.cate[index].editFlag)
+            },
+            updateCate(index,cate) {
+                console.log(cate)
+                const that = this
+                let data = {
+                    id: cate.id,
+                    name: cate.name
+                }
+                this.$axios.post(this.$API.Cate.updateCate, data)
+                .then((res) => {
+                    console.log(res.data.data)
+                    that.$set(that.cate[index], 'editFlag', !that.cate[index].editFlag)
+                    that.$message.success("修改成功！")
+                })
+                .catch((err) => {
+                    console.log(err)
+                    that.$set(that.cate[index], 'editFlag', !that.cate[index].editFlag)
+                    that.$message.success("修改失败！")
+                })
             },
             handleDelete(index, row) {
                 console.log(index)
                 console.log(row)
+                row.index = index
+                this.currentDeleteItem = row
                 this.$message.error('删除第'+(index+1)+'行');
             },
             handleSelectionChange(val) {

@@ -109,6 +109,10 @@
                     }
                     console.log(res.data.data)
                 })
+                .catch((err) => {
+                    console.log(err)
+                    that.$message.error("发表失败！")
+                })
             },
             handleSelect(item) {
                 this.article.cate = item.id

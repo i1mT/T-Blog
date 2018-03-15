@@ -26,7 +26,9 @@ Vue.prototype.$API = {
         'getInfo': baseU + "BlogInfo.getBlogInfo"
     },
     Cate: {
-        'getAll': baseU + "Cate.getAll" 
+        'getAll': baseU + "Cate.getAll",
+        'updateCate': baseU + "Cate.updateById",
+        'deleteById': baseU + "Cate.deleteById"
     },
     Article: {
         'getPage': baseU + "Article.getPage",

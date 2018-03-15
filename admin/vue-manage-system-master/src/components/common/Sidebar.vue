@@ -35,48 +35,38 @@
                         title: '表格',
                         subs: [
                             {
-                                index: 'basetable',
-                                title: '基础表格'
-                            },
-                            {
                                 index: 'cate',
                                 title: '分类管理'
                             },
                             {
                                 index: 'article',
                                 title: '我的创作'
-                            },
-                            {
-                                index: 'vuetable',
-                                title: 'Vue表格组件'
                             }
                         ]
+                    },{
+                        icon: 'el-icon-menu',
+                        index: 'cate',
+                        title: '分类管理'
+                    },{
+                        icon: 'el-icon-menu',
+                        index: 'article',
+                        title: '我的创作'
+                    },
+                    {
+                        icon: 'el-icon-menu',
+                        index: 'ManageBlog',
+                        title: '管理博客'
+                    },
+                    {
+                        icon: 'el-icon-menu',
+                        index: 'publish',
+                        title: '创作'
                     },
                     {
                         icon: 'el-icon-date',
                         index: '3',
                         title: '表单',
                         subs: [
-                            {
-                                index: 'baseform',
-                                title: '基本表单'
-                            },
-                            {
-                                index: 'ManageBlog',
-                                title: '管理博客'
-                            },
-                            {
-                                index: 'vueeditor',
-                                title: '编辑器'
-                            },
-                            {
-                                index: 'markdown',
-                                title: 'markdown'
-                            },
-                            {
-                                index: 'publish',
-                                title: '创作'
-                            },
                             {
                                 index: 'upload',
                                 title: '文件上传'

@@ -23,6 +23,9 @@ class Cate extends Api {
             'updateById' => array(
                 'id'     => array('name' => 'id'),
                 'name'   => array('name' => 'name'),
+            ),
+            'deleteById' => array(
+                'id'     => array('name' => 'id')
             )
         );
     }
@@ -53,6 +56,16 @@ class Cate extends Api {
             'name' => $this->name
         );
         return $this->model->updateById($this->id, $data);
+    }
+
+    /**
+     * 根据id删除分类
+     * 
+     * 
+     * @return int 1成功 0失败
+     */
+    public function deleteById() {
+        return $this->model->deleteById($this->id);
     }
     /**
      * 获取全部分类
