@@ -9,13 +9,13 @@
                 <el-form-item prop="password">
                     <el-input type="password" placeholder="password" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
                 </el-form-item>
-                <el-form-item prop="ccap">
+                <!-- <el-form-item prop="ccap">
                     <el-input type="text" placeholder="请输入验证码" v-model="ruleForm.ccap" @keyup.enter.native="submitForm('ruleForm')">
                         <template slot="append" class="ccap">
                             <img class="ccap-img" :src=ccap.image_src>
                         </template>
                     </el-input>
-                </el-form-item>
+                </el-form-item> -->
                 <div class="login-btn">
                     <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
                 </div>
@@ -29,16 +29,15 @@
     export default {
         data: function(){
             //获取验证码图片base64和验证码
-            let that = this
-            this.$axios.get('http://localhost/T-Blog/API/public/?s=Admin.getCaptcha')
-            .then( (response) => {
-                that.ccap = response.data.data
-                var index = that.ccap.image_src.indexOf('simple-php-captcha.php')
-                that.ccap.image_src = that.ccap.image_src.substr(index)
-                that.ccap.image_src = "/static/" + that.ccap.image_src
-                console.log(response.data.data)
-            })
-            console.log(window.location.pathname)
+            // let that = this
+            // this.$axios.get('http://localhost/T-Blog/API/public/?s=Admin.getCaptcha')
+            // .then( (response) => {
+            //     that.ccap = response.data.data
+            //     var index = that.ccap.image_src.indexOf('simple-php-captcha.php')
+            //     that.ccap.image_src = that.ccap.image_src.substr(index)
+            //     that.ccap.image_src = "/static/" + that.ccap.image_src
+            //     console.log(response.data.data)
+            // })
             return {
                 ccap: {
                     image_src: '',
@@ -56,9 +55,9 @@
                     password: [
                         { required: true, message: '请输入密码', trigger: 'blur' }
                     ],
-                    ccap: [
-                        { required: true, message: '请输入验证码', trigger: 'blur' }
-                    ]
+                    // ccap: [
+                    //     { required: true, message: '请输入验证码', trigger: 'blur' }
+                    // ]
                 }
             }
         },
@@ -68,7 +67,7 @@
                 self.$refs[formName].validate((valid) => {
                     if (valid) {
                         localStorage.setItem('ms_username',self.ruleForm.username);
-                        self.$router.push('/readme');
+                        self.$router.push('/Situation');
                     } else {
                         console.log('error submit!!');
                         return false;
