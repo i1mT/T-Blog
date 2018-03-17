@@ -23,11 +23,11 @@
             </el-table-column>
             <el-table-column prop="lastEdit" label="上次编辑" width="165">
             </el-table-column>
-            <el-table-column prop="viewed" label="浏览" width="65">
+            <el-table-column prop="viewed" label="浏览" sortable width="85">
             </el-table-column>
-            <el-table-column prop="likes" label="喜欢" width="65">
+            <el-table-column prop="likes" label="喜欢" sortable width="85">
             </el-table-column>
-            <el-table-column prop="comments" label="评论" width="65">
+            <el-table-column prop="comments" label="评论" sortable width="85">
             </el-table-column>
             <el-table-column label="操作" width="80">
                 <template scope="scope">

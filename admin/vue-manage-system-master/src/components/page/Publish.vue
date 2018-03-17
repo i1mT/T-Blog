@@ -76,7 +76,8 @@
             }
         },
         mounted(){
-            //DOM挂载之后
+            //DOM挂载之后 判断是否传入了已经发表的文章
+            //如果是 就将此文章信息填入 开始编辑文章
             if(this.$route.query.article) {
                 this.isReEdit = true
                 this.article = this.$route.query.article

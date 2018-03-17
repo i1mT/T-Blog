@@ -16,7 +16,13 @@
                 </el-form-item>
                 <el-form-item label="日期时间">
                     <el-col :span="11">
-                        <el-date-picker type="date" placeholder="选择日期" v-model="blogInfo.starttime" style="width: 100%;"></el-date-picker>
+                        <el-date-picker
+                        type="datetime"
+                        placeholder="选择日期"
+                        v-model="blogInfo.starttime"
+                        format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+                        value-format="yyyy-MM-dd"
+                        style="width: 100%;"></el-date-picker>
                     </el-col>
                 </el-form-item>
                 <el-form-item label="博客域名">
@@ -33,16 +39,10 @@
 </template>
 
 <script>
+    import Moment from 'moment'
+
     export default {
-        data: function(){
-            //获取博客信息
-            let that = this
-            this.$axios.get(this.$API.BlogInfo.getInfo)
-            .then( (response) => {
-                that.blogInfo = response.data.data[0]
-                that.blogInfo.time = that.blogInfo.starttime.substr(11)
-                //that.blogInfo.starttime = that.blogInfo.starttime.substr(0,10)
-            })
+        data: function() {
             return {
                 blogInfo: {
                     name: '',
@@ -53,9 +53,22 @@
                 }
             }
         },
+        mounted() {
+            this.getBlogInfo()
+        },
         methods: {
+            getBlogInfo() {
+                //获取博客信息
+                let that = this
+                this.$axios.get(this.$API.BlogInfo.getInfo)
+                .then( (response) => {
+                    console.log(response)
+                    that.blogInfo = response.data.data[0]
+                    that.blogInfo.time = that.blogInfo.starttime.substr(11)
+                })
+            },
             onSubmit() {
-                //this.blogInfo.starttime = this.blogInfo.time + " " + this.blogInfo.starttime
+                this.blogInfo.starttime = this.formatDate(this.blogInfo.starttime)
                 let that = this
                 this.$axios.post(this.$API.BlogInfo.update, this.blogInfo)
                 .then((response) => {
@@ -66,6 +79,9 @@
                     else
                         that.$message.error("修改失败！")
                 })
+            },
+            formatDate(date) {
+                return Moment(date).format("YYYY-MM-DD HH:mm:ss")
             }
         }
     }

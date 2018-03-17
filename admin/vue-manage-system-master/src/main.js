@@ -34,6 +34,7 @@ Vue.prototype.$API = {
         'getPage': baseU + "Article.getPage",
         'getCount': baseU + "Article.getCount",
         'publish': baseU + "Article.publish",
+        'publishByUpload': baseU + "Article.publishByUpload",
         'deleteById': baseU + "Article.deleteById"
     }
 }

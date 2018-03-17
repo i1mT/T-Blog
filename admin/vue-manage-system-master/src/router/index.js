@@ -55,6 +55,10 @@ export default new Router({
                     component: resolve => require(['../components/page/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },
                 {
+                    path: '/uploadPublish',
+                    component: resolve => require(['../components/page/UploadPublish.vue'], resolve)       // Vue-Core-Image-Upload组件
+                },
+                {
                     path: '/basecharts',
                     component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   // vue-schart组件
                 },

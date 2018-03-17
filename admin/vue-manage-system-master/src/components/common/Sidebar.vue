@@ -63,6 +63,11 @@
                         title: '创作'
                     },
                     {
+                        icon: 'el-icon-menu',
+                        index: 'uploadPublish',
+                        title: '上传MD创作'
+                    },
+                    {
                         icon: 'el-icon-date',
                         index: '3',
                         title: '表单',
