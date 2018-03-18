@@ -22,7 +22,9 @@ class Admin extends NotORM {
     }
 
     public function getAdminInfo() {
-        return $this->model->select("id, nickname, username, islogin")->where('id', 0);
+        $data = $this->model->select("id, nickname, username, islogin")->where('id', 0);
+        $data = $data[0];
+        return $data;
     }
 }
 

@@ -69,11 +69,13 @@ class Article extends Api {
     public function publish($isMD = false, $md = NULL) {
         //根据分类名获取分类id
         $cateModel = new CateModel();
-        $cateId = $cateModel->getIdByName($this->cate)['id'];
+        $cateId = $cateModel->getIdByName($this->cate);
+        $cateId = $cateId['id'];
         if(!$cateId) {
             //新的分类 创建分类
             $cate = array('name' => $this->cate);
-            $cateId = $cateModel->_insert($cate)['id'];
+            $cateId = $cateModel->_insert($cate);
+            $cateId = $cateId['id'];
         }
         //文章的结构
         $data = array(

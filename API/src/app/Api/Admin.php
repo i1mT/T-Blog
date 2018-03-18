@@ -4,7 +4,6 @@ namespace App\Api;
 use PhalApi\Api;
 use App\Domain\Admin as AdminDomain;
 use App\Domain\SetCookie as Cookie;
-include("simple-php-captcha.php");
 
 /**
  * admin管理类
@@ -67,7 +66,8 @@ class Admin extends Api {
      */
     public function update() {
         $temp_model = new AdminDomain();
-        $admin = $temp_model->getById(0)[0];
+        $admin = $temp_model->getById(0);
+        $admin = $admin[0];
         $data = array(
             'nickname' => $admin["nickname"],
             'pic' => $admin["pic"],
@@ -101,7 +101,8 @@ class Admin extends Api {
         /**
          * 登陆成功之后 设置登陆状态为true  在之后的增删改操作中首先确认Cookie中有登陆状态再做操作
          */
-        $adminUser = $this->model->getById(0)[0];
+        $adminUser = $this->model->getById(0);
+        $adminUser = $adminUser[0];
         if( $adminUser['username'] == $this->user && $adminUser['pwd'] == $this->pwd ){
             //用户名与密码匹配
             //设置Cookie
@@ -116,7 +117,8 @@ class Admin extends Api {
      * 获取管理员信息
      */
     public function getAdminInfo() {
-        return $this->model->getAdminInfo();
+        $data = $this->model->getAdminInfo();
+        return $data;
     }
     /**
      * 是否已经登陆
@@ -125,7 +127,8 @@ class Admin extends Api {
      * @return string true or false 登陆与否
      */
     public function isLogin() {
-        $admin = $this->model->getById(0)[0];
+        $admin = $this->model->getById(0);
+        $admin = $admin[0];
         return $admin['islogin']==1 ? true : false;
     }
     /**
@@ -140,7 +143,7 @@ class Admin extends Api {
         return $this->model->update($data);
     }
     /**
-     * 获取验证码
+     * 获取验证码[弃用]
      * 
      * @return array [0]是图像 [1]是验证码
      */

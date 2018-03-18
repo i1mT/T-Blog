@@ -19,7 +19,7 @@ axios.defaults.transformRequest = [function (data) {
 }]
 Vue.prototype.$axios = axios;
 
-var baseU = "http://localhost/T-Blog/API/public/?s="
+var baseU = "http://www.iimt.me/API/public/?s="
 Vue.prototype.$API = {
     BlogInfo: {
         'update': baseU + "BlogInfo.update",
@@ -49,7 +49,7 @@ router.afterEach((to, from) => {
     //先判断是否已经登陆
     axios.get(Vue.prototype.$API.Admin.getAdminInfo)
     .then((res) => {
-        let admin = res.data.data[0]
+        let admin = res.data.data
         if(admin.islogin == 0) {
             router.push('/login')
         }

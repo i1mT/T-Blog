@@ -1,7 +1,12 @@
 <template>
     <div class="login-wrap">
-        <div class="ms-title">后台管理系统</div>
+        <div class="quote">
+            
+        </div>
         <div class="ms-login">
+            <div class="ms-title">
+                - Coding till die -
+            </div>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
                 <el-form-item prop="username">
                     <el-input v-model="ruleForm.username" placeholder="username"></el-input>
@@ -12,7 +17,7 @@
                 <div class="login-btn">
                     <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
                 </div>
-                <p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码随便填。</p>
+                <p style="font-size:12px;line-height:30px;color:#999;">Tips : 请勤奋更新。</p>
             </el-form>
         </div>
     </div>
@@ -92,27 +97,37 @@
         position: relative;
         width:100%;
         height:100%;
+        background: url("../../../static/img/login-bg.jpg");
+        background-size: 100% 100%;
     }
     .ms-title{
         position: absolute;
         top:50%;
+        left:0;
         width:100%;
-        margin-top: -230px;
+        padding: 0;
+        margin-top: -115px;
         text-align: center;
-        font-size:30px;
-        color: #fff;
-
+        font-size: 30px;
+        font:'Lato', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        color: #222;
+    }
+    .demo-ruleForm {
+        margin-top: 40px;
     }
     .ms-login{
         position: absolute;
         left:50%;
         top:50%;
-        width:300px;
-        height:210px;
-        margin:-150px 0 0 -190px;
+        width:320px;
+        height:200px;
+        margin:-200px 0 0 -190px;
         padding:40px;
         border-radius: 5px;
         background: #fff;
+        box-shadow: 0px 0px 10px 0px #888;
     }
     .login-btn{
         text-align: center;
@@ -120,8 +135,5 @@
     .login-btn button{
         width:100%;
         height:36px;
-    }
-    .ccap-img {
-        height: 31px;
     }
 </style>

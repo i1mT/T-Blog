@@ -42,7 +42,7 @@
                 const that = this
                 that.$axios.get(that.$API.Admin.getAdminInfo)
                 .then((res) => {
-                    let admin = res.data.data[0]
+                    let admin = res.data.data
                     that.nickname = admin.nickname
                     that.username = admin.username
                     that.name     = admin.nickname

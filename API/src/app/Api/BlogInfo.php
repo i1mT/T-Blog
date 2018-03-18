@@ -81,7 +81,9 @@ class BlogInfo extends Api {
      * @return array 博客信息数组
      */
     public function getBlogInfo() {
-        return $this->model->getById(0);
+        $data = $this->model->getById(0);
+        $data = $data[0];
+        return $data;
     }
 }
 ?>

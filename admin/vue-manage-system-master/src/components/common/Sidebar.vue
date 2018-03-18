@@ -25,37 +25,34 @@
             return {
                 items: [
                     {
-                        icon: 'el-icon-setting',
+                        icon: 'el-icon-menu',
                         index: 'Situation',
-                        title: '自述'
-                    },{
-                        icon: 'el-icon-menu',
-                        index: 'cate',
-                        title: '分类管理'
-                    },{
-                        icon: 'el-icon-menu',
-                        index: 'article',
-                        title: '我的创作'
+                        title: '博客概况'
                     },
                     {
-                        icon: 'el-icon-menu',
-                        index: 'ManageBlog',
-                        title: '管理博客'
-                    },
-                    {
-                        icon: 'el-icon-menu',
+                        icon: 'el-icon-edit',
                         index: 'publish',
                         title: '创作'
                     },
                     {
-                        icon: 'el-icon-menu',
+                        icon: 'el-icon-upload',
                         index: 'uploadPublish',
                         title: '上传MD创作'
                     },
                     {
+                        icon: 'el-icon-document',
+                        index: 'article',
+                        title: '我的创作'
+                    },
+                    {
                         icon: 'el-icon-star-on',
-                        index: 'basecharts',
-                        title: '图表'
+                        index: 'cate',
+                        title: '分类管理'
+                    },
+                    {
+                        icon: 'el-icon-setting',
+                        index: 'ManageBlog',
+                        title: '管理博客'
                     },
                 ]
             }
@@ -70,7 +67,7 @@
             const that = this
             that.$axios.get(that.$API.Admin.getAdminInfo)
             .then((res) => {
-                let admin = res.data.data[0]
+                let admin = res.data.data
                 if(admin.islogin == 0) {
                     console.log("未登录")
                     that.$router.push('/login');
