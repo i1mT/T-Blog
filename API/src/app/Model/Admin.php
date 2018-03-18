@@ -20,6 +20,10 @@ class Admin extends NotORM {
     public function getById($id) {
         return $this->model->where("id", $id);
     }
+
+    public function getAdminInfo() {
+        return $this->model->select("id, nickname, username, islogin")->where('id', 0);
+    }
 }
 
 ?>

@@ -64,7 +64,19 @@
             onRoutes(){
                 return this.$route.path.replace('/','');
             }
-        }
+        },
+        created() {
+            //先判断是否已经登陆
+            const that = this
+            that.$axios.get(that.$API.Admin.getAdminInfo)
+            .then((res) => {
+                let admin = res.data.data[0]
+                if(admin.islogin == 0) {
+                    console.log("未登录")
+                    that.$router.push('/login');
+                }
+            })
+        },
     }
 </script>
 

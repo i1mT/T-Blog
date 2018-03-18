@@ -22,6 +22,18 @@ class Article extends Api {
                 'content' => array('name' => 'content'),
                 'cover'   => array('name' => 'cover'),
             ),
+            'publishByUpload' => array(
+                'title'   => array('name' => 'title'),
+                'cate'    => array('name' => 'cate'),
+                'file'    => array(
+                                    'name'  => 'file', 
+                                    'type'  => 'file', 
+                                    'min'   => 0, 
+                                    'max'   => 2 * 1024 * 1024,
+                                    'ext'   => array('md', 'MD')
+                                ),
+                'cover'   => array('name' => 'cover'),
+            ),
             'deleteById' => array(
                 'id'      => array('name' => 'id')
             ),
@@ -54,7 +66,7 @@ class Article extends Api {
      * 
      * @return int 成功返回文章id
      */
-    public function publish() {
+    public function publish($isMD = false, $md = NULL) {
         //根据分类名获取分类id
         $cateModel = new CateModel();
         $cateId = $cateModel->getIdByName($this->cate)['id'];
@@ -67,7 +79,6 @@ class Article extends Api {
         $data = array(
             'title'     => $this->title,
             'cate'      => $cateId,
-            'content'   => $this->content,
             'cover'     => $this->cover,
             'publishAt' => date("Y-m-d H:i:s"),
             'lastEdit'  => date("Y-m-d H:i:s"),
@@ -76,7 +87,29 @@ class Article extends Api {
             'comments'  => 0,
             'likes'     => 0,
         );
+        //如果有传入MD文件的内容的话  就用传入的MD文件的内容
+        if($isMD) {
+            $data['content'] = $md;
+        } else {
+            $data['content'] = $this->content;
+        }
         return $this->model->insert($data);
+    }
+    /**
+     * 上传文件发表文章
+     * 
+     * @param string title  文章标题
+     * @param int    cate   文章分类名
+     * @param file   upfile 文章内容
+     * @param string cover  文章封面地址
+     * 
+     * @return int 成功返回文章id
+     */
+    public function publishByUpload() {
+        $md = file_get_contents($this->file['tmp_name']);
+        //读取到文件内容之后就删除上传的文件
+        unlink($this->file['tmp_name']);
+        return $this->publish(true, $md);
     }
     /**
      * 删除文章

@@ -36,8 +36,25 @@ Vue.prototype.$API = {
         'publish': baseU + "Article.publish",
         'publishByUpload': baseU + "Article.publishByUpload",
         'deleteById': baseU + "Article.deleteById"
+    },
+    'Admin': {
+        'login': baseU + "Admin.login",
+        'isLogin': baseU + "Admin.isLogin",
+        'getAdminInfo': baseU + "Admin.getAdminInfo",
+        'logout': baseU + "Admin.logout"
     }
 }
+
+router.afterEach((to, from) => {
+    //先判断是否已经登陆
+    axios.get(Vue.prototype.$API.Admin.getAdminInfo)
+    .then((res) => {
+        let admin = res.data.data[0]
+        if(admin.islogin == 0) {
+            router.push('/login')
+        }
+    })
+})
 new Vue({
     router,
     render: h => h(App)

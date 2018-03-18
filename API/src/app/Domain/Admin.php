@@ -15,5 +15,8 @@ class Admin {
 	public function getById($id) {
 		return $this->model->getById($id);
 	}
+	public function getAdminInfo() {
+		return $this->model->getAdminInfo();
+	}
 }
 ?>

@@ -5,7 +5,7 @@
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
                     <img class="user-logo" src="../../../static/img/img.jpg">
-                    {{username}}
+                    {{nickname}}
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="loginout">退出</el-dropdown-item>
@@ -18,22 +18,38 @@
     export default {
         data() {
             return {
-                name: 'linxin'
+                'nickname': '',
+                'username': '',
+                'islogin': '',
+                'id': '',
+                'name': ''
             }
         },
-        computed:{
-            username(){
-                let username = localStorage.getItem('ms_username');
-                return username ? username : this.name;
-            }
+        mounted() {
+            this.getAdminInfo()
         },
         methods:{
             handleCommand(command) {
-                if(command == 'loginout'){
-                    localStorage.removeItem('ms_username')
-                    this.$router.push('/login');
+                if(command == 'loginout') {
+                    const that = this
+                    that.$axios.post(that.$API.Admin.logout)
+                    .then((res) => {
+                        this.$router.push('/login');
+                    })
                 }
-            }
+            },
+            getAdminInfo() {
+                const that = this
+                that.$axios.get(that.$API.Admin.getAdminInfo)
+                .then((res) => {
+                    let admin = res.data.data[0]
+                    that.nickname = admin.nickname
+                    that.username = admin.username
+                    that.name     = admin.nickname
+                    that.islogin  = admin.islogin
+                    that.id       = admin.id
+                })
+            },
         }
     }
 </script>

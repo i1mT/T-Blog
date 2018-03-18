@@ -3,6 +3,7 @@ namespace App\Api;
 
 use PhalApi\Api;
 use App\Domain\Admin as AdminDomain;
+use App\Domain\SetCookie as Cookie;
 include("simple-php-captcha.php");
 
 /**
@@ -97,14 +98,49 @@ class Admin extends Api {
      * @return bool 是否允许
      */
     public function login() {
+        /**
+         * 登陆成功之后 设置登陆状态为true  在之后的增删改操作中首先确认Cookie中有登陆状态再做操作
+         */
         $adminUser = $this->model->getById(0)[0];
-        if( $adminUser['username'] == $this->user
-            && $adminUser['pwd'] == $this->pwd )
-            return true;
+        if( $adminUser['username'] == $this->user && $adminUser['pwd'] == $this->pwd ){
+            //用户名与密码匹配
+            //设置Cookie
+            $data = array('islogin' => 1);
+            return $this->model->update($data);
+        } else {
+            $this->logout();
+        }
         return false;
     }
     /**
-     * 生成验证码
+     * 获取管理员信息
+     */
+    public function getAdminInfo() {
+        return $this->model->getAdminInfo();
+    }
+    /**
+     * 是否已经登陆
+     * @desc 设置用户已经登陆
+     * 
+     * @return string true or false 登陆与否
+     */
+    public function isLogin() {
+        $admin = $this->model->getById(0)[0];
+        return $admin['islogin']==1 ? true : false;
+    }
+    /**
+     * 退出登陆
+     * 
+     * @desc 将登陆cookie删除
+     * 
+     * @return bool 退出成功与否
+     */
+    public function logout() {
+        $data = array('islogin' => 0);
+        return $this->model->update($data);
+    }
+    /**
+     * 获取验证码
      * 
      * @return array [0]是图像 [1]是验证码
      */

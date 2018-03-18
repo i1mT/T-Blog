@@ -9,13 +9,6 @@
                 <el-form-item prop="password">
                     <el-input type="password" placeholder="password" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
                 </el-form-item>
-                <!-- <el-form-item prop="ccap">
-                    <el-input type="text" placeholder="请输入验证码" v-model="ruleForm.ccap" @keyup.enter.native="submitForm('ruleForm')">
-                        <template slot="append" class="ccap">
-                            <img class="ccap-img" :src=ccap.image_src>
-                        </template>
-                    </el-input>
-                </el-form-item> -->
                 <div class="login-btn">
                     <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
                 </div>
@@ -28,16 +21,6 @@
 <script>
     export default {
         data: function(){
-            //获取验证码图片base64和验证码
-            // let that = this
-            // this.$axios.get('http://localhost/T-Blog/API/public/?s=Admin.getCaptcha')
-            // .then( (response) => {
-            //     that.ccap = response.data.data
-            //     var index = that.ccap.image_src.indexOf('simple-php-captcha.php')
-            //     that.ccap.image_src = that.ccap.image_src.substr(index)
-            //     that.ccap.image_src = "/static/" + that.ccap.image_src
-            //     console.log(response.data.data)
-            // })
             return {
                 ccap: {
                     image_src: '',
@@ -55,24 +38,50 @@
                     password: [
                         { required: true, message: '请输入密码', trigger: 'blur' }
                     ],
-                    // ccap: [
-                    //     { required: true, message: '请输入验证码', trigger: 'blur' }
-                    // ]
                 }
             }
         },
         methods: {
             submitForm(formName) {
-                const self = this;
-                self.$refs[formName].validate((valid) => {
+                const that = this;
+                that.$refs[formName].validate((valid) => {
                     if (valid) {
-                        localStorage.setItem('ms_username',self.ruleForm.username);
-                        self.$router.push('/Situation');
+                        that.login(that.ruleForm.username, that.ruleForm.password, function (res) {
+                            if(res) {
+                                localStorage.setItem('ms_username',that.ruleForm.username);
+                                that.$message.success("登陆成功！")
+                                that.$router.push('/Situation');
+                            } else {
+                                that.$message.error("登陆失败！用户名或密码错误")
+                            }
+                        })
                     } else {
-                        console.log('error submit!!');
+                        that.$message.error("请填写完整！")
                         return false;
                     }
                 });
+            },
+            login(user,pwd, cb) {
+                const that = this
+                that.$axios.post(that.$API.Admin.login, {
+                    'user': user,
+                    'pwd': pwd
+                }).then( (res) => {
+                    console.log(res.data.data)
+                    if(res.data.data==0 || res.data.data==1){
+                        that.$axios.get(that.$API.Admin.isLogin)
+                        .then((resp) => {
+                            console.log(resp.data.data)
+                            if(resp.data.data) {
+                                cb(true)
+                            } else {
+                                cb(false)
+                            }
+                        })
+                    } else {
+                        cb(false)
+                    }
+                })
             }
         }
     }
