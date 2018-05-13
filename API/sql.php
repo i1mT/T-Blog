@@ -328,7 +328,7 @@ class sql{
      */
     public function showArticleAll(){
         $this->init();
-        $sql = "SELECT * FROM `article` WHERE 1";
+        $sql = "SELECT * FROM `article` ORDER BY id ASC";
         $sql_res = $this->conn->query($sql);
         return $sql_res;
     }
