@@ -15,9 +15,9 @@ class sql{
      */
     public function init(){
         $this->servername = "localhost";
-        $this->username = "iimt";
-        $this->password = "ATyangguang";
-        $this->dbname = "t-blog";
+        $this->username = "";
+        $this->password = "";
+        $this->dbname = "";
         $this->conn = new mysqli($this->servername, $this->username, $this->password,$this->dbname);
         $this->conn->set_charset("utf8");
         if($this->conn->connect_error){
@@ -328,7 +328,7 @@ class sql{
      */
     public function showArticleAll(){
         $this->init();
-        $sql = "SELECT * FROM `article` WHERE 1";
+        $sql = "SELECT * FROM `article` ORDER BY id ASC";
         $sql_res = $this->conn->query($sql);
         return $sql_res;
     }

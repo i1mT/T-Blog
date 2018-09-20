@@ -54,7 +54,9 @@ $func->addArticleViewed($art_id);
 <div class="container">
     <!--  正文区域    -->
     <article class="markdown-body">
-        <?php echo $article['content']; ?>
+        <?php
+            echo htmlspecialchars($article['content'],ENT_QUOTES);
+        ?>
     </article>
     <!--社交-打赏等内容-->
     <div class="like" id="<?php echo $_GET['id']; ?>">
@@ -106,5 +108,19 @@ $func->addArticleViewed($art_id);
 <!-- 页脚 -->
 <?php include "footer.php"; ?>
 <script src="asset/article.js"></script>
+<script src="asset/xss.js"></script>
+<script>
+$(document).ready(function () {
+    $codes = $("code")
+    $codes.each(function () {
+        var code = $(this).html()
+        code = code.replace(/&amp;lt;/g, "<")
+        code = code.replace(/&amp;gt;/g, ">")
+        var result = filterXSS(code)
+        $(this).text(code)
+    })
+})
+    
+</script>
 </body>
 </html>
