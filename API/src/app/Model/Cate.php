@@ -12,27 +12,34 @@ class Cate extends NotORM {
         return 'cate';
     }
     public function _insert($data) {
-        return $this->model->insert($data);
+        $model = $this -> getORM();
+        return $model->insert($data);
     }
     public function updateById($id, $data) {
-        return $this->model->where("id", $id)->update($data);
+        $model = $this -> getORM();
+        return $model->where("id", $id)->update($data);
     }
     public function getById($id) {
-        return $this->model->where("id", $id);
+        $model = $this -> getORM();
+        return $model->where("id", $id);
     }
     public function getNameById($id) {
-        return $this->model->where('id', $id)->fetchOne();
+        $model = $this -> getORM();
+        return $model->where('id', $id)->fetchOne();
     }
     public function getIdByName($name) {
-        return $this->model->where('name', $name)->fetchOne();
+        $model = $this -> getORM();
+        return $model->where('name', $name)->fetchOne();
     }
     public function deleteById($id) {
-        return $this->modele->where('id', $id)->delete();
+        $model = $this -> getORM();
+        return $modele->where('id', $id)->delete();
     }
     public function getAll() {
         $sql = "select * from cate where 1=1";
         $params = array();
-        return $this->model->queryAll($sql, $params);
+        $model = $this -> getORM();
+        return $model->queryAll($sql, $params);
     }
 }
 

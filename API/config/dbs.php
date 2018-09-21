@@ -7,6 +7,19 @@
  * @author: dogstar <chanzonghuang@gmail.com> 2015-02-09
  */
 
+$IS_TEST = false;
+//测试环境下
+$localhost  = "localhost";
+$user       = "root";
+$password   = "";
+
+//非测试环境下
+if(!$IS_TEST) {
+    $localhost  = "www.iimt.me";
+    $user       = "iimt";
+    $password   = "ATyangguang";
+}
+
 return array(
     /**
      * DB数据库服务器集群
@@ -14,10 +27,10 @@ return array(
     'servers' => array(
         'db_master' => array(                       //服务器标记
             'type'      => 'mysql',                 //数据库类型，暂时只支持：mysql, sqlserver
-            'host'      => 'localhost',             //数据库域名
+            'host'      => $localhost,             //数据库域名
             'name'      => 't-blog',               //数据库名字
-            'user'      => '****',                  //数据库用户名
-            'password'  => '*******',	                    //数据库密码
+            'user'      => $user,                  //数据库用户名
+            'password'  => $password,	                    //数据库密码
             'port'      => 3306,                    //数据库端口
             'charset'   => 'UTF8',                  //数据库字符集
         ),

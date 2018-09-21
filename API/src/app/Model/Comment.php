@@ -24,7 +24,11 @@ class Comment extends NotORM {
         return $this->modele->where('id',$id)->delete();
     }
     public function getAllByKey($key, $value) {
-        return $this->model->where($key, $value);
+        return $this->model->order("id DESC")->where($key, $value);
+    }
+    public function addLikeById($id) {
+        $model = $this -> getORM();
+        return $model -> where('id', $id)->update(array('likes' => new \NotORM_Literal("`likes` + 1")));
     }
 }
 

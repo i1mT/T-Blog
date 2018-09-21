@@ -101,14 +101,7 @@ class Comment extends Api {
      * @return int 成功返回1 无变化返回0 错误返回false
      */
     public function addLikes() {
-        $comment = $this->model->getById($this->id);
-        $likes = $comment['likes'] + 1;
-
-        $data = array(
-            'likes' => $likes
-        );
-
-        return $this->model->updateById($this->id, $data);
+        return $this->model->addLikeById($this->id);
     }
 }
 ?>

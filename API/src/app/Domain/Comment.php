@@ -1,6 +1,7 @@
 <?php 
 namespace App\Domain;
 use App\Model\Comment as CommentModel;
+use App\Model\CommentUser as CommentUserModel;
 class Comment {
 	private $model;
 	function __construct() {
@@ -19,7 +20,27 @@ class Comment {
 		return $this->model->delete($id);
 	}
 	public function getAllByKey($key, $value) {
-		return $this->model->getAllByKey($key, $value);
+
+		$data = $this->model->getAllByKey($key, $value);
+
+		$res = array();
+		while($row = $data -> fetch()) {
+			$userModel = new CommentUserModel();
+			$comment = $row;
+			$user = $userModel -> getById($row["uid"]) -> fetchOne();
+			
+			$comment["name"] = $user["name"];
+			$comment["email"] = $user["email"];
+			$comment["site"] = $user["site"];
+
+			array_push($res, $comment);
+		}
+
+		return $res;
+	}
+
+	public function addLikeById($id) {
+		return $this -> model -> addLikeById($id);
 	}
 }
 ?>

@@ -3,7 +3,9 @@ namespace App\Api;
 
 use PhalApi\Api;
 use App\Domain\Article as ArticleDomain;
+use App\Model\Article as articleModel;
 use App\Model\Cate as CateModel;
+use App\Model\ArticleCate as ArticleCateModel;
 /**
  * article(文章)管理类
  * 
@@ -44,8 +46,12 @@ class Article extends Api {
                 'content' => array('name' => 'content'),
                 'cover'   => array('name' => 'cover'),
             ),
-            'getPage' => array(
+            'getPage'   => array(
                 'page'    => array('name' => 'page'),
+                'pageNum' => array('name' => 'pageNum'),
+            ),
+            'getCardPage' => array(
+                'page'   => array('name' => 'page'),
                 'pageNum' => array('name' => 'pageNum'),
             ),
             'addView' => array(
@@ -54,6 +60,9 @@ class Article extends Api {
             'addLike' => array(
                 'id'      => array('name' => 'id')
             ),
+            'getById' => array(
+                'id' => array('name' => 'id'),
+            )
         );
     }
     /**
@@ -175,13 +184,7 @@ class Article extends Api {
      * @return int 成功返回1 无变化返回0 错误返回false
      */
     public function addView() {
-        $article = $this->model->getById($this->id);
-        $viewed = $article["viewed"] + 1;
-        $data = array(
-            'viewed' => $viewed
-        );
-
-        return $this->model->updateById($data, $this->id);
+        return $this->model->addViewById($this->id);
     }
 
     /**
@@ -192,13 +195,34 @@ class Article extends Api {
      * @return int 成功返回1 无变化返回0 错误返回false
      */
     public function addLike() {
-        $article = $this->model->getById($this->id);
-        $likes = $article["likes"] + 1;
-        $data = array(
-            'likes' => $likes
-        );
+        return $this->model->addLikeById($this->id);
+    }
 
-        return $this->model->updateById($data, $this->id);
+
+    public function getCardPage() {
+        $model = new ArticleModel();
+        $length = (int)$this -> pageNum;
+        $start = ($this -> page - 1) * $length;
+        $data = $model -> getCardLimit($start, $length);
+
+        return $data;
+    }
+
+    public function getById() {
+        $model      = new ArticleDomain();
+        $data       = $model -> getById($this -> id) -> fetchOne();
+        $acModel    = new ArticleCateModel();
+        $cateModel  = new CateModel();
+        $cates       = $acModel -> getCatesByAid($this -> id);
+        $res        = array();
+
+        while($row = $cates -> fetch()) {
+            $cid    = $row["cid"];
+            $cate   = $cateModel -> getById($cid) -> fetchOne();
+            $res[] = $cate;
+        }
+        $data["cate"] = $res;
+        return $data;
     }
 }
 ?>
