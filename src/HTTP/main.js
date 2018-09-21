@@ -4,8 +4,8 @@ import axios from "axios"
  * 测试/调试库/正式库 信息
  */
 let IS_TEST = false
-let TEST_ROOT = "http://localhost/T-Blog/API/public/?s="
-let PROD_ROOT = "http://iimt.me/API/public/?s="
+let TEST_ROOT = "http://*****"
+let PROD_ROOT = "http://******"
 
 
 //设置axios为form-data

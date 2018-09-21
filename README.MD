@@ -1,21 +1,19 @@
-# iimtblog2.0
+# iimT - Blog 2.0
+一个程序员的简洁博客。
 
-> A simple blog.
+## 演示
+演示站点：[iimT的独立博客](http://iimt.me)
 
-## Build Setup
+页面是一定要好看的，不信你看：
 
-``` bash
-# install dependencies
-npm install
+首页
+![首页](http://upy.iimt.me/blog-show-1.png)
 
-# serve with hot reload at localhost:8080
-npm run dev
+首页文章
+![首页](http://upy.iimt.me/blog-show-2.png)
 
-# build for production with minification
-npm run build
+Markdown 渲染文章
+![首页](http://upy.iimt.me/blog-show-3.png)
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+About Me
+![首页](http://upy.iimt.me/blog-show-4.png)
