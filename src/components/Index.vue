@@ -56,6 +56,7 @@ export default {
 </script>
 <style scoped>
 .load-more {
+  transform: translateY(18px);
   padding: 1.5rem 1rem;
   margin-bottom: 2rem;
   width: 12rem;

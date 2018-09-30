@@ -69,8 +69,11 @@ export default {
 .fly-to-top div{
   width: 0;
   height: 0;
-  margin-left: 1.4rem;
-  margin-top: .3rem;
+  top: 50%;
+  left: 50%;
+  position: relative;
+  margin-left: -15px;
+  margin-top: -25px;
   border-width: 15px;
   border-style: solid;
   border-bottom-left-radius: .3rem;

@@ -1,6 +1,6 @@
 <template>
   <div class="container article-list">
-    <div class="art-card-container" style="background: ;background-size: cover;">
+    <div class="art-card-container" :ref="aid" :style="'height:' + height + 'px'">
       <img class="art-cover" :src="cover || defaultCover">
       <div class="art-info">
         <p class="art-title">
@@ -31,15 +31,29 @@ import formatTime from "../../static/formatTime.js"
 export default {
   data() {
     return {
+      height: 500,
       defaultCover: "http://upy.iimt.me/blog-default-cover.jpg",
     }
   },
   methods: {
     getTime(time) {
       return formatTime.getDateDiff(time)
+    },
+    resizeCardHeight () {
+      let card = this.$refs[this.aid]
+      let img = card.firstChild
+      img.onload = e => {
+        let imgHeight = img.offsetHeight
+        this.height = imgHeight
+        console.log(img.offsetHeight)
+      }
     }
   },
-  props: ["title", "cover", "time", "like", "view", "aid"]
+  props: ["title", "cover", "time", "like", "view", "aid"],
+  mounted() {
+    
+    this.resizeCardHeight()
+  },
 };
 </script>
 <style>

@@ -39,8 +39,12 @@ export default {
       this.currentHeight = height
     },
     addListener() {
-      document.addEventListener('DOMMouseScroll',this.scrollFunc, false)
-      window.onmousewheel=document.onmousewheel = this.scrollFunc
+      if (this.detechDevice()) {
+        document.addEventListener('DOMMouseScroll',this.scrollFunc, false)
+        window.onmousewheel=document.onmousewheel = this.scrollFunc
+      } else {
+        document.addEventListener("touchmove", this.scrollFunc, false)
+      }
     },
     scrollFunc(e) {
       e = e || window.event;
@@ -48,9 +52,9 @@ export default {
 
       if (e.wheelDelta) {//webkit
           if (e.wheelDelta>0) {
-              dir = "up";
+              dir = "up"
           } else {
-              dir = "down";
+              dir = "down"
           }
       } else if (e.detail) {
           console.log(e.detail)
@@ -61,6 +65,23 @@ export default {
       }
       if (h==0 && dir == "up") return
       document.body.parentNode.style.overflowY = "auto"
+    },
+    detechDevice () {
+      let sUserAgent    = navigator.userAgent.toLowerCase()
+      let bIsIpad       = sUserAgent.match(/ipad/i) == "ipad"
+      let bIsIphoneOs   = sUserAgent.match(/iphone os/i) == "iphone os"
+      let bIsMidp       = sUserAgent.match(/midp/i) == "midp"
+      let bIsUc7        = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4"
+      let bIsUc         = sUserAgent.match(/ucweb/i) == "ucweb"
+      let bIsAndroid    = sUserAgent.match(/android/i) == "android"
+      let bIsCE         = sUserAgent.match(/windows ce/i) == "windows ce"
+      let bIsWM         = sUserAgent.match(/windows mobile/i) == "windows mobile"
+
+      if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+          return false
+      }else{
+          return true
+      }
     }
   },
   mounted() {
@@ -68,10 +89,12 @@ export default {
     this.addListener()
   },
   components: {
-    
   }
 }
 </script>
 <style scoped>
+.header {
+  margin-bottom: 2rem;
+}
 </style>
 
