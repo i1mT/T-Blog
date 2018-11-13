@@ -86,6 +86,26 @@ function addComment(data) {
   return axios.post(url, data)
 }
 
+/**
+ * 
+ * 友情链接
+ * 
+ */
+
+ /**获取所有友情链接 */
+ function getAllFriends () {
+   let url = getUrl("Friends.getAll")
+
+   return axios.post(url)
+ }
+
+ /**添加一个友情链接 */
+ function addFriend (data) {
+   let url = getUrl("Friends.add")
+
+   return axios.post(url, data)
+ }
+
 export default {
   getPage,
   getArticleById,
@@ -94,4 +114,6 @@ export default {
   getCommentsByAid,
   addCommentLikeById,
   addComment,
+  getAllFriends,
+  addFriend
 }

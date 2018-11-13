@@ -5,8 +5,6 @@ import App from './App'
 import router from './router'
 import "@/assets/main.css"
 import api from "./HTTP/main"
-import hljs from 'highlight.js'
-
 Vue.config.productionTip = false
 Vue.prototype.$api       = api
 
