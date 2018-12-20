@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "Deploying..."
+echo "Deploying... 1"
