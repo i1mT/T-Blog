@@ -2,42 +2,42 @@
 
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
 FILE="/home/www/deploy_log/iimt.me/"$(date '+%Y-%m-%d')"_log.txt"
+blogPath="/home/wwwroot/iimt_blog/domain/wwwiimt.me/web"
+
+# 执行命令
+execCmd () {
+    name=$1
+    cmd=$2
+    echo "---------  $1  ------------" >> $FILE
+    echo "$cmd" >> $FILE
+    result=${cmd}
+    echo "$result" >> $FILE
+    echo "---------  $1 END ------------" >> $FILE
+}
+
+
 echo "DEPLOY START" >> $FILE
 echo $datetime >> $FILE
 
 # 拉取代码
-echo "---------  GIT PULL  ------------" >> $FILE
-echo "git pull" >> $FILE
-cmd=`git pull`
-result=${cmd}
-echo "$result" >> $FILE
-echo "---------  GIT PULL END ------------" >> $FILE
+execCmd "PULL CODE" "git pull"
 
 # 安装依赖
-echo "---------  NPM I  ------------" >> $FILE
-echo "cnpm i" >> $FILE
-cmd=`cnpm i`
-result=${cmd}
-echo "$result" >> $FILE
-echo "---------  NPM I END  ------------" >> $FILE
+execCmd "INSTALL DEPENDICES" "cnpmi"
 
 # 打包
-echo "---------  NPM RUN BUILD  ------------" >> $FILE
-echo "cnpm run build" >> $FILE
-cmd=`cnpm run build`
-result=${cmd}
-echo "$result" >> $FILE
-echo "---------  NPM RUN BUILD END  ------------" >> $FILE
+execCmd "BUILD" "npm run build"
 
+# 删除文件
+execCmd "DELETE FILE" "rm -rf $blogPath/static"
+execCmd "DELETE FILE" "rm -rf $blogPath/deploy"
+execCmd "DELETE FILE" "rm -rf $blogPath/others"
 
 # 移动文件
-echo "---------  MOVE FILE  ------------" >> $FILE
-echo "rm -rf /home/wwwroot/iimt_blog/domain/wwwiimt.me/web/static/* &&  mv ./dist/* /home/wwwroot/iimt_blog/domain/wwwiimt.me/web/" >> $FILE
-cmd=`rm -rf /home/wwwroot/iimt_blog/domain/wwwiimt.me/web/static/* &&  mv ./dist/* /home/wwwroot/iimt_blog/domain/wwwiimt.me/web/`
-result=${cmd}
-echo "$result" >> $FILE
-echo "---------  MOVE FILE END  ------------" >> $FILE
+execCmd "DELETE FILE" "mv ./dist $blogPath/"
+execCmd "DELETE FILE" "mv ./deploy $blogPath/"
+execCmd "DELETE FILE" "mv ./others $blogPath/"
 
 echo "DEPLOY DONE" >> $FILE
 
-echo "--------------------------------------------------------------------------------------------------------" >> $FILE
+echo "-------------------------------------------------------------------------------------------" >> $FILE
