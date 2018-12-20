@@ -9,7 +9,7 @@ execCmd () {
     name=$1
     cmd=$2
     echo "---------  $1  ------------" >> $FILE
-    echo "$cmd" >> $FILE
+    # echo "$cmd" >> $FILE
     result=${cmd}
     echo "$result" >> $FILE
     echo "---------  $1 END ------------" >> $FILE
