@@ -67,4 +67,6 @@ update_src
 
 update_others
 
+update_deploy
+
 echo "---------------    DEPLOY DONE    ----------------------------------------" >> $FILE
