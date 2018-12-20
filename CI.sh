@@ -25,7 +25,6 @@ update_src () {
     # 更新
     echo "cp -r ${PWD}/dist/* ${deployPath}/" >> $FILE
     cp -r ${PWD}/dist/* ${deployPath}/
-    
 }
 
 # 更新部署文件

@@ -9,7 +9,7 @@ if ($signature) {
   $hash = "sha1=".hash_hmac('sha1', file_get_contents("php://input"), $secret);
   if (strcmp($signature, $hash) == 0) {
     $cmd = "cd $shellPath && /bin/bash CI.sh";
-    $result = shell_exec("sudo -u root -S $cmd< ~/.sudopass/sudopass.secret");
+    $result = shell_exec("sudo -u root -S $cmd < ~/.sudopass/sudopass.secret");
     print_r($result);
   }
 }
