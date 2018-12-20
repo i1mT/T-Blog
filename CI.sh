@@ -29,8 +29,8 @@ update_src () {
     echo "rm -rf ${deployPath}/static" >> $FILE
     rm -rf ${deployPath}/static >> $FILE
     # 更新
-    echo "cp ${PWD}/dist/* ${deployPath}/" >> $FILE
-    cp ${PWD}/dist/* ${deployPath}/
+    echo "cp -r ${PWD}/dist/* ${deployPath}/" >> $FILE
+    cp -r ${PWD}/dist/* ${deployPath}/
     
 }
 
@@ -40,8 +40,8 @@ update_deploy() {
     echo "rm -rf ${deployPath}/deploy" >> $FILE
     rm -rf ${deployPath}/deploy >> $FILE
     # 更新
-    echo "cp ${PWD}/deploy ${deployPath}/" >> $FILE
-    cp ${PWD}/deploy ${deployPath}/
+    echo "cp -r ${PWD}/deploy ${deployPath}/" >> $FILE
+    cp -r ${PWD}/deploy ${deployPath}/
 }
 
 # 更新其他页面文件
@@ -50,8 +50,8 @@ update_others () {
     echo "rm -rf ${deployPath}/others" >> $FILE
     rm -rf ${deployPath}/others >> $FILE
     # 更新
-    echo "cp ${PWD}/others ${deployPath}/" >> $FILE
-    cp ${PWD}/others ${deployPath}/
+    echo "cp -r ${PWD}/others ${deployPath}/" >> $FILE
+    cp -r ${PWD}/others ${deployPath}/
 }
 
 echo "---------------    TIME: $datetime  -------------------------------------" >> $FILE
