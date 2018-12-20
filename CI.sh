@@ -1,7 +1,7 @@
 #!/bin/bash
 
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
-FILE="/home/www/deploy_log/iimt.me/"$(date '+%Y-%m-%d')"_log.txt"
+FILE="./deploy/"$(date '+%Y-%m-%d')"_log.txt"
 PWD="/home/www/T-Blog"
 deployPath="/home/wwwroot/iimt_blog/domain/wwwiimt.me/web"
 
