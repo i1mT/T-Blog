@@ -21,7 +21,7 @@ echo "DEPLOY START" >> $FILE
 echo $datetime >> $FILE
 
 # 拉取代码
-execCmd "PULL CODE" "git pull"
+echo execCmd "PULL CODE" "git pull"
 
 # 安装依赖
 execCmd "INSTALL DEPENDICES" "cnpm i"
