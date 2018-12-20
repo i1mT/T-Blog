@@ -24,7 +24,7 @@ echo $datetime >> $FILE
 execCmd "PULL CODE" "git pull"
 
 # 安装依赖
-execCmd "INSTALL DEPENDICES" "cnpmi"
+execCmd "INSTALL DEPENDICES" "cnpm i"
 
 # 打包
 execCmd "BUILD" "npm run build"
