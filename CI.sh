@@ -23,22 +23,33 @@ build () {
     npm run build >> $FILE
 }
 
-# 删除文件
-delete_file () {
+# 更新博客程序
+update_src () {
+    # 删除
     echo "rm -rf ${deployPath}/static" >> $FILE
     rm -rf ${deployPath}/static >> $FILE
-    echo "rm -rf ${deployPath}/deploy" >> $FILE
-    rm -rf ${deployPath}/deploy >> $FILE
-    echo "rm -rf ${deployPath}/others" >> $FILE
-    rm -rf ${deployPath}/others >> $FILE
-}
-
-# 移动文件
-move_file () {
+    # 更新
     echo "mv ${PWD}/dist/* ${deployPath}/" >> $FILE
     mv ${PWD}/dist/* ${deployPath}/
+    
+}
+
+# 更新部署文件
+update_deploy() {
+    # 删除
+    echo "rm -rf ${deployPath}/deploy" >> $FILE
+    rm -rf ${deployPath}/deploy >> $FILE
+    # 更新
     echo "mv ${PWD}/deploy ${deployPath}/" >> $FILE
     mv ${PWD}/deploy ${deployPath}/
+}
+
+# 更新其他页面文件
+update_others () {
+    # 删除
+    echo "rm -rf ${deployPath}/others" >> $FILE
+    rm -rf ${deployPath}/others >> $FILE
+    # 更新
     echo "mv ${PWD}/others ${deployPath}/" >> $FILE
     mv ${PWD}/others ${deployPath}/
 }
@@ -52,8 +63,8 @@ install_dependices
 
 build
 
-delete_file
+update_src
 
-move_file
+update_others
 
 echo "---------------    DEPLOY DONE    ----------------------------------------" >> $FILE
