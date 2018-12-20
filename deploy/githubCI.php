@@ -8,7 +8,7 @@ $signature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
 if ($signature) {
   $hash = "sha1=".hash_hmac('sha1', file_get_contents("php://input"), $secret);
   if (strcmp($signature, $hash) == 0) {
-    $cmd = "cd $shellPath && /bin/bash sh CI.sh";
+    $cmd = "cd $shellPath && /bin/bash CI.sh";
     $result = shell_exec("sudo -u root -S $cmd< ~/.sudopass/sudopass.secret");
     print_r($result);
   }
