@@ -15,9 +15,9 @@ $password   = "";
 
 //非测试环境下
 if(!$IS_TEST) {
-    $localhost  = www.iimt.me
-    $user       = "iimt";
-    $password   = "ATyangguang";
+    $localhost  = "*****";
+    $user       = "***";
+    $password   = "***";
 }
 
 return array(
