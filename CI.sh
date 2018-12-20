@@ -33,7 +33,7 @@ move_file () {
     mv ./others ${deployPath}/
 }
 
-echo "---------------    TIME - $datetime  -------------------------------------" >> $FILE
+echo "---------------    TIME: $datetime  -------------------------------------" >> $FILE
 echo "---------------    DEPLOY START     --------------------------------------" >> $FILE
 
 pull
