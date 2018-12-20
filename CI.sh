@@ -8,6 +8,7 @@ blogPath="/home/wwwroot/iimt_blog/domain/wwwiimt.me/web"
 execCmd () {
     name=$1
     cmd=$2
+    echo "$name => $cmd"
     echo "---------  $name  ------------" >> $FILE
     # echo "$cmd" >> $FILE
     result=${cmd}
