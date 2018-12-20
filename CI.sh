@@ -28,7 +28,7 @@ delete_file () {
 
 # 移动文件
 move_file () {
-    mv ./dist ${deployPath}/
+    mv ./dist/* ${deployPath}/
     mv ./deploy ${deployPath}/
     mv ./others ${deployPath}/
 }
