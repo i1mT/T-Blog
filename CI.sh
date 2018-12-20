@@ -51,6 +51,8 @@ update_others () {
 echo "---------------    TIME: $datetime  -------------------------------------" >> $FILE
 echo "---------------    DEPLOY START     --------------------------------------" >> $FILE
 
+echo "Deploying..."
+
 install_dependices
 
 build
@@ -60,5 +62,7 @@ update_src
 update_others
 
 update_deploy
+
+echo "Deploy Done, everythings is OK!"
 
 echo "---------------    DEPLOY DONE    ----------------------------------------" >> $FILE

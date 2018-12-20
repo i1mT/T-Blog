@@ -1,7 +1,4 @@
 <?php
-
-
-echo "Deploying ...\n";
 // 与webhook配置相同，为了安全，请设置此参数
 $secret = "iimT233";
 // 项目路径
@@ -12,7 +9,8 @@ if ($signature) {
   $hash = "sha1=".hash_hmac('sha1', file_get_contents("php://input"), $secret);
   if (strcmp($signature, $hash) == 0) {
     $cmd = "cd $shellPath && git pull && sh CI.sh";
-    shell_exec("$cmd");
+    $result = shell_exec("$cmd");
+    print_r($result);
   }
 }
 
