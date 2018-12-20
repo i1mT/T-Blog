@@ -2,43 +2,48 @@
 
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
 FILE="/home/www/deploy_log/iimt.me/"$(date '+%Y-%m-%d')"_log.txt"
-blogPath="/home/wwwroot/iimt_blog/domain/wwwiimt.me/web"
-
-# 执行命令
-execCmd () {
-    name=$1
-    cmd=$2
-    echo "$name => $cmd"
-    echo "---------  $name  ------------" >> $FILE
-    # echo "$cmd" >> $FILE
-    result=${cmd}
-    echo "$result" >> $FILE
-    echo "---------  $name END ------------" >> $FILE
-}
-
-
-echo "DEPLOY START" >> $FILE
-echo $datetime >> $FILE
+deployPath="/home/wwwroot/iimt_blog/domain/wwwiimt.me/web"
 
 # 拉取代码
-echo execCmd "PULL CODE" "git pull"
+pull () {
+    git pull >> $FILE
+}
 
 # 安装依赖
-execCmd "INSTALL DEPENDICES" "cnpm i"
+install_dependices () {
+    cnpm i >> $FILE
+}
 
 # 打包
-execCmd "BUILD" "npm run build"
+build () {
+    npm run build >> $FILE
+}
 
 # 删除文件
-execCmd "DELETE FILE" "rm -rf $blogPath/static"
-execCmd "DELETE FILE" "rm -rf $blogPath/deploy"
-execCmd "DELETE FILE" "rm -rf $blogPath/others"
+delete_file () {
+    rm -rf ${deployPath}/static >> $FILE
+    rm -rf ${deployPath}/deploy >> $FILE
+    rm -rf ${deployPath}/others >> $FILE
+}
 
 # 移动文件
-execCmd "DELETE FILE" "mv ./dist $blogPath/"
-execCmd "DELETE FILE" "mv ./deploy $blogPath/"
-execCmd "DELETE FILE" "mv ./others $blogPath/"
+move_file () {
+    mv ./dist ${deployPath}/
+    mv ./deploy ${deployPath}/
+    mv ./others ${deployPath}/
+}
 
-echo "DEPLOY DONE" >> $FILE
+echo "---------------    TIME - $datetime  -------------------------------------" >> $FILE
+echo "---------------    DEPLOY START     --------------------------------------" >> $FILE
 
-echo "-------------------------------------------------------------------------------------------" >> $FILE
+pull
+
+install_dependices
+
+build
+
+delete_file
+
+move_file
+
+echo "---------------    DEPLOY DONE    ----------------------------------------" >> $FILE
