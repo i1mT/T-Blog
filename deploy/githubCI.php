@@ -11,7 +11,7 @@ $signature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
 if ($signature) {
   $hash = "sha1=".hash_hmac('sha1', file_get_contents("php://input"), $secret);
   if (strcmp($signature, $hash) == 0) {
-    $cmd = "cd $shellPath && sh CI.sh";
+    $cmd = "cd $shellPath && git pull && sh CI.sh";
     shell_exec("$cmd");
   }
 }

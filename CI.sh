@@ -5,12 +5,6 @@ FILE="/home/www/deploy_log/iimt.me/"$(date '+%Y-%m-%d')"_log.txt"
 PWD="/home/www/T-Blog"
 deployPath="/home/wwwroot/iimt_blog/domain/wwwiimt.me/web"
 
-# 拉取代码
-pull () {
-    echo "git pull" >> $FILE
-    git pull >> $FILE
-}
-
 # 安装依赖
 install_dependices () {
     echo "cnpm i" >> $FILE
@@ -56,8 +50,6 @@ update_others () {
 
 echo "---------------    TIME: $datetime  -------------------------------------" >> $FILE
 echo "---------------    DEPLOY START     --------------------------------------" >> $FILE
-
-pull
 
 install_dependices
 
