@@ -2,6 +2,7 @@
 
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
 FILE="/home/www/deploy_log/iimt.me/"$(date '+%Y-%m-%d')"_log.txt"
+PWD="/home/www/T-Blog"
 deployPath="/home/wwwroot/iimt_blog/domain/wwwiimt.me/web"
 
 # 拉取代码
@@ -34,12 +35,12 @@ delete_file () {
 
 # 移动文件
 move_file () {
-    echo "mv ./dist/* ${deployPath}/" >> $FILE
-    mv ./dist/* ${deployPath}/
-    echo "mv ./deploy ${deployPath}/" >> $FILE
-    mv ./deploy ${deployPath}/
-    echo "mv ./others ${deployPath}/" >> $FILE
-    mv ./others ${deployPath}/
+    echo "mv ${PWD}/dist/* ${deployPath}/" >> $FILE
+    mv ${PWD}/dist/* ${deployPath}/
+    echo "mv ${PWD}/deploy ${deployPath}/" >> $FILE
+    mv ${PWD}/deploy ${deployPath}/
+    echo "mv ${PWD}/others ${deployPath}/" >> $FILE
+    mv ${PWD}/others ${deployPath}/
 }
 
 echo "---------------    TIME: $datetime  -------------------------------------" >> $FILE
