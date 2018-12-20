@@ -48,6 +48,13 @@ update_others () {
     cp -r ${PWD}/others ${deployPath}/
 }
 
+# 删除临时文件
+delete_dist () {
+    # 删除
+    echo "rm -rf ${PWD}/dist" >> $FILE
+    rm -rf ${PWD}/dist >> $FILE
+}
+
 echo "---------------    TIME: $datetime  -------------------------------------" >> $FILE
 echo "---------------    DEPLOY START     --------------------------------------" >> $FILE
 
@@ -62,6 +69,8 @@ update_src
 update_others
 
 update_deploy
+
+delete_dist
 
 echo "Deploy Done, everythings is OK!"
 
