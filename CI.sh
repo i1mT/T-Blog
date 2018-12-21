@@ -24,6 +24,7 @@ build () {
     echo "npm run build" >> $FILE
     output=`npm run build`
     echo "${output}" >> $FILE
+    sleep 10
 }
 
 # 更新博客程序
