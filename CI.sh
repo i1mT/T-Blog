@@ -76,7 +76,7 @@ echo "Deploying..."
 
 # pull
 
-install_dependices
+output=`install_dependices`
 
 build
 
