@@ -20,7 +20,7 @@ class Deploy extends Api {
     public function go () {
       $shellPath = "/home/www/T-blog";
       print_r("Deploying...\n");
-      $cmd = "cd $shellPath && /bin/bash CI.sh";
+      $cmd = "cd $shellPath && git pull && ./CI.sh";
       shell_exec($cmd);
       print_r("Deployed, everything is OK!\n");
     }
