@@ -29,17 +29,19 @@ build () {
 # 更新博客程序
 update_src () {
     # 删除
-    echo "rm -rf ${deployPath}/static" >> $FILE
-    output=`rm -rf ${deployPath}/static`
-    echo "${output}" >> $FILE
-
     echo "rm -rf ${deployPath}/index.html" >> $FILE
     output=`rm -rf ${deployPath}/index.html`
     echo "${output}" >> $FILE
 
+    echo "rm -rf ${deployPath}/static" >> $FILE
+    output=`rm -rf ${deployPath}/static`
+    echo "${output}" >> $FILE
+
+    sleep 1
+
     # 更新
-    echo "cp -r ${PWD}/dist/* ${deployPath}/" >> $FILE
-    output=`cp -r ${PWD}/dist/* ${deployPath}/`
+    echo "cp -Rf ./dist/* ${deployPath}/" >> $FILE
+    output=`cp -Rf ./dist/* ${deployPath}/`
     echo "${output}" >> $FILE
 }
 
@@ -50,8 +52,8 @@ update_API() {
     output=`rm -rf ${deployPath}/API`
     echo "${output}" >> $FILE
     # 更新
-    echo "cp -r ${PWD}/API ${deployPath}/" >> $FILE
-    output=`cp -r ${PWD}/API ${deployPath}/`
+    echo "cp -r ./API ${deployPath}/" >> $FILE
+    output=`cp -r ./API ${deployPath}/`
     echo "${output}" >> $FILE
 }
 
@@ -62,16 +64,16 @@ update_others () {
     output=`rm -rf ${deployPath}/others`
     echo "${output}" >> $FILE
     # 更新
-    echo "cp -r ${PWD}/others ${deployPath}/" >> $FILE
-    output=`cp -r ${PWD}/others ${deployPath}/`
+    echo "cp -r ./others ${deployPath}/" >> $FILE
+    output=`cp -r ./others ${deployPath}/`
     echo "${output}" >> $FILE
 }
 
 # 删除临时文件
 delete_dist () {
     # 删除
-    echo "rm -rf ${PWD}/dist" >> $FILE
-    output=`rm -rf ${PWD}/dist`
+    echo "rm -rf ./dist" >> $FILE
+    output=`rm -rf ./dist`
     echo "${output}" >> $FILE
 }
 
