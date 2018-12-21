@@ -64,6 +64,8 @@ echo "---------------    DEPLOY START @$datetime   -----------------------------
 
 echo "Deploying..."
 
+pull
+
 install_dependices
 
 build
@@ -72,7 +74,7 @@ update_src
 
 update_others
 
-# update_API
+update_API
 
 delete_dist
 
