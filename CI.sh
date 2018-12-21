@@ -5,6 +5,12 @@ FILE="./CI/log/"$(date '+%Y-%m-%d')"_log.txt"
 PWD="/home/www/T-Blog"
 deployPath="/home/wwwroot/iimt_blog/domain/wwwiimt.me/web"
 
+# 拉取
+pull () {
+    echo "git pull" >> $FILE
+    git pull >> $FILE
+}
+
 # 安装依赖
 install_dependices () {
     echo "cnpm i" >> $FILE
@@ -29,7 +35,12 @@ update_src () {
 
 # 更新API
 update_API() {
-    echo "update_API" >> $FILE
+    # 删除
+    echo "rm -rf ${deployPath}/API" >> $FILE
+    rm -rf ${deployPath}/API >> $FILE
+    # 更新
+    echo "cp -r ${PWD}/API ${deployPath}/" >> $FILE
+    cp -r ${PWD}/API ${deployPath}/
 }
 
 # 更新其他页面文件
@@ -52,6 +63,8 @@ delete_dist () {
 echo "---------------    DEPLOY START @$datetime   --------------------------------------" >> $FILE
 
 echo "Deploying..."
+
+# pull
 
 install_dependices
 
