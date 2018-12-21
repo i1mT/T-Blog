@@ -78,8 +78,6 @@ update_API
 
 delete_dist
 
-rm -rf ./a.log
-
 echo "Deploy Done, everythings is OK!"
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
 echo "---------------    DEPLOY DONE @${datetime}   ----------------------------------------" >> $FILE
