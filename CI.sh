@@ -64,7 +64,7 @@ echo "---------------    DEPLOY START @$datetime   -----------------------------
 
 echo "Deploying..."
 
-pull
+# pull
 
 install_dependices
 
@@ -77,6 +77,8 @@ update_others
 update_API
 
 delete_dist
+
+echo "not pull"
 
 echo "Deploy Done, everythings is OK!"
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
