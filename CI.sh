@@ -33,15 +33,19 @@ update_src () {
     output=`rm -rf ${deployPath}/index.html`
     echo "${output}" >> $FILE
 
+    # 更新
+    echo "cp -r ./dist/index.html ${deployPath}/" >> $FILE
+    output=`cp -r ./dist/index.html ${deployPath}/`
+    echo "${output}" >> $FILE
+
+    # 删除
     echo "rm -rf ${deployPath}/static" >> $FILE
     output=`rm -rf ${deployPath}/static`
     echo "${output}" >> $FILE
 
-    sleep 1
-
     # 更新
-    echo "cp -Rf ./dist/* ${deployPath}/" >> $FILE
-    output=`cp -Rf ./dist/* ${deployPath}/`
+    echo "cp -r ./dist/static ${deployPath}/" >> $FILE
+    output=`cp -r ./dist/static ${deployPath}/`
     echo "${output}" >> $FILE
 }
 
