@@ -14,7 +14,7 @@ pull () {
 # 安装依赖
 install_dependices () {
     echo "cnpm i" #  >> $FILE
-    cnpm i #  >> $FILE
+    echo cnpm i #  >> $FILE
 }
 
 # 打包
