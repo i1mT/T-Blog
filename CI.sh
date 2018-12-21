@@ -32,6 +32,11 @@ update_src () {
     echo "rm -rf ${deployPath}/static" >> $FILE
     output=`rm -rf ${deployPath}/static`
     echo "${output}" >> $FILE
+
+    echo "rm -rf ${deployPath}/index.html" >> $FILE
+    output=`rm -rf ${deployPath}/index.html`
+    echo "${output}" >> $FILE
+
     # 更新
     echo "cp -r ${PWD}/dist/* ${deployPath}/" >> $FILE
     output=`cp -r ${PWD}/dist/* ${deployPath}/`
