@@ -27,14 +27,9 @@ update_src () {
     cp -r ${PWD}/dist/* ${deployPath}/
 }
 
-# 更新部署文件
-update_deploy() {
-    # 删除
-    echo "rm -rf ${deployPath}/deploy" >> $FILE
-    rm -rf ${deployPath}/deploy >> $FILE
-    # 更新
-    echo "cp -r ${PWD}/deploy ${deployPath}/" >> $FILE
-    cp -r ${PWD}/deploy ${deployPath}/
+# 更新API
+update_API() {
+    echo "update_API" >> $FILE
 }
 
 # 更新其他页面文件
@@ -67,7 +62,7 @@ update_src
 
 update_others
 
-update_deploy
+update_API
 
 delete_dist
 
