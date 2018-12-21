@@ -1,6 +1,6 @@
 <template>
   <footer class="foot">
-    <p>iimT的独立博客222 <a href="#">@iimT</a></p>
+    <p>iimT的独立博客 <a href="#">@iimT</a></p>
     <p>友情链接 <a class="add-friends" @click="applyFriends">申请友链</a></p>
     <p class="friends">
       <a v-for="item in friends" :key="item.id" v-if="item.status == 1" :href="item.url">
