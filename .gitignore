@@ -16,4 +16,4 @@ yarn-error.log*
 API/config/dbs.php
 
 # log
-CI/log
+CI/log/
