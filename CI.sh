@@ -14,7 +14,7 @@ pull () {
 # 安装依赖
 install_dependices () {
     echo "cnpm i" #  >> $FILE
-    echo cnpm i #  >> $FILE
+    cnpm i #  >> $FILE
 }
 
 # 打包
@@ -77,6 +77,8 @@ update_others
 update_API
 
 delete_dist
+
+rm -rf ./a.log
 
 echo "Deploy Done, everythings is OK!"
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
