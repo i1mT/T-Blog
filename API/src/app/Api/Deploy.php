@@ -19,7 +19,7 @@ class Deploy extends Api {
 
     public function go () {
         $shellPath = "/home/www/T-Blog";
-        $cmd = "cd $shellPath && /bin/bash CI.sh";
+        $cmd = "cd $shellPath && sudo /bin/bash CI.sh";
         passthru($cmd);
     }
 
