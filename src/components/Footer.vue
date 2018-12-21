@@ -34,6 +34,7 @@
 <script>
 export default {
   data() {
+    console.log("IIMT!")
     return {
       dialogShow: false,
       title: '',
