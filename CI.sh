@@ -83,7 +83,7 @@ echo "Deploying..."
 
 # pull
 
-install_dependices && build && update_src && update_others && update_API && delete_dist
+delete_dist && install_dependices && build && update_src && update_others && update_API
 
 echo "Deploy Done, everythings is OK!"
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
