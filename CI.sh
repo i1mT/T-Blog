@@ -72,7 +72,7 @@ update_src
 
 update_others
 
-update_API
+# update_API
 
 delete_dist
 
