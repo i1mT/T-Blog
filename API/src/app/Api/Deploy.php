@@ -22,5 +22,6 @@ class Deploy extends Api {
         $cmd = "cd $shellPath && sudo /bin/bash CI.sh";
         passthru($cmd);
     }
-
 }
+
+// wonderful!
