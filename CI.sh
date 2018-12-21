@@ -76,17 +76,7 @@ echo "Deploying..."
 
 # pull
 
-output=`install_dependices`
-
-output=`build`
-
-output=`update_src`
-
-output=`update_others`
-
-output=`update_API`
-
-output=`delete_dist`
+install_dependices && build && update_src && update_others && update_API && delete_dist
 
 echo "Deploy Done, everythings is OK!"
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
