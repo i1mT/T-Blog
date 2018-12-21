@@ -13,7 +13,3 @@ yarn-error.log*
 *.njsproj
 *.sln
 .vscode
-API/config/dbs.php
-
-# log
-CI/log/
