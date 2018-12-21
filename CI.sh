@@ -1,7 +1,7 @@
 #!/bin/bash
 
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
-FILE="./deploy/log/"$(date '+%Y-%m-%d')"_log.txt"
+FILE="./CI/log/"$(date '+%Y-%m-%d')"_log.txt"
 PWD="/home/www/T-Blog"
 deployPath="/home/wwwroot/iimt_blog/domain/wwwiimt.me/web"
 
@@ -49,8 +49,7 @@ delete_dist () {
     rm -rf ${PWD}/dist >> $FILE
 }
 
-echo "---------------    TIME: $datetime  -------------------------------------" >> $FILE
-echo "---------------    DEPLOY START     --------------------------------------" >> $FILE
+echo "---------------    DEPLOY START @$datetime   --------------------------------------" >> $FILE
 
 echo "Deploying..."
 
@@ -67,5 +66,5 @@ update_API
 delete_dist
 
 echo "Deploy Done, everythings is OK!"
-
-echo "---------------    DEPLOY DONE    ----------------------------------------" >> $FILE
+datetime=$(date '+%Y-%m-%d %H:%M:%S')
+echo "---------------    DEPLOY DONE @${datetime}   ----------------------------------------" >> $FILE
