@@ -83,6 +83,7 @@ delete_dist () {
 
 echo_start () {
     echo "---------------    DEPLOY START @$datetime   --------------------------------------" # >> $FILE
+    export PATH=$PATH:/opt/nodejs/bin/
     echo $PATH
     echo "Deploying..."
 }
