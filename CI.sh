@@ -87,7 +87,9 @@ echo "Deploying..."
 
 # pull
 
-delete_dist && install_dependices && npm run build && update_others && update_API && update_src
+# delete_dist && install_dependices && npm run build && update_others && update_API && update_src
+
+cnpm i && npm run build
 
 echo "Deploy Done, everythings is OK!"
 datetime=$(date '+%Y-%m-%d %H:%M:%S')
