@@ -96,4 +96,4 @@ echo_end () {
 
 # delete_dist && install_dependices && npm run build && update_others && update_API && update_src
 
-echo_start && chown -R www:www ./ && chmod -R 777 ./  && /opt/nodejs/bin/cnpm i && npm run build && update_API && echo_end
+echo_start && chown -R www:www ./ && chmod -R 777 ./  && cnpm i && npm run build && update_API && echo_end
