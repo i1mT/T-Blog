@@ -33,19 +33,14 @@ update_src () {
     output=`rm -rf ${deployPath}/index.html`
     echo "${output}" # >> $FILE
 
-    # 更新
-    echo "cp -r ./dist/index.html ${deployPath}/" # >> $FILE
-    output=`cp -r ./dist/index.html ${deployPath}/`
-    echo "${output}" # >> $FILE
-
     # 删除
     echo "rm -rf ${deployPath}/static" # >> $FILE
     output=`rm -rf ${deployPath}/static`
     echo "${output}" # >> $FILE
 
     # 更新
-    echo "cp -r ./dist/static ${deployPath}/" # >> $FILE
-    output=`cp -r ./dist/static ${deployPath}/`
+    echo "cp -r ./dist/* ${deployPath}/" # >> $FILE
+    output=`cp -r ./dist/* ${deployPath}/`
     echo "${output}" # >> $FILE
 }
 
@@ -100,4 +95,22 @@ echo_end () {
     echo "---------------    DEPLOY DONE @${datetime}   ----------------------------------------" # >> $FILE
 }
 
+update_admin_src () {
+    # 删除
+    echo "rm -rf ${deployPath}/admin/*" # >> $FILE
+    output=`rm -rf ${deployPath}/admin/*`
+    echo "${output}" # >> $FILE
+    # 更新
+    echo "cp -r ./dist/* ${deployPath}/admin/" # >> $FILE
+    output=`cp -r ./dist/* ${deployPath}/admin/`
+    echo "${output}" # >> $FILE
+}
+
+deploy_admin () {
+    echo "cd ./admin && cnpm i && npm run build && update_admin_src"
+    cd ./admin && cnpm i && npm run build && update_admin_src
+}
+
 echo_start && update_authorization && install_dependices && build && update_API && update_others && update_src
+
+deploy_admin
