@@ -14,15 +14,15 @@ pull () {
 
 # 安装依赖
 install_dependices () {
-    echo "sudo cnpm i" # >> $FILE
-    output=`sudo cnpm i`
+    echo "cnpm i" # >> $FILE
+    output=`cnpm i`
     echo "${output}" # >> $FILE
 }
 
 # 打包
 build () {
-    echo "sudo npm run build" # >> $FILE
-    output=`sudo npm run build`
+    echo "cnpm run build" # >> $FILE
+    output=`cnpm run build`
     echo "${output}" # >> $FILE
 }
 
