@@ -83,6 +83,7 @@ delete_dist () {
 
 echo_start () {
     echo "---------------    DEPLOY START @$datetime   --------------------------------------" # >> $FILE
+    echo $PATH
     echo "Deploying..."
 }
 
