@@ -81,16 +81,21 @@ delete_dist () {
     echo "${output}" # >> $FILE
 }
 
-echo "---------------    DEPLOY START @$datetime   --------------------------------------" # >> $FILE
+echo_start () {
+    echo "---------------    DEPLOY START @$datetime   --------------------------------------" # >> $FILE
 
-echo "Deploying..."
+    echo "Deploying..."
+}
+
+echo_end () {
+    echo "Deploy Done, everythings is OK!"
+    datetime=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "---------------    DEPLOY DONE @${datetime}   ----------------------------------------" # >> $FILE
+}
 
 # pull
 
 # delete_dist && install_dependices && npm run build && update_others && update_API && update_src
 
-cnpm i && npm run build
+echo_start && cnpm i && npm run build && echo_end
 
-echo "Deploy Done, everythings is OK!"
-datetime=$(date '+%Y-%m-%d %H:%M:%S')
-echo "---------------    DEPLOY DONE @${datetime}   ----------------------------------------" # >> $FILE
