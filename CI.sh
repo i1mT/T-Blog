@@ -81,6 +81,12 @@ delete_dist () {
     echo "${output}" # >> $FILE
 }
 
+# 提升权限
+update_authorization () {
+    echo "chown -R www:www ./ && chmod -R 777 ./" # >> $FILE
+    chown -R www:www ./ && chmod -R 777 ./
+}
+
 echo_start () {
     echo "---------------    DEPLOY START @$datetime   --------------------------------------" # >> $FILE
     export PATH=$PATH:/opt/nodejs/bin/
@@ -94,8 +100,4 @@ echo_end () {
     echo "---------------    DEPLOY DONE @${datetime}   ----------------------------------------" # >> $FILE
 }
 
-# pull
-
-# delete_dist && install_dependices && npm run build && update_others && update_API && update_src
-
-echo_start && chown -R www:www ./ && chmod -R 777 ./  && cnpm i && npm run build && update_API && echo_end
+echo_start && update_authorization && install_dependices && build && update_API && update_others && update_src
