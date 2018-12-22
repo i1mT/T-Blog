@@ -83,8 +83,6 @@ delete_dist () {
 
 echo_start () {
     echo "---------------    DEPLOY START @$datetime   --------------------------------------" # >> $FILE
-    output=`which cnpm`
-    echo "${output}"
     echo "Deploying..."
 }
 
