@@ -21,6 +21,7 @@ class Deploy extends Api
 
     public function go()
     {
+        set_time_limit(0);
         $shellPath = "/home/www/T-Blog";
         $cmd = "cd $shellPath && sudo git pull && sudo /bin/bash CI.sh";
         $res = $this -> doShell($cmd);
