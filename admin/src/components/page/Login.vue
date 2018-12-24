@@ -1,7 +1,6 @@
 <template>
     <div class="login-wrap">
         <div class="quote">
-            
         </div>
         <div class="ms-login">
             <div class="ms-title">
@@ -97,7 +96,7 @@
         position: relative;
         width:100%;
         height:100%;
-        background: url("../../../static/img/login-bg.jpg");
+        background: url("http://upy.iimt.me/blog-cover-1.jpg");
         background-size: 100% 100%;
     }
     .ms-title{
