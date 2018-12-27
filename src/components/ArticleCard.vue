@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       height: 500,
-      defaultCover: "http://upy.iimt.me/blog-default-cover.jpg",
+      defaultCover: "http://upy.iimt.me/2018/12/27/upload_11d64a6b4d372cb836fe107d63708308.jpg",
     }
   },
   methods: {
