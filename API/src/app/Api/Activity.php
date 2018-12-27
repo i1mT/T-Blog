@@ -81,4 +81,10 @@ class Activity extends Api {
         return $model -> deleteById($this -> id);
     }
 
+    public function getCount () {
+        $model = new ActivityModel();
+
+        return $model -> getCount();
+    }
+
 }

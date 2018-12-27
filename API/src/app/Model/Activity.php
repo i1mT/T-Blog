@@ -38,6 +38,12 @@ class Activity extends NotORM {
 
         return $model -> order('id', 'desc') -> limit($start, $length);
     }
+
+    public function getCount() {
+        $model = $this -> getORM();
+        
+        return $model->count('id');
+    }
 }
 
 

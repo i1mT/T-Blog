@@ -38,11 +38,18 @@ Vue.prototype.$API = {
         'deleteById': baseU + "Article.deleteById",
         'update': baseU + "Article.updateById",
     },
-    'Admin': {
+    Admin: {
         'login': baseU + "Admin.login",
         'isLogin': baseU + "Admin.isLogin",
         'getAdminInfo': baseU + "Admin.getAdminInfo",
         'logout': baseU + "Admin.logout"
+    },
+    Activity: {
+        'getPage': baseU + "Activity.getPage",
+        'update': baseU + "Activity.updateById",
+        'add': baseU + "Activity.add",
+        'delete': baseU + "Activity.deleteById",
+        'count': baseU + "Activity.getCount",
     }
 }
 

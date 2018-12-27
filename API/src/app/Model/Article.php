@@ -25,7 +25,7 @@ class Article extends NotORM {
         return $model->where("id", $id)->delete();
     }
     public function getByLimit($offset, $lines) {
-        $sql = "select * from article where 1=1 limit :offset,:lines";
+        $sql = "select * from article where 1=1 order by id desc limit :offset,:lines";
         $params = array(
             ":offset" => $offset,
             ":lines" => $lines

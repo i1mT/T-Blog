@@ -41,7 +41,7 @@
     export default {
         data: function(){
             return {
-                src: './static/img/img.jpg',
+                src: 'http://upy.iimt.me/2018/12/27/upload_9f58ae4ed5b4e21f0e53f713bbbdb001.jpg',
                 fileList: []
             }
         },

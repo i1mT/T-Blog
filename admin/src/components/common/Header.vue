@@ -4,7 +4,7 @@
         <div class="user-info">
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
-                    <img class="user-logo" src="../../../static/img/img.jpg">
+                    <img class="user-logo" src="http://upy.iimt.me/2018/12/27/upload_9f58ae4ed5b4e21f0e53f713bbbdb001.jpg">
                     {{nickname}}
                 </span>
                 <el-dropdown-menu slot="dropdown">
