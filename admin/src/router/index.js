@@ -51,7 +51,7 @@ export default new Router({
                     component: resolve => require(['../components/page/activity/index.vue'], resolve)
                 },
                 {
-                    path: '/activity/edit',
+                    path: '/activity/edit/:id',
                     component: resolve => require(['../components/page/activity/detail.vue'], resolve)
                 },
                 {

@@ -38,7 +38,7 @@ class Activity extends Api {
         $model = new ActivityModel();
 
         $length = $this -> length;
-        $start = $length * ($this -> $page - 1);
+        $start = $length * ($this -> page - 1);
         return $model -> getPage($start, $length);
     }
 
@@ -72,7 +72,7 @@ class Activity extends Api {
             $data['imgs'] = $this -> imgs;
         }
 
-        return $model -> update($this -> id, $data);
+        return $model -> updateById($this -> id, $data);
     }
 
     public function deleteById () {

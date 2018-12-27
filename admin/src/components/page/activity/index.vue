@@ -14,20 +14,12 @@
             
             <el-table-column prop="id" label="编号" sortable width="90">
             </el-table-column>
-            <el-table-column prop="title" label="博文标题">
+             <el-table-column prop="ctime" label="发布时间" sortable width="150">
+            </el-table-column>
+            <el-table-column prop="title" label="摘要">
                 <template scope="scope">
-                    <a class="article-title" @click="linkToArticle(scope.row)">{{ scope.row.title }}</a>
+                    <a class="article-title" @click="linkToDetail(scope.row)">{{ scope.row.title }}</a>
                 </template>
-            </el-table-column>
-            <el-table-column prop="cateName" label="分类" width="90">
-            </el-table-column>
-            <el-table-column prop="lastEdit" label="上次编辑" width="165">
-            </el-table-column>
-            <el-table-column prop="viewed" label="浏览" sortable width="85">
-            </el-table-column>
-            <el-table-column prop="likes" label="喜欢" sortable width="85">
-            </el-table-column>
-            <el-table-column prop="comments" label="评论" sortable width="85">
             </el-table-column>
             <el-table-column label="操作" width="80">
                 <template scope="scope">
@@ -97,8 +89,8 @@
                 })
                 console.log("删除")
             },
-            linkToArticle(row) {
-                this.$router.push({path:'/publish',query:{article:row}})
+            linkToDetail(row) {
+                this.$router.push('/activity/edit/' + row.id)
             },
             getArticalTotal() {
                 //获取活动总数
