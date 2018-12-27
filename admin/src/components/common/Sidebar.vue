@@ -26,32 +26,46 @@
                 items: [
                     {
                         icon: 'el-icon-menu',
-                        index: 'Situation',
+                        index: '/Situation',
                         title: '博客概况'
                     },
                     {
                         icon: 'el-icon-edit',
-                        index: 'publish',
+                        index: '/publish',
                         title: '创作'
                     },
                     {
                         icon: 'el-icon-upload',
-                        index: 'uploadPublish',
+                        index: '/uploadPublish',
                         title: '上传MD创作'
                     },
                     {
                         icon: 'el-icon-document',
-                        index: 'article',
+                        index: '/article',
                         title: '我的创作'
                     },
                     {
+                        icon: 'el-icon-menu',
+                        index: '/activity',
+                        title: '动态',
+                        subs: [
+                            {
+                                index: '/activity',
+                                title: '我的动态',
+                            },{
+                                index: '/activity/add',
+                                title: '新增动态',
+                            },
+                        ]
+                    },
+                    {
                         icon: 'el-icon-star-on',
-                        index: 'cate',
+                        index: '/cate',
                         title: '分类管理'
                     },
                     {
                         icon: 'el-icon-setting',
-                        index: 'ManageBlog',
+                        index: '/ManageBlog',
                         title: '管理博客'
                     },
                 ]

@@ -106,7 +106,7 @@
                 this.article.cate = this.article.cateName
                 this.$axios.post(this.$API.Article.update,this.article)
                 .then((res) => {
-                    if(res.data.data.id) {
+                    if(res.data.data == 1) {
                         //更新成功 跳转到文章
                         that.$message.success("更新成功！")
                         that.$router.push({name:'publishSuccess',params:{article:res.data.data}})
@@ -127,7 +127,7 @@
                 this.article.cate = this.article.cateName
                 this.$axios.post(this.$API.Article.publish,this.article)
                 .then((res) => {
-                    if(res.data.data.id) {
+                    if(res.data.data == 1) {
                         //发表成功 跳转到文章
                         that.$message.success("发表成功！")
                         that.$router.push({name:'publishSuccess',params:{article:res.data.data}})

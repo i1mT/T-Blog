@@ -23,28 +23,40 @@ export default new Router({
                 },
                 {
                     path: '/publish',
-                    component: resolve => require(['../components/page/Publish.vue'], resolve)     // Vue-Quill-Editor组件
+                    component: resolve => require(['../components/page/Publish.vue'], resolve)
                 },
                 {
                     path: '/publishSuccess',
                     name: 'publishSuccess',
-                    component: resolve => require(['../components/page/PublishSuccess.vue'], resolve)     // Vue-Quill-Editor组件
+                    component: resolve => require(['../components/page/PublishSuccess.vue'], resolve)
                 },
                 {
                     path: '/uploadPublish',
-                    component: resolve => require(['../components/page/UploadPublish.vue'], resolve)       // Vue-Core-Image-Upload组件
+                    component: resolve => require(['../components/page/UploadPublish.vue'], resolve)
                 },
                 {
                     path: '/basecharts',
-                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   // vue-schart组件
+                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve)
                 },
                 {
                     path: '/cate',
-                    component: resolve => require(['../components/page/ManageCate.vue'], resolve)   // vue-schart组件
+                    component: resolve => require(['../components/page/ManageCate.vue'], resolve)
                 },
                 {
                     path: '/article',
-                    component: resolve => require(['../components/page/ManageArticle.vue'], resolve)   // vue-schart组件
+                    component: resolve => require(['../components/page/ManageArticle.vue'], resolve)
+                },
+                {
+                    path: '/activity',
+                    component: resolve => require(['../components/page/activity/index.vue'], resolve)
+                },
+                {
+                    path: '/activity/edit',
+                    component: resolve => require(['../components/page/activity/detail.vue'], resolve)
+                },
+                {
+                    path: '/activity/add',
+                    component: resolve => require(['../components/page/activity/detail.vue'], resolve)
                 },
             ]
         },

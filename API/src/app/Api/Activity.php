@@ -51,10 +51,10 @@ class Activity extends Api {
     public function add () {
         $model = new ActivityModel();
 
-        $data = [
+        $data = array(
             'content' => $this -> content,
             'images' => $this -> images,
-        ];
+        );
 
         return $model -> add($this -> id, $data);
     }
@@ -62,7 +62,7 @@ class Activity extends Api {
     public function updateById () {
         $model = new ActivityModel();
 
-        $data = [];
+        $data = array();
 
         if ($this -> content) {
             $data['content'] = $this -> content;
