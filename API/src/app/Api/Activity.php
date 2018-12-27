@@ -62,10 +62,15 @@ class Activity extends Api {
     public function updateById () {
         $model = new ActivityModel();
 
-        $data = [
-            'content' => $this -> content,
-            'images' => $this -> images,
-        ];
+        $data = [];
+
+        if ($this -> content) {
+            $data['content'] = $this -> content;
+        }
+
+        if ($this -> imgs) {
+            $data['imgs'] = $this -> imgs;
+        }
 
         return $model -> add($this -> id, $data);
     }
