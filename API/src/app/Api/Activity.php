@@ -56,7 +56,7 @@ class Activity extends Api {
             'images' => $this -> images,
         );
 
-        return $model -> add($this -> id, $data);
+        return $model -> add($data);
     }
     
     public function updateById () {
@@ -72,7 +72,7 @@ class Activity extends Api {
             $data['imgs'] = $this -> imgs;
         }
 
-        return $model -> add($this -> id, $data);
+        return $model -> update($this -> id, $data);
     }
 
     public function deleteById () {
