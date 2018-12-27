@@ -38,7 +38,7 @@
             </el-form-item>
             
             <el-form-item>
-                <el-button type="primary" @click="publish">发表</el-button>
+                <el-button type="primary" @click="handlePublish">发表</el-button>
                 <el-button>保存草稿</el-button>
             </el-form-item>
         </el-form>
@@ -94,8 +94,35 @@
                     that.cate = res.data.data
                 })
             },
+            handlePublish () {
+                if (this.isReEdit) {
+                    this.edit()
+                } else {
+                    this.publish()
+                }
+            },
+            edit () {
+                const that = this
+                this.article.cate = this.article.cateName
+                this.$axios.post(this.$API.Article.update,this.article)
+                .then((res) => {
+                    if(res.data.data.id) {
+                        //更新成功 跳转到文章
+                        that.$message.success("更新成功！")
+                        that.$router.push({name:'publishSuccess',params:{article:res.data.data}})
+                    } else {
+                        //更新失败
+                        that.$message.error("更新失败！")
+                    }
+                    console.log(res.data.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                    that.$message.error("更新失败！")
+                })
+            },
             publish() {
-                console.log(this.article)
+                // console.log(this.article)
                 const that = this
                 this.article.cate = this.article.cateName
                 this.$axios.post(this.$API.Article.publish,this.article)

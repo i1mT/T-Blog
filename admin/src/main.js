@@ -35,7 +35,8 @@ Vue.prototype.$API = {
         'getCount': baseU + "Article.getCount",
         'publish': baseU + "Article.publish",
         'publishByUpload': baseU + "Article.publishByUpload",
-        'deleteById': baseU + "Article.deleteById"
+        'deleteById': baseU + "Article.deleteById",
+        'update': baseU + "Article.updateById",
     },
     'Admin': {
         'login': baseU + "Admin.login",
