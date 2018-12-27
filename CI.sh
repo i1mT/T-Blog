@@ -7,6 +7,14 @@ deployPath="/home/wwwroot/iimt_blog/domain/wwwiimt.me/web"
 
 # 拉取
 pull () {
+    echo "git reset --hard HEAD" # >> $FILE
+    output=`git reset --hard HEAD`
+    echo "${output}" # >> $FILE
+
+    echo "git clean -f -d" # >> $FILE
+    output=`git clean -f -d`
+    echo "${output}" # >> $FILE
+    
     echo "git pull" # >> $FILE
     output=`git pull`
     echo "${output}" # >> $FILE
@@ -111,6 +119,6 @@ deploy_admin () {
     cd ./admin && cnpm i && npm run build && update_admin_src
 }
 
-echo_start && update_authorization && install_dependices && build && update_API && update_others && update_src
+echo_start && pull && update_authorization && install_dependices && build && update_API && update_others && update_src
 
 deploy_admin
