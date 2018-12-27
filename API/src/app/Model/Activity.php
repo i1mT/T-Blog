@@ -18,7 +18,7 @@ class Activity extends NotORM {
     public function add ($data) {
         $model = $this -> getORM();
 
-        return $model -> add($data);
+        return $model -> insert($data);
     }
 
     public function deleteById($id) {
