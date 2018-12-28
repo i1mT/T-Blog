@@ -171,6 +171,13 @@ table td.sum {
   text-align: left;
 }
 
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+}
+
 .container {
   width: 55%;
   margin: 0 auto;
@@ -352,6 +359,10 @@ ul.desc-tab .li-e {
 
 ul.desc-tab .li-f {
   border-left: 0;
+}
+
+ul.desc-tab li a {
+  text-decoration: none;
 }
 
 .banner-mask:after {
