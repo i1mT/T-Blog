@@ -11,10 +11,10 @@
                 {{ title }}
             </p>
             <p class="detail">
-                <span v-for="tag in tags" :key="tag.id" class="cate">
-                    <a :href="'/tag/' + tag.id">
+                <span class="cate">
+                    <a :href="'/cate/' + cate.id + '?name=' + cate.name">
                         <i class="iconfont">&#xe603;</i>
-                        {{ tag.name }}
+                        {{ cate.name }}
                     </a>
                 </span>
                 <span class="time">
@@ -44,7 +44,7 @@ export default {
           return formatTime.getDateDiff(time)
       }
   },
-  props: ['title', 'time', 'cover', 'tags']
+  props: ['title', 'time', 'cover', 'cate', 'cid']
 }  
 </script>
 <style>

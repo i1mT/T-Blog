@@ -21,6 +21,11 @@
             <i class="iconfont">&#xe636;</i>
             {{ getTime(time) }}
           </span>
+          <span class="art-cate">
+            <a :href="'/cate/' + cid + '?name=' + cate">
+              {{ cate }}
+            </a>
+          </span>
         </div>
       </div>
     </div>
@@ -49,7 +54,7 @@ export default {
       }
     }
   },
-  props: ["title", "cover", "time", "like", "view", "aid"],
+  props: ["title", "cover", "time", "like", "view", "aid", 'cate', 'cid'],
   mounted() {
     
     this.resizeCardHeight()

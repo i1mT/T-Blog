@@ -42,6 +42,7 @@ class Article extends NotORM {
 
             $cateName = $cateModel -> getNameById($cateId);
             $row['cateName'] = $cateName['name'];
+            $row['cid'] = $cateId;
 
             array_push($res_data, $row);
         }
@@ -57,14 +58,34 @@ class Article extends NotORM {
         return count($data);
     }
 
-    public function getCardLimit ($start, $length) {
-        $sql = "select id, title, lastEdit, viewed, likes, cover from article order by id desc limit :offset,:lines";
+    public function getCardLimit ($start, $length, $cid = 0) {
+        if ($cid != 0) {
+            $sql = "select id, title, lastEdit, viewed, likes, cover from article where cid=:cid order by id desc limit :offset,:lines";
+        }
+        else {
+            $sql = "select id, title, lastEdit, viewed, likes, cover from article order by id desc limit :offset,:lines";
+        }
         $params = array(
             ":offset" => $start,
-            ":lines" => $length
+            ":lines" => $length,
+            ":cid" => $cid
         );
         $model = $this -> getORM();
-        return $model->queryAll($sql, $params);
+        $data = $model->queryAll($sql, $params);
+        $res_data = array();
+        foreach($data as $row) {
+            $articleCateModel = new ArticleCateModel();
+            $articleCate = $articleCateModel -> getCatesByAid($row['id']) -> fetchOne();
+            $cateId = $articleCate['cid'];
+            $cateModel = new CateModel();
+
+            $cateName = $cateModel -> getNameById($cateId);
+            $row['cateName'] = $cateName['name'];
+            $row['cid'] = $cateId;
+
+            array_push($res_data, $row);
+        }
+        return $res_data;
     }
 
     public function addLikeById($id) {

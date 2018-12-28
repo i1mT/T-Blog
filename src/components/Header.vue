@@ -1,23 +1,43 @@
 <template>
-  <div class="header">
-    <nav class="banner-mask" :style="'height:' + currentHeight + 'px'">
+  <div class="header" :style="'height:' + currentHeight">
+    <nav class="banner-mask">
       <div class="container header">
-        <p class="blogname">
-          <a href="#">Hope in the things unseen.</a>
+        <p class="blogname" v-if="title">
+          <a href="#">
+            {{ title }}
+          </a>
         </p>
-        <p class="motto">对 未 知 充 满 期 待</p>
+        <p class="motto" v-if="vicetitle">
+          {{ vicetitle}}
+        </p>
         <!-- 个人信息 -->
-        <div class="myinfo">
+        <div class="myinfo" v-if="avatar">
           <!-- 头像 -->
           <div class="avatar">
             <img src="http://upy.iimt.me/avatar.jpg">
           </div>
         </div>
-        <ul class="desc-tab">
-          <li class="li-f">大学生</li>
-          <li>浙江 · 绍兴</li>
-          <li>JSer</li>
-          <li class="li-e">可能是一只吃货</li>
+        <ul class="desc-tab" v-if="tab">
+          <li class="li-f">
+            <router-link to="/">博客</router-link>            
+          </li>
+          <li>
+            <router-link to="/">动态</router-link>
+          </li>
+          
+          <li>
+            <a href="http://space.bilibili.com/69824765" target="_blank">
+              我的 <i class="iconfont">&#xe677;</i>
+            </a>
+          </li>
+          <li>
+            <a href="http://space.bilibili.com/69824765" target="_blank">
+              我的 <i class="iconfont">&#xe6b4;</i>
+            </a>
+          </li>
+          <li class="li-e">
+            <router-link to="/about">关于我</router-link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -27,7 +47,7 @@
 export default {
   data() {
     return {
-      currentHeight: 1000,
+      currentHeight: "60vh",
       fly: false
     }
   },
@@ -82,14 +102,15 @@ export default {
       }else{
           return true
       }
+    },
+    handelProps () {
     }
   },
   mounted() {
-    this.getCurrentHeight()
-    this.addListener()
   },
   components: {
-  }
+  },
+  props: ['avatar', 'tab', 'vicetitle', 'title']
 }
 </script>
 <style scoped>

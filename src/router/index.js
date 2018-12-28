@@ -25,12 +25,20 @@ export default new Router({
       component: (resolve) => require(['../components/Article/Index.vue'], resolve),
     },
     {
-      path: '/tag/:id',
-      name: 'tag',
+      path: '/cate/:id',
+      name: 'cate',
       meta: {
         title: "标签 - iimT的独立博客"
       },
-      component: (resolve) => require(['../components/Index.vue'], resolve),
+      component: (resolve) => require(['../components/Page/Cate.vue'], resolve),
+    },
+    {
+      path: '/about',
+      name: 'about',
+      meta: {
+        title: "关于我 - iimT的独立博客"
+      },
+      component: (resolve) => require(['../components/Page/About.vue'], resolve),
     },
   ]
 })

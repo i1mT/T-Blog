@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <v-header :avatar="false" :tab="true" title="Hope in the things unseen." vicetitle="对 未 知 充 满 期 待"></v-header>
+    <v-header :avatar="false" :tab="true" title="All about" :vicetitle="'「 ' + cate + ' 」'"></v-header>
     <template v-if="loading">
       <loading></loading>
     </template>
@@ -26,11 +26,11 @@
   </div>
 </template>
 <script>
-import header from "./Header"
-import footer from "./Footer"
-import ArticleCard from "./ArticleCard"
-import FlyTop from "./FlyToTop"
-import Loading from "./Com/Loading"
+import header from "../Header"
+import footer from "../Footer"
+import ArticleCard from "../ArticleCard"
+import FlyTop from "../FlyToTop"
+import Loading from "../Com/Loading"
 export default {
   name: "Index",
   data() {
@@ -42,6 +42,7 @@ export default {
       moreText: "Load more",
       pageSize: 6,
       cid: null,
+      cate: '',
     }
   },
   methods: {
@@ -50,6 +51,10 @@ export default {
       let data = {
         page: this.page,
         pageNum: this.pageSize,
+        cid: this.cid
+      }
+      if(this.cid) {
+        data.cid = this.cid
       }
       this.$api.getPage(data).then( res => {
         console.log(res)
@@ -61,6 +66,8 @@ export default {
     },
   },
   mounted() {
+    this.cid = this.$route.params.id
+    this.cate = this.$route.query.name
     this.load()
   },
   watch: {

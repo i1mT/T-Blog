@@ -51,8 +51,9 @@ class Article extends Api {
                 'pageNum' => array('name' => 'pageNum', 'default' => 10),
             ),
             'getCardPage' => array(
-                'page'   => array('name' => 'page'),
-                'pageNum' => array('name' => 'pageNum'),
+                'page'    => array('name' => 'page', 'default' => 1),
+                'pageNum' => array('name' => 'pageNum', 'default' => 10),
+                'cid'    => array("name" => 'cid')
             ),
             'addView' => array(
                 'id'      => array('name' => 'id')
@@ -96,6 +97,7 @@ class Article extends Api {
         $data = array(
             'title'     => $this->title,
             'cover'     => $this->cover,
+            'cid'      => $cateId,
             'publishAt' => date("Y-m-d H:i:s"),
             'lastEdit'  => date("Y-m-d H:i:s"),
             'author'    => 1,
@@ -171,6 +173,7 @@ class Article extends Api {
         }
         $data = array(
             "title"     => $this->title,
+            'cid'      => $cateId,
             "content"   => $this->content,
             "cover"     => $this->cover,
             "lastEdit"  => date("Y-m-d H:i:s"),
@@ -237,7 +240,11 @@ class Article extends Api {
         $model = new ArticleModel();
         $length = (int)$this -> pageNum;
         $start = ($this -> page - 1) * $length;
-        $data = $model -> getCardLimit($start, $length);
+        if($this -> cid) {
+            $data = $model -> getCardLimit($start, $length, $this -> cid);
+        } else {
+            $data = $model -> getCardLimit($start, $length);
+        }
 
         return $data;
     }

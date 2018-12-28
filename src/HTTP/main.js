@@ -3,9 +3,9 @@ import axios from "axios"
 /**
  * 测试/调试库/正式库 信息
  */
-let IS_TEST = false
-let TEST_ROOT = "http://"
-let PROD_ROOT = "http://iimt.me/API/public/?s="
+const DEV_ROOT =   'http://www.myblog.me/API/public/?s='
+const PROD_ROOT = 'http://www.iimt.me/API/public/?s='
+let ROOT = process.env.NODE_ENV === 'development' ? DEV_ROOT:PROD_ROOT
 
 
 //设置axios为form-data
@@ -22,8 +22,7 @@ axios.defaults.transformRequest = [function (data) {
 
 
 function getUrl(name) {
-  let base = IS_TEST ? TEST_ROOT : PROD_ROOT
-  return base + name
+  return ROOT + name
 }
 
 /**
@@ -31,14 +30,10 @@ function getUrl(name) {
  * @param {*} page 
  * @param {*} length 
  */
-function getPage(page, length) {
+function getPage(data) {
   if(!length) length = 8
 
   let url = getUrl("Article.GetCardPage")
-  let data = {
-    page: page,
-    pageNum: length,
-  }
   return axios.post(url, data)
 }
 
@@ -106,6 +101,11 @@ function addComment(data) {
    return axios.post(url, data)
  }
 
+ /** 获取axios实例 */
+ function getInstance () {
+   return axios
+ }
+
 export default {
   getPage,
   getArticleById,
@@ -115,5 +115,6 @@ export default {
   addCommentLikeById,
   addComment,
   getAllFriends,
-  addFriend
+  addFriend,
+  getInstance,
 }

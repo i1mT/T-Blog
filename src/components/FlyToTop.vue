@@ -57,8 +57,9 @@ export default {
   position: fixed;
   bottom: 4rem;
   right: 4rem;
-  width: 6rem;
+  width: 4rem;
   height: 0rem;
+  opacity: 0;
   background: rgba(50,50,50,0.7);
   border-radius: .3rem;
   font-size: 5rem;
@@ -72,16 +73,17 @@ export default {
   top: 50%;
   left: 50%;
   position: relative;
-  margin-left: -15px;
-  margin-top: -25px;
-  border-width: 15px;
+  margin-left: -10px;
+  margin-top: -19px;
+  border-width: 10px;
   border-style: solid;
-  border-bottom-left-radius: .3rem;
-  border-bottom-right-radius: .3rem;
-  border-bottom-width: 20px;
+  border-bottom-left-radius: .2rem;
+  border-bottom-right-radius: .2rem;
+  border-bottom-width: 15px;
   border-color: transparent transparent #f7f2f2 transparent;
 }
 .show {
-  height: 6rem
+  height: 4rem;
+  opacity: 1;
 }
 </style>

@@ -24,10 +24,17 @@ class Cate extends Api {
                 'id'     => array('name' => 'id'),
                 'name'   => array('name' => 'name'),
             ),
+            'getById' => array(
+                'id'     => array('name' => 'id')
+            ),
             'deleteById' => array(
                 'id'     => array('name' => 'id')
-            )
+            ),
         );
+    }
+
+    function getById () {
+        return $this->model->getById($this -> id);
     }
 
     /**

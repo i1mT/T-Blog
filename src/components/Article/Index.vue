@@ -1,8 +1,9 @@
 <template>
   <div class="article">
-    <v-header :title="article.title" :time="article.lastEdit" :tags="article.cate" :cover="article.cover"></v-header>
+    <v-header :title="article.title" :time="article.lastEdit" :cate="article.cate[0]" :cover="article.cover"></v-header>
     <div class="container">
-      <v-article :content="article.content"></v-article>
+      <loading v-if="loading"></loading>
+      <v-article v-else :content="article.content"></v-article>
       <like-admire :like="article.likes"></like-admire>
       <about-me></about-me>
       <comment></comment>
@@ -19,9 +20,11 @@ import Comment from "../Comment/Index"
 import AboutMe from "./Aboutme"
 import FlyTop from "../FlyToTop"
 import footer from "../Footer"
+import Loading from "../Com/Loading"
 export default {
   data() {
     return {
+      loading: true,
       article: {
         id: 0,
         title: "",
@@ -42,6 +45,8 @@ export default {
       let id = this.$route.params.id
       this.$api.getArticleById(id).then( res => {
         this.article = res.data.data
+        console.log(this.article)
+        this.loading = false
         window.document.title = this.article.title + "- iimT的独立博客"
       })
     },
@@ -66,6 +71,7 @@ export default {
     FlyTop: FlyTop,
     LikeAdmire: LikeAdmire,
     'v-footer': footer,
+    'loading': Loading,
   }
 }
 </script>
