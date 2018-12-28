@@ -6,6 +6,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';    // 默认主题
 // import '../static/css/theme-green/index.css';       // 浅绿色主题
 import "babel-polyfill";
+import API from "../HTTP/main"
 
 Vue.use(ElementUI);
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -18,40 +19,7 @@ axios.defaults.transformRequest = [function (data) {
     return ret
 }]
 Vue.prototype.$axios = axios;
-
-var baseU = "http://www.iimt.me/API/public/?s="
-Vue.prototype.$API = {
-    BlogInfo: {
-        'update': baseU + "BlogInfo.update",
-        'getInfo': baseU + "BlogInfo.getBlogInfo"
-    },
-    Cate: {
-        'getAll': baseU + "Cate.getAll",
-        'updateCate': baseU + "Cate.updateById",
-        'deleteById': baseU + "Cate.deleteById"
-    },
-    Article: {
-        'getPage': baseU + "Article.getPage",
-        'getCount': baseU + "Article.getCount",
-        'publish': baseU + "Article.publish",
-        'publishByUpload': baseU + "Article.publishByUpload",
-        'deleteById': baseU + "Article.deleteById",
-        'update': baseU + "Article.updateById",
-    },
-    Admin: {
-        'login': baseU + "Admin.login",
-        'isLogin': baseU + "Admin.isLogin",
-        'getAdminInfo': baseU + "Admin.getAdminInfo",
-        'logout': baseU + "Admin.logout"
-    },
-    Activity: {
-        'getPage': baseU + "Activity.getPage",
-        'update': baseU + "Activity.updateById",
-        'add': baseU + "Activity.add",
-        'delete': baseU + "Activity.deleteById",
-        'count': baseU + "Activity.getCount",
-    }
-}
+Vue.prototype.$API = API
 
 router.afterEach((to, from) => {
     //先判断是否已经登陆

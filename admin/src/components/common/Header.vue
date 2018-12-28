@@ -12,6 +12,9 @@
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
+        <div class="to-myblog">
+            <a href="http://www.iimt.me" target="_blank">查看博客</a>
+        </div>
     </div>
 </template>
 <script>
@@ -73,6 +76,16 @@
         padding-right: 50px;
         font-size: 16px;
         color: #fff;
+    }
+    .to-myblog {
+        float: right;
+        padding-right: 50px;
+        cursor: pointer;
+    }
+    .to-myblog a {
+        text-decoration: none;
+        font-size: 15px;
+        color: #eee;
     }
     .user-info .el-dropdown-link{
         position: relative;

@@ -19,9 +19,9 @@
                     <a class="article-title" @click="linkToArticle(scope.row)">{{ scope.row.title }}</a>
                 </template>
             </el-table-column>
-            <el-table-column prop="cateName" label="分类" width="90">
-            </el-table-column>
             <el-table-column prop="lastEdit" label="上次编辑" width="165">
+            </el-table-column>
+            <el-table-column prop="cateName" label="分类" width="165">
             </el-table-column>
             <el-table-column prop="viewed" label="浏览" sortable width="85">
             </el-table-column>

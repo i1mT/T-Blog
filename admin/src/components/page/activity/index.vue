@@ -6,19 +6,21 @@
                 <el-breadcrumb-item>活动列表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
+        <div class="hr"></div>
         <div class="handle-box">
             <el-input v-model="searchKey" placeholder="筛选关键词" class="handle-input mr10"></el-input>
             <el-button type="primary" icon="search" @click="search">搜索</el-button>
+            <el-button type="success" icon="el-icon-edit" @click="addData">发布动态</el-button>
         </div>
         <el-table :data="tableData" border ref="multipleTable" @selection-change="handleSelectionChange">
             
             <el-table-column prop="id" label="编号" sortable width="90">
             </el-table-column>
-             <el-table-column prop="ctime" label="发布时间" sortable width="150">
+             <el-table-column prop="ctime" label="发布时间" sortable width="180">
             </el-table-column>
-            <el-table-column prop="title" label="摘要">
+            <el-table-column prop="brief" label="摘要">
                 <template scope="scope">
-                    <a class="article-title" @click="linkToDetail(scope.row)">{{ scope.row.title }}</a>
+                    <a class="article-title" @click="linkToDetail(scope.row)">{{ scope.row.brief }}</a>
                 </template>
             </el-table-column>
             <el-table-column label="操作" width="80">
@@ -72,6 +74,9 @@
             }
         },
         methods: {
+            addData () {
+                this.$router.push("/activity/add")
+            },
             deleteCalcel(){
                 console.log(this.currentDeleteItem)
                 this.tableData[this.currentDeleteItem.index].confirmDeleteVisible = false
@@ -127,7 +132,7 @@
                 key = key.trim()
                 let searchRes = []
                 for(var i = 0; i < this.tableDataBackup.length; i++) {
-                    if(this.tableDataBackup[i].title.indexOf(key) != -1)
+                    if(this.tableDataBackup[i].brief.indexOf(key) != -1)
                         searchRes.push(this.tableDataBackup[i])
                 }
                 this.tableData = searchRes

@@ -4,7 +4,7 @@ namespace app\Model;
 use PhalApi\Model\NotORMModel as NotORM;
 
 class Activity extends NotORM {
-    protected function getTableName () {
+    protected function getTableName ($id) {
         return 'activity';
     }
 
@@ -34,9 +34,9 @@ class Activity extends NotORM {
     }
 
     public function getPage ($start, $length) {
-        $modle = $this -> getORM();
+        $model = $this -> getORM();
 
-        return $model -> order('id', 'desc') -> limit($start, $length);
+        return $model -> order('id desc') -> limit($start, $length) ->fetchAll();;
     }
 
     public function getCount() {

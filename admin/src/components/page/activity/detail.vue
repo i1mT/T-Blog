@@ -8,12 +8,26 @@
         <el-breadcrumb-item>发布</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
+    <div class="hr"></div>
     <el-form>
-      <el-form-item>
-        <markdown-editor v-model="data.content" :configs="configs" ref="markdownEditor"></markdown-editor>
+      <el-form-item label="内容">
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 4, maxRows: 4}"
+          placeholder="有什么想说的?"
+          v-model="data.content"
+        ></el-input>
       </el-form-item>
       <el-form-item label="配图">
-        <img class="img-item" v-for="(item, i) in images" :src="item" :key="i">
+        <div
+          class="img-item"
+          v-for="(item, i) in images"
+          :src="item"
+          :key="i"
+        >
+          <img :src="item"/>
+          <span class="delete-img" @click="deleteImg(item, i)"></span>
+        </div>
       </el-form-item>
       <el-form-item>
         <el-input v-model="tempImage" placeholder="输入图片地址...">
@@ -24,133 +38,161 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="handlePublish">发表</el-button>
+        <el-button type="primary" @click="handlePublish">提交</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-    import { markdownEditor } from 'vue-simplemde';
-    export default {
-        data: function(){
-            return {
-                data: {
-                    content: '',
-                    images: '',
-                },
-                tempImage: '',
-                images: [],
-                content:'',
-                isReEdit: false,
-                configs: {
-                    status: true,
-                    initialValue: '想说点什么?',
-                    renderingConfig: {
-                        codeSyntaxHighlighting: true,
-                        highlightingTheme: 'atom-one-light'
-                    }
-                }
-            }
-        },
-        mounted(){
-            //DOM挂载之后 判断是否传入了已经发表的文章
-            //如果是 就将此文章信息填入 开始编辑文章
-            if(this.$route.query.data) {
-                this.isReEdit = true
-                this.data = this.$route.query.data
-                this.configs.initialValue = this.data.content
-            }
-        },
-        methods: {
-            addImage () {
-                this.images.push(this.tempImage)
-                this.tempImage = ''
-            },
-            handlePublish () {
-                if (this.isReEdit) {
-                    this.edit()
-                } else {
-                    this.publish()
-                }
-            },
-            edit () {
-                const that = this
-                this.data.images = JSON.stringify(this.images)
-                this.$axios.post(this.$API.Activity.update,this.data)
-                .then((res) => {
-                    if(res.data.data.id) {
-                        //更新成功 跳转到文章
-                        this.$message({
-                            type: 'success',
-                            message: '更新成功!'
-                        }).then(() => {
-                            this.$router.go(-1)
-                        });
-                        that.$router.push({name:'publishSuccess',params:{data:res.data.data}})
-                    } else {
-                        //更新失败
-                        that.$message.error("更新失败！")
-                    }
-                    console.log(res.data.data)
-                })
-                .catch((err) => {
-                    console.log(err)
-                    that.$message.error("更新失败！")
-                })
-            },
-            publish() {
-                const that = this
-                this.data.images = JSON.stringify(this.images)
-                this.data.cate = this.data.cateName
-                this.$axios.post(this.$API.Activity.add,this.data)
-                .then((res) => {
-                    if(res.data.data.id) {
-                        //发表成功 跳转到文章
-                        this.$message({
-                            type: 'success',
-                            message: '发表成功!'
-                        }).then(() => {
-                            this.$router.go(-1)
-                        });
-                        that.$router.push({name:'publishSuccess',params:{data:res.data.data}})
-                    } else {
-                        //发表失败
-                        that.$message.error("发表失败！")
-                    }
-                    console.log(res.data.data)
-                })
-                .catch((err) => {
-                    console.log(err)
-                    that.$message.error("发表失败！")
-                })
-            },
-            querySearch(queryString, cb) {
-                var cates = this.cate
-                var results = []
-
-                for(var i in cates) {
-                    if(cates[i].name.indexOf(queryString) != -1)
-                        results.push( {
-                            'value': cates[i].name,
-                            'id': cates[i].id
-                            })
-                }
-                cb(results);
-            }
-        },
-        components: {
-            markdownEditor
-        }
+import { markdownEditor } from "vue-simplemde";
+export default {
+  data: function() {
+    return {
+      data: {
+        content: "",
+        images: ""
+      },
+      tempImage: "",
+      images: [],
+      isReEdit: false,
+    };
+  },
+  mounted() {
+    if (this.$route.params.hasOwnProperty('id')) {
+      this.isReEdit = true;
+      this.initData()
+      console.log(2)
     }
+  },
+  methods: {
+    deleteImg (item, i) {
+      this.images.splice(i, 1)
+    },
+    initData () {
+      this.$axios
+        .post(this.$API.Activity.getById, {id: this.$route.params.id})
+        .then(res => {
+          this.data = res.data.data
+          this.images = JSON.parse(this.data.images)
+        })
+    },
+    addImage() {
+      this.images.push(this.tempImage);
+      this.tempImage = "";
+    },
+    handlePublish() {
+      if (this.isReEdit) {
+        this.edit();
+      } else {
+        this.publish();
+      }
+    },
+    edit() {
+      const that = this;
+      this.data.images = JSON.stringify(this.images);
+      this.$axios
+        .post(this.$API.Activity.update, this.data)
+        .then(res => {
+          if (res.data.data >= 0) {
+            //更新成功 跳转到文章
+            this.$message({
+              type: "success",
+              message: "更新成功!"
+            })
+            this.$router.go(-1);
+            return
+          } else {
+            //更新失败
+            that.$message.error("更新失败！");
+          }
+          console.log(res.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+          that.$message.error("更新失败！");
+        });
+    },
+    publish() {
+      const that = this;
+      this.data.images = JSON.stringify(this.images);
+      this.$axios
+        .post(this.$API.Activity.add, this.data)
+        .then(res => {
+          console.log(res.data.data.id)
+          if (res.data.data.hasOwnProperty('id  ')) {
+            //发表成功 跳转到文章
+            that.$message({
+              type: "success",
+              message: "发表成功!"
+            })
+            that.$router.go(-1);
+            return
+          } else {
+            //发表失败
+            that.$message.error("发表失败！");
+          }
+          console.log(res.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+          that.$message.error("发表失败！");
+        });
+    },
+    querySearch(queryString, cb) {
+      var cates = this.cate;
+      var results = [];
+
+      for (var i in cates) {
+        if (cates[i].name.indexOf(queryString) != -1)
+          results.push({
+            value: cates[i].name,
+            id: cates[i].id
+          });
+      }
+      cb(results);
+    }
+  },
+  components: {
+    markdownEditor
+  }
+};
 </script>
 
 <style>
-img.img-item {
+.img-item {
+  display: inline-block;
+  position: relative;
+  margin: 0 10px;
+}
+.img-item img{
+  min-width: 40px;
+  min-height: 40px;
   width: 100px;
-  margin: 0 5px;
   border: 2px solid #fff;
   box-shadow: 1px 1px 4px 1px #aaa;
   border-radius: 6px;
+  position: relative;
+}
+.img-item .delete-img::after {
+  content: '-';
+  color: #fff;
+  font-size: 24px;
+  position: absolute;
+  right: 3px;
+  top: -13px;
+}
+.img-item .delete-img {
+  font-size: 18px;
+  color: #fff;
+  background-color: #F56C6C;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  cursor: pointer;
+  overflow: hidden;
 }
 </style>

@@ -47,8 +47,8 @@ class Article extends Api {
                 'cover'   => array('name' => 'cover'),
             ),
             'getPage'   => array(
-                'page'    => array('name' => 'page'),
-                'pageNum' => array('name' => 'pageNum'),
+                'page'    => array('name' => 'page', 'default' => 1),
+                'pageNum' => array('name' => 'pageNum', 'default' => 10),
             ),
             'getCardPage' => array(
                 'page'   => array('name' => 'page'),
@@ -62,7 +62,12 @@ class Article extends Api {
             ),
             'getById' => array(
                 'id' => array('name' => 'id'),
-            )
+            ),
+            'getPageByCid' => array(
+                'id' => array('name' => 'id'),
+                'page'   => array('name' => 'page'),
+                'length' => array('name' => 'length'),
+            ),
         );
     }
     /**
@@ -77,6 +82,7 @@ class Article extends Api {
      */
     public function publish($isMD = false, $md = NULL) {
         //根据分类名获取分类id
+        $articleCateModel = new ArticleCateModel();
         $cateModel = new CateModel();
         $cateId = $cateModel->getIdByName($this->cate);
         $cateId = $cateId['id'];
@@ -89,7 +95,6 @@ class Article extends Api {
         //文章的结构
         $data = array(
             'title'     => $this->title,
-            'cate'      => $cateId,
             'cover'     => $this->cover,
             'publishAt' => date("Y-m-d H:i:s"),
             'lastEdit'  => date("Y-m-d H:i:s"),
@@ -104,7 +109,16 @@ class Article extends Api {
         } else {
             $data['content'] = $this->content;
         }
-        return $this->model->insert($data);
+        $res = $this->model->insert($data);
+        if($res['id']) {
+            $acData = array(
+                'aid' => $res['id'],
+                'cid' => $cateId,
+            );
+            $articleCateModel -> _insert($acData);
+        }
+
+        return $res;
     }
     /**
      * 上传文件发表文章
@@ -144,14 +158,34 @@ class Article extends Api {
      * @return int 成功返回1 无变化返回0 错误返回false
      */
     public function updateById() {
+        //根据分类名获取分类id
+        $articleCateModel = new ArticleCateModel();
+        $cateModel = new CateModel();
+        $cateId = $cateModel->getIdByName($this->cate);
+        $cateId = $cateId['id'];
+        if(!$cateId) {
+            //新的分类 创建分类
+            $cate = array('name' => $this->cate);
+            $cateId = $cateModel->_insert($cate);
+            $cateId = $cateId['id'];
+        }
         $data = array(
             "title"     => $this->title,
-            "cate"      => $this->cate,
             "content"   => $this->content,
             "cover"     => $this->cover,
             "lastEdit"  => date("Y-m-d H:i:s"),
         );
-        return $this->model->updateById($data, $this->id);
+        $res = $this->model->updateById($data, $this->id);
+
+        if($res == 1) {
+            $acData = array(
+                'aid' => $this->id,
+                'cid' => $cateId,
+            );
+            $articleCateModel -> _insert($acData);
+        }
+
+        return $res;
     }
     
     /**
@@ -223,6 +257,25 @@ class Article extends Api {
         }
         $data["cate"] = $res;
         return $data;
+    }
+
+    public function getPageByCid() {
+        $model      = new ArticleDomain();
+        $acModel    = new ArticleCateModel();
+        $cateModel  = new CateModel();
+        $cate      = $acModel -> getCatesByAid($this -> id) -> fetchOne();
+        $cid = $cate['id'];
+
+        $length = $this -> length;
+        $start = ($this -> page - 1) * $this -> length;
+        $articleIds = $acModel -> getArticleByCidLimit($cid, $start, $length);
+        $ids = array();
+
+        while($row = $articleIds -> fetch()) {
+            array_push($row['aid'], $ids);
+        }
+
+        return $model -> getById($ids);
     }
 }
 ?>

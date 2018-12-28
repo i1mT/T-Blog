@@ -3,7 +3,7 @@ namespace App\Api;
 
 use PhalApi\Api;
 use App\Domain\Cate as CateDomain;
-use App\Model\Article as ArticleModel;
+use App\Model\ArticleCate as ArticleCateModel;
 
 /**
  * Cate管理类
@@ -78,9 +78,9 @@ class Cate extends Api {
         $res_data = array();
         foreach ($data as $row) {
             $cateId = $row['id'];
-            $articleModel = new ArticleModel();
+            $articleCateModel = new ArticleCateModel();
 
-            $count = $articleModel->countByCateId($cateId);
+            $count = $articleCateModel->countByCateId($cateId);
             $row['sum'] = $count;
             array_push($res_data, $row);
         }

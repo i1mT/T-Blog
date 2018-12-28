@@ -9,6 +9,7 @@ class ArticleCate extends NotORM {
   }
   public function _insert($data) {
     $model = $this -> getORM();
+    $model -> where('aid', $data['aid']) -> delete(); // 删除原有的文章分类，一个文章只会有一个分类
     return $model -> insert($data);
   }
   public function getCatesByAid ($aid) {
@@ -20,6 +21,11 @@ class ArticleCate extends NotORM {
     $model = $this -> getORM();
 
     return $model -> order("id DESC") -> where('cid', $cid) -> limit($start, $length);
+  }
+  public function countByCateId ($cid) {
+    $model = $this -> getORM();
+
+    return $model -> where("cid", $cid) -> count('id');
   }
 }
 

@@ -39,7 +39,16 @@ class Activity extends Api {
 
         $length = $this -> length;
         $start = $length * ($this -> page - 1);
-        return $model -> getPage($start, $length);
+        $result = $model -> getPage($start, $length);
+
+        $data = array();
+        foreach($result as $row) {
+            $row['brief'] = substr($row['content'], 0, 30);
+            unset($row['content']);
+            array_push($data, $row);
+        }
+
+        return $data;
     }
 
     public function getById () {
@@ -68,8 +77,8 @@ class Activity extends Api {
             $data['content'] = $this -> content;
         }
 
-        if ($this -> imgs) {
-            $data['imgs'] = $this -> imgs;
+        if ($this -> images) {
+            $data['images'] = $this -> images;
         }
 
         return $model -> updateById($this -> id, $data);

@@ -3,6 +3,7 @@ namespace App\Model;
 
 use PhalApi\Model\NotORMModel as NotORM;
 use App\Model\Cate as CateModel;
+use App\Model\ArticleCate as ArticleCateModel;
 
 class Article extends NotORM {
 	protected function getTableName($id) {
@@ -34,10 +35,12 @@ class Article extends NotORM {
         $data = $model->queryAll($sql, $params);
         $res_data = array();
         foreach($data as $row) {
-            $cateId = $row['cate'];
+            $articleCateModel = new ArticleCateModel();
+            $articleCate = $articleCateModel -> getCatesByAid($row['id']) -> fetchOne();
+            $cateId = $articleCate['cid'];
             $cateModel = new CateModel();
 
-            $cateName = $cateModel->getNameById($cateId);
+            $cateName = $cateModel -> getNameById($cateId);
             $row['cateName'] = $cateName['name'];
 
             array_push($res_data, $row);

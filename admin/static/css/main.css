@@ -111,3 +111,10 @@ a{text-decoration: none}
 .editor-btn{
     margin-top: 20px;
 }
+
+div.hr {
+    height: 2px;
+    margin-bottom: 15px;
+    background-color: #e7e7e7;
+    clear: both;
+}
