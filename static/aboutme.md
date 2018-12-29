@@ -28,9 +28,9 @@
 
 欢迎你跟我做朋友，除了博客之外还可以在这里找到我：
 
-微博：[@_iimT](http://weibo.com/ATmxj)
+微博：[_iimT](http://weibo.com/ATmxj)
 
-Github[tfh93121](https://github.com/tfh93121)
+Github：[tfh93121](https://github.com/tfh93121)
 
 B站：[iimT'Bilibili](http://space.bilibili.com/69824765)
 
