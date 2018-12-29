@@ -40,5 +40,13 @@ export default new Router({
       },
       component: (resolve) => require(['../components/Page/About.vue'], resolve),
     },
+    {
+      path: '/activity',
+      name: 'activity',
+      meta: {
+        title: "关于我 - iimT的独立博客"
+      },
+      component: (resolve) => require(['../components/Activity/index.vue'], resolve),
+    },
   ]
 })

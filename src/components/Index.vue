@@ -80,20 +80,5 @@ export default {
 };
 </script>
 <style scoped>
-.load-more {
-  transform: translateY(18px);
-  padding: 1.5rem 1rem;
-  margin-bottom: 2rem;
-  width: 12rem;
-  background: #ccc;
-  border-radius: .5rem;
-  margin: 0 auto;
-  cursor: pointer;
-  text-align: center;
-  color: #333;
-  font-size: 1.7rem;
-}
-.load-more:hover {
-  background: #d9d9d9;
-}
+
 </style>

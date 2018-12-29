@@ -22,11 +22,11 @@
             <router-link to="/">博客</router-link>            
           </li>
           <li>
-            <router-link to="/">动态</router-link>
+            <router-link to="/activity">动态</router-link>
           </li>
           
           <li>
-            <a href="http://space.bilibili.com/69824765" target="_blank">
+            <a href="https://github.com/tfh93121" target="_blank">
               我的 <i class="iconfont">&#xe677;</i>
             </a>
           </li>

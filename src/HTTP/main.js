@@ -101,6 +101,17 @@ function addComment(data) {
    return axios.post(url, data)
  }
 
+
+ /**
+  * 获取一页动态
+  */
+
+function getActivity(data) {
+  let url = getUrl("Activity.getPage")
+
+  return axios.post(url, data)
+}
+
  /** 获取axios实例 */
  function getInstance () {
    return axios
@@ -117,4 +128,5 @@ export default {
   getAllFriends,
   addFriend,
   getInstance,
+  getActivity
 }
