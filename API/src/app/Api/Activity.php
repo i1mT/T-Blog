@@ -43,7 +43,7 @@ class Activity extends Api {
 
         $data = array();
         foreach($result as $row) {
-            $row['brief'] = substr($row['content'], 0, 30);
+            $row['brief'] = mb_substr($row['content'], 0, 30, 'utf-8'); 
             array_push($data, $row);
         }
 
