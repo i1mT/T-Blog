@@ -518,6 +518,7 @@ ul.div-page li a:hover {
   /* height: 50rem;*/
   height: inherit;
   padding-bottom: 1rem;
+  margin-bottom: 5rem;
   background-size: cover;
   background-position: 20% 30%;
 }
