@@ -863,6 +863,9 @@ form.comment button:hover {
 }
 
 @media screen and (max-width: 600px) {
+  ul.desc-tab {
+    margin-top: -1rem;
+  }
   .container {
     width: 100%;
   }
