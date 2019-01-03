@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar" :class="{'collapse': isCollapse}">
     <el-menu
       :default-active="onRoutes"
       class="el-menu-vertical-demo"
@@ -7,24 +7,26 @@
       unique-opened
       router
     >
-      <template v-for="item in items">
+      <template v-for="(item, i) in items">
         <template v-if="item.subs">
-          <el-submenu :index="item.index">
+          <el-submenu :index="item.index" :key="i">
             <template slot="title">
               <i :class="item.icon"></i>
-              {{ item.title }}
+              <span class="menu-title">{{ item.title }}</span>
             </template>
             <el-menu-item
               v-for="(subItem,i) in item.subs"
               :key="i"
               :index="subItem.index"
-            >{{ subItem.title }}</el-menu-item>
+            >
+              <span class="menu-title">{{ subItem.title }}</span>
+            </el-menu-item>
           </el-submenu>
         </template>
         <template v-else>
-          <el-menu-item :index="item.index">
+          <el-menu-item :index="item.index" :key="i">
             <i :class="item.icon"></i>
-            {{ item.title }}
+            <span class="menu-title">{{ item.title }}</span>
           </el-menu-item>
         </template>
       </template>
@@ -36,6 +38,7 @@
 export default {
   data() {
     return {
+      isCollapse: true,
       items: [
         {
           icon: "el-icon-menu",
@@ -45,7 +48,7 @@ export default {
 
         {
           icon: "el-icon-edit",
-          index: "/publish",
+          index: 'article',
           title: "我的文章",
           subs: [
             {
@@ -68,6 +71,7 @@ export default {
 
         {
           icon: "el-icon-menu",
+          index: "activity",
           title: "动态",
           subs: [
             {
@@ -124,5 +128,11 @@ export default {
 }
 .sidebar > ul {
   height: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .sidebar {
+        display: none;
+    }
 }
 </style>

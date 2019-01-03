@@ -29,12 +29,15 @@
           <span class="delete-img" @click="deleteImg(item, i)"></span>
         </div>
       </el-form-item>
-      <el-form-item>
+      <!-- <el-form-item>
         <el-input v-model="tempImage" placeholder="输入图片地址...">
           <template slot="append">
             <el-button @click="addImage">添加</el-button>
           </template>
         </el-input>
+      </el-form-item> -->
+      <el-form-item>
+        <img-uploader v-model="tempImage" @uploaded="addImage"></img-uploader>
       </el-form-item>
 
       <el-form-item>
@@ -45,6 +48,7 @@
 </template>
 
 <script>
+import ImgUploader from "../../com/Uploader"
 import { markdownEditor } from "vue-simplemde";
 export default {
   data: function() {
@@ -120,7 +124,7 @@ export default {
         .post(this.$API.Activity.add, this.data)
         .then(res => {
           console.log(res.data.data.id)
-          if (res.data.data.hasOwnProperty('id  ')) {
+          if (res.data.data.hasOwnProperty('id')) {
             //发表成功 跳转到文章
             that.$message({
               type: "success",
@@ -154,25 +158,29 @@ export default {
     }
   },
   components: {
-    markdownEditor
+    markdownEditor,
+    ImgUploader
   }
 };
 </script>
 
 <style>
 .img-item {
-  display: inline-block;
   position: relative;
-  margin: 0 10px;
+  width: 10rem;
+  height: 5.6rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #d7d7d7;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  margin: 0 .5rem;
+  cursor: pointer;
 }
 .img-item img{
-  min-width: 40px;
-  min-height: 40px;
-  width: 100px;
-  border: 2px solid #fff;
-  box-shadow: 1px 1px 4px 1px #aaa;
-  border-radius: 6px;
-  position: relative;
+  height: 100%;
+  width: 100%;
 }
 .img-item .delete-img::after {
   content: '-';

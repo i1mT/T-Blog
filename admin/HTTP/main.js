@@ -32,7 +32,7 @@ export default {
         'update': ROOT + "Activity.updateById",
         'add': ROOT + "Activity.add",
         'deleteById': ROOT + "Activity.deleteById",
-        'count': ROOT + "Activity.getCount",
+        'getCount': ROOT + "Activity.getCount",
         'getById': ROOT + "Activity.getById",
     }
 }

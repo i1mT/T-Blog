@@ -17,3 +17,18 @@
         }
     }
 </script>
+
+<style>
+@media screen and (max-width: 600px) {
+    .user-info {
+        display: none;
+    }
+    .sidebar {
+        display: none;
+    }
+    .content {
+        left: 0;
+    }
+}
+</style>
+

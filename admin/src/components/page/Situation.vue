@@ -6,7 +6,10 @@
             </el-breadcrumb>
         </div>
         <div class="plugins-tips">
-            <div class="content-title">共创作了<span class="number cursor" @click="jumpToArticleManage">{{1}}</span>篇博文，收到了<span class="number">{{2}}</span>个喜欢，<span class="number">{{3}}</span>条评论。</div>
+            <div class="content-title">
+                共创作了<span class="number cursor" @click="jumpToArticleManage">{{totalArticle}}</span>篇博文。
+                发布了<span class="number cursor" @click="jumpToActivityManage">{{totalActivity}}</span>条动态。
+            </div>
         </div>
         <div class="ms-doc">
             <h3>README.md</h3>
@@ -30,12 +33,38 @@
 <script>
     export default {
         data: function(){
-            return {}
+            return {
+                totalArticle: 0,
+                totalActivity: 0,
+            }
         },
         methods: {
             jumpToArticleManage() {
                 this.$router.push("/article")
-            }
+            },
+            jumpToActivityManage () {
+                this.$router.push("/activity")
+            },
+            getArticalTotal() {
+                //获取文章总数
+                let that = this
+                this.$axios.get(this.$API.Article.getCount)
+                .then((res) => {
+                    that.totalArticle = parseInt(res.data.data)
+                })
+            },
+            getActivityTotal() {
+                //获取活动总数
+                let that = this
+                this.$axios.get(this.$API.Activity.getCount)
+                .then((res) => {
+                    that.totalActivity = parseInt(res.data.data)
+                })
+            },
+        },
+        mounted () {
+            this.getActivityTotal()
+            this.getArticalTotal()
         }
     }
 </script>

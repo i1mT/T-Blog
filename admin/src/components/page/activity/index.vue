@@ -59,7 +59,7 @@
 <script>
     export default {
         data() {
-            this.getArticalTotal()
+            this.getActivityTotal()
             this.getPage(1, 10)
             return {
                 pageSize: 10,
@@ -97,7 +97,7 @@
             linkToDetail(row) {
                 this.$router.push('/activity/edit/' + row.id)
             },
-            getArticalTotal() {
+            getActivityTotal() {
                 //获取活动总数
                 let that = this
                 this.$axios.get(this.$API.Activity.getCount)
@@ -159,7 +159,7 @@
                 else
                     this.search(key)
             }
-        }
+        },
     }
 </script>
 
