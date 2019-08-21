@@ -23,7 +23,7 @@ class Deploy extends Api
     {
         set_time_limit(0);
         $shellPath = "/home/www/T-Blog";
-        $cmd = "cd $shellPath && sudo git pull && sudo /bin/bash CI.sh";
+        $cmd = "cd $shellPath && sudo git pull && sudo /bin/bash deploy.sh";
         $res = $this -> doShell($cmd);
         var_dump($res);
     }

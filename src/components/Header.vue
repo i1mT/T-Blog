@@ -19,7 +19,7 @@
         </div>
         <ul class="desc-tab" v-if="tab">
           <li class="li-f">
-            <router-link to="/">博客</router-link>            
+            <router-link to="/">博客</router-link>
           </li>
           <li>
             <router-link to="/activity">动态</router-link>

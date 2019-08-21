@@ -15,15 +15,13 @@
             <h3>README.md</h3>
             <article>
                 <h1>T-Blog</h1>
-                <p>基于Vue + Element + PhalAPI的博客后台</p>
-                <h2>前言</h2>
-                <p>对之前Shell风格的后台重新做的一套可视化面板。</p>
+                <p>...</p>
                 <h2>TODO:</h2>
-                <el-checkbox disabled checked>评论管理</el-checkbox>
+                <el-checkbox disabled >评论管理</el-checkbox>
                 <br>
-                <el-checkbox disabled checked>创作时的实时保存</el-checkbox>
+                <el-checkbox disabled >友链管理</el-checkbox>
                 <br>
-                <el-checkbox disabled checked>前台博文中的评论升级为批注样式</el-checkbox>
+                <el-checkbox disabled >创作时的实时保存</el-checkbox>
                 <br>
             </article>
         </div>

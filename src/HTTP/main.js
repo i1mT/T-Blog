@@ -1,14 +1,14 @@
 import axios from "axios"
 
 /**
- * 测试/调试库/正式库 信息
+ * 测试库/正式库 信息
  */
 const DEV_ROOT =   'http://www.myblog.me/API/public/?s='
 const PROD_ROOT = 'http://www.iimt.me/API/public/?s='
 let ROOT = process.env.NODE_ENV === 'development' ? DEV_ROOT:PROD_ROOT
 
 
-//设置axios为form-data
+//设置axios为form-data形式
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.transformRequest = [function (data) {
@@ -20,10 +20,22 @@ axios.defaults.transformRequest = [function (data) {
 }]
 
 
+/**
+ * 获取实api地址
+ * @param {*} name api名
+ */
 
 function getUrl(name) {
   return ROOT + name
 }
+
+/**
+ * 
+ * 
+ ***************************************** 文章类 ******************************************************
+ * 
+ * 
+ */
 
 /**
  * 获取一页文章
@@ -37,6 +49,10 @@ function getPage(data) {
   return axios.post(url, data)
 }
 
+/**
+ * 根据id获取文章
+ * @param {*} id 文章id
+ */
 function getArticleById(id) {
   let url = getUrl("Article.GetById")
 
@@ -47,6 +63,11 @@ function getArticleById(id) {
   return axios.post(url, data)
 }
 
+
+/**
+ * 文章点赞数+1
+ * @param {*} id 文章id
+ */
 function addArticleLikeById(id) {
   let url = getUrl("Article.AddLike")
   let data = { id: id }
@@ -54,6 +75,10 @@ function addArticleLikeById(id) {
   return axios.post(url, data)
 }
 
+/**
+ * 文章阅读数+1
+ * @param {*} id 文章id
+ */
 function addArticleViewById(id) {
   let url = getUrl("Article.AddView")
   let data = { id: id }
@@ -61,6 +86,17 @@ function addArticleViewById(id) {
   return axios.post(url, data)
 }
 
+/**
+ * 
+ *
+ ******************************************** 评论类 *******************************
+ * 
+ */
+
+/**
+ * 获取文章所有评论
+ * @param {*} id 文章id
+ */
 function getCommentsByAid(id) {
   let url = getUrl("Comment.GetAllByArticleId")
   let data = { id: id }
@@ -68,6 +104,10 @@ function getCommentsByAid(id) {
   return axios.post(url, data)
 }
 
+/**
+ * 评论点赞数+1
+ * @param {*} id 评论id
+ */
 function addCommentLikeById(id) {
   let url = getUrl("Comment.AddLikes")
   let data = { id: id }
@@ -75,6 +115,10 @@ function addCommentLikeById(id) {
   return axios.post(url, data)
 }
 
+/**
+ * 插入一条评论
+ * @param {Comment} data 评论数据
+ */
 function addComment(data) {
   let url = getUrl("Comment.Add")
 
@@ -83,7 +127,7 @@ function addComment(data) {
 
 /**
  * 
- * 友情链接
+ *********************************************** 友情链接 ***************************************
  * 
  */
 
@@ -103,6 +147,16 @@ function addComment(data) {
 
 
  /**
+  *
+  * 
+  * 
+  ********************************************* 动态类 ****************************************
+  *  
+  *
+  */
+
+
+ /**
   * 获取一页动态
   */
 
@@ -112,10 +166,18 @@ function getActivity(data) {
   return axios.post(url, data)
 }
 
+/**
+ * 
+ ******************************************** 工具类 ********************************
+ * 
+ */
+
  /** 获取axios实例 */
  function getInstance () {
    return axios
  }
+
+
 
 export default {
   getPage,

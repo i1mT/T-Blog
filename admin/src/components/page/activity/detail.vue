@@ -124,7 +124,7 @@ export default {
         .post(this.$API.Activity.add, this.data)
         .then(res => {
           console.log(res.data.data.id)
-          if (res.data.data.hasOwnProperty('id')) {
+          if (res.ret == 200) {
             //发表成功 跳转到文章
             that.$message({
               type: "success",
