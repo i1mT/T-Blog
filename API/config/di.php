@@ -30,7 +30,11 @@ $di->logger = new FileLogger(API_ROOT . '/runtime', Logger::LOG_LEVEL_DEBUG | Lo
 $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->debug);
 
 //access-control-allow-origin 可访问域名设置
-$di->response->addHeaders('Access-Control-Allow-Origin','*');
+if ($di->config->get('sys.debug')) {
+    $di->response->addHeaders('Access-Control-Allow-Origin','*');
+} else {
+    $di->response->addHeaders('Access-Control-Allow-Origin','http://iimt.me');
+}
 $di->response->addHeaders('Access-Control-Allow-Methods','GET, POST');
 $di->response->addHeaders('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
 

@@ -10,7 +10,7 @@
     <div class="admired">赏</div>
     <img src="http://upy.iimt.me/2018/12/27/upload_3f73f42e9ada4fa0b9c2959d7719d8aa.png" class="admire">
     <p class="admired-tips">
-      <em>如果这篇文章对你有帮助，欢迎你对我打赏</em>
+      <em>可以请我喝可乐，如果本文对你有帮助的话。</em>
     </p>
   </div>
 </template>

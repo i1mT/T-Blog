@@ -3,18 +3,20 @@
     <p>iimT的独立博客 <a href="#">@iimT</a></p>
     <p>友情链接 <a class="add-friends" @click="applyFriends">申请友链</a></p>
     <p class="friends">
-      <a v-for="item in friends" :key="item.id" v-if="item.status == 1" :href="item.url">
-        {{ item.title }}
+      <a v-for="item in friends" :key="item.id" :href="item.url">
+        <template v-if="item.status == 1">
+          {{ item.title }}
+        </template>
       </a>
     </p>
     <p>
       CDN 支持 by
-      <a href="https://www.upyun.com/">Upyun</a>
+      <a href="https://www.upyun.com/" target="_blank">Upyun</a>
       又拍云
     </p>
     <p>
       Power by
-      <a href="https://github.com/tfh93121/T-Blog">T-Blog</a>
+      <a href="https://github.com/tfh93121/T-Blog" target="_blank">T-Blog</a>
       | Designed by
       <a href="#">iimT</a>
     </p>
@@ -174,11 +176,12 @@ export default {
   font-size: 1.2rem;
 }
 .friends {
-  padding-top: 3px;
+  padding: 3px 0;
 }
 footer .friends a {
-  margin: 0 3px;
-  text-decoration: none;
+  margin: 0 5px;
+  text-decoration: underline;
+  
   display: inline-block;
   color: #ccc;
 }

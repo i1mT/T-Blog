@@ -1,7 +1,11 @@
 <template>
   <div class="container article-list">
-    <div class="art-card-container" :ref="aid" :style="'height:' + height + 'px'">
-      <img class="art-cover" :src="cover || defaultCover">
+    <div class="art-card-container" :class="{'code-card-container' : isCode}" :ref="aid" :style="'height:' + height + 'px'">
+      <img v-if="!isCode" class="art-cover" :src="cover || defaultCover">
+      <img v-else :src="codeCover" class="art-cover">
+      <div v-if="isCode" class="mark-code">
+        刷题
+      </div>
       <div class="art-info">
         <p class="art-title">
           <a :href="'/article/' + aid">
@@ -38,6 +42,10 @@ export default {
     return {
       height: 500,
       defaultCover: "http://upy.iimt.me/2018/12/27/upload_11d64a6b4d372cb836fe107d63708308.jpg",
+      codeCover: "http://upy.iimt.me/2019/08/21/upload_90e4b0610c6d38c6ec958bbb5629ac3d.png",
+      // http://upy.iimt.me/2019/08/21/upload_e9a69e1d82d81ce9a72ce2d217265f25.png
+      codeHeight: 140,
+      isCode: false,
     }
   },
   methods: {
@@ -50,17 +58,52 @@ export default {
       img.onload = e => {
         let imgHeight = img.offsetHeight
         this.height = imgHeight
-        console.log(img.offsetHeight)
       }
+    },
+    specialCode () {
+      this.isCode = true;
+      // this.height = this.codeHeight
+      this.defaultCover = this.codeCover
     }
   },
   props: ["title", "cover", "time", "like", "view", "aid", 'cate', 'cid'],
   mounted() {
     
     this.resizeCardHeight()
+    if (this.cate == 'PAT') // 刷题另处理
+          this.specialCode()
+    
   },
 };
 </script>
 <style>
+.code-card-container .art-info {
+  background: none;
+}
+.code-card-container .art-info p{
+  padding: 0;
+}
+.code-card-container .art-info span {
+  font-size: 1.3rem;
+}
+.code-card-container .art-info .art-title a {
+  font-size: 2.5rem;
+}
+.code-card-container .art-info .art-info-detail {
+  margin-bottom: .5rem;
+}
+.code-card-container .mark-code {
+  position: relative;
+  float: right;
+  right: 0;
+  top: 0;
+  width: 5rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  font-size: 1.6rem;
+  color: #000;
+  background: rgba(240, 240, 240, 0.95)
+}
 </style>
 
