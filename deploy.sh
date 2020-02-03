@@ -14,7 +14,6 @@ pull () {
     echo "git clean -f -d" # >> $FILE
     output=`git clean -f -d`
     echo "${output}" # >> $FILE
-    
     echo "git pull" # >> $FILE
     output=`git pull`
     echo "${output}" # >> $FILE

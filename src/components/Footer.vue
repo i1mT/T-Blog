@@ -20,7 +20,7 @@
       | Designed by
       <a href="#">iimT</a>
     </p>
-    <p><a href="http://www.miitbeian.gov.cn">浙ICP备17000556号</a></p>
+    <p><a href="http://beian.miit.gov.cn">浙ICP备17000556号</a></p>
     <div v-if="dialogShow" class="mask">
       <div class="form-wrapper">
         <p>申请友链</p>

@@ -1,0 +1,12 @@
+{
+    "prod": {
+        "localhost": "www.iimt.me",
+        "user": "iimt",
+        "password": "ATyangguang"
+    },
+    "test": {
+        "localhost": "localhost",
+        "user": "root",
+        "password": ""
+    }
+}
