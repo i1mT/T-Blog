@@ -25,6 +25,14 @@ export default new Router({
       component: (resolve) => require(['../components/Article/Index.vue'], resolve),
     },
     {
+      path: '/oj',
+      name: 'oj',
+      meta: {
+        title: "刷题 - iimT的独立博客"
+      },
+      component: (resolve) => require(['../components/Oj/Index.vue'], resolve),
+    },
+    {
       path: '/cate/:id',
       name: 'cate',
       meta: {

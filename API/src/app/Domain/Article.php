@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Domain;
 use App\Model\Article as ArticleModel;
 class Article {

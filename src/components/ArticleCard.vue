@@ -1,11 +1,7 @@
 <template>
   <div class="container article-list">
     <div class="art-card-container" :class="{'code-card-container' : isCode}" :ref="aid" :style="'height:' + height + 'px'">
-      <img v-if="!isCode" class="art-cover" :src="cover || defaultCover">
-      <img v-else :src="codeCover" class="art-cover">
-      <div v-if="isCode" class="mark-code">
-        刷题
-      </div>
+      <img class="art-cover" :src="cover || defaultCover">
       <div class="art-info">
         <p class="art-title">
           <a :href="'/article/' + aid">
@@ -45,7 +41,6 @@ export default {
       codeCover: "http://upy.iimt.me/2019/08/21/upload_90e4b0610c6d38c6ec958bbb5629ac3d.png",
       // http://upy.iimt.me/2019/08/21/upload_e9a69e1d82d81ce9a72ce2d217265f25.png
       codeHeight: 140,
-      isCode: false,
     }
   },
   methods: {
@@ -60,19 +55,10 @@ export default {
         this.height = imgHeight
       }
     },
-    specialCode () {
-      this.isCode = true;
-      // this.height = this.codeHeight
-      this.defaultCover = this.codeCover
-    }
   },
   props: ["title", "cover", "time", "like", "view", "aid", 'cate', 'cid'],
   mounted() {
-    
     this.resizeCardHeight()
-    if (this.cate == 'PAT') // 刷题另处理
-          this.specialCode()
-    
   },
 };
 </script>
