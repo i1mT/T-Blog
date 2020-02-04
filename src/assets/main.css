@@ -360,6 +360,11 @@ ul.desc-tab li {
   cursor: pointer;
 }
 
+ul.desc-tab .li-menu {
+  display: flex;
+  flex-direction: column;
+}
+
 ul.desc-tab li a {
   text-decoration: none;
 }

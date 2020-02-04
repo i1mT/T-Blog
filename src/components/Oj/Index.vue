@@ -5,7 +5,7 @@
       <loading></loading>
     </template>
     <template v-else>
-      <article-card v-for="article in articles"
+      <oj-card v-for="article in articles"
         :key="article.id"
         :title="article.title"
         :cover="article.cover"
@@ -16,7 +16,7 @@
         :cate="article.cateName"
         :cid="article.cid"
       >
-      </article-card>
+      </oj-card>
       <ul class="load-more" @click="load">
         {{ moreText }}
       </ul>
@@ -26,11 +26,11 @@
   </div>
 </template>
 <script>
-import header from "./Header"
-import footer from "./Footer"
-import ArticleCard from "./ArticleCard"
-import FlyTop from "./FlyToTop"
-import Loading from "./Com/Loading"
+import header from "../Header"
+import footer from "../Footer"
+import FlyTop from "../FlyToTop"
+import Loading from "../Com/Loading"
+import OjCard from '../Com/OjCard.vue'
 export default {
   name: "Index",
   data() {
@@ -50,6 +50,7 @@ export default {
       let data = {
         page: this.page,
         pageNum: this.pageSize,
+        cid: 37, // 这里写死，所有刷题分类的都放在此页面下
       }
       this.$api.getPage(data).then( res => {
         this.loading = false
@@ -71,10 +72,10 @@ export default {
   },
   components: {
     "v-header": header,
-    ArticleCard: ArticleCard,
     "v-footer": footer,
     FlyTop: FlyTop,
     'loading':Loading,
+    'oj-card': OjCard
   }
 };
 </script>

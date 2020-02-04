@@ -63,7 +63,8 @@ class Article extends NotORM {
             $sql = "select id, title, lastEdit, viewed, likes, cover from article where cid=:cid order by id desc limit :offset,:lines";
         }
         else {
-            $sql = "select id, title, lastEdit, viewed, likes, cover from article order by id desc limit :offset,:lines";
+            $sql = "select id, title, lastEdit, viewed, likes, cover from article where cid!=37 order by id desc limit :offset,:lines";
+            // 这里的分类id=37，是指刷题类。
         }
         $params = array(
             ":offset" => $start,

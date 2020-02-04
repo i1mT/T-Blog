@@ -45,7 +45,6 @@ export default {
       let id = this.$route.params.id
       this.$api.getArticleById(id).then( res => {
         this.article = res.data.data
-        console.log(this.article)
         this.loading = false
         window.document.title = this.article.title + "- iimT的独立博客"
       })
