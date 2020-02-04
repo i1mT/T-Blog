@@ -28,17 +28,17 @@
             <router-link to="/activity">动态</router-link>
           </li>
           <li>
-            <a href="https://github.com/tfh93121" target="_blank">
-              我的 <i class="iconfont">&#xe677;</i>
-            </a>
+            <a class="menu-item" href="https://github.com/tfh93121" target="_blank">
+                我的 <i class="iconfont">&#xe677;</i>
+              </a>
           </li>
           <li>
-            <a href="http://space.bilibili.com/69824765" target="_blank">
-              我的 <i class="iconfont">&#xe6b4;</i>
-            </a>
+            <a class="menu-item" href="https://github.com/tfh93121" target="_blank">
+                我的 <i class="iconfont">&#xe6b4;</i>
+              </a>
           </li>
-          <li class="li-e">
-            <router-link to="/about">关于我</router-link>
+          <li>
+            <a href="/about">关于我</a>
           </li>
         </ul>
       </div>
@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       currentHeight: "60vh",
-      fly: false
+      fly: false,
     }
   },
   methods: {
@@ -120,4 +120,3 @@ export default {
   margin-bottom: 2rem;
 }
 </style>
-

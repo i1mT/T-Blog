@@ -68,7 +68,6 @@ export default {
         url: this.url
       }
       this.$api.addFriend(data).then(res => {
-        console.log(res)
         this.btnContent = "已提交"
         setTimeout(e => {
           this.title = ''
