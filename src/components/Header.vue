@@ -28,12 +28,12 @@
             <router-link to="/activity">动态</router-link>
           </li>
           <li>
-            <a class="menu-item" href="https://github.com/tfh93121" target="_blank">
+            <a class="menu-item" href="https://github.com/i1mT" target="_blank">
                 我的 <i class="iconfont">&#xe677;</i>
               </a>
           </li>
           <li>
-            <a class="menu-item" href="https://github.com/tfh93121" target="_blank">
+            <a class="menu-item" href="https://space.bilibili.com/69824765" target="_blank">
                 我的 <i class="iconfont">&#xe6b4;</i>
               </a>
           </li>

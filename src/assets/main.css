@@ -8,7 +8,7 @@
 }
 
 @-webkit-keyframes blink {
-  50% {
+  50% 
     color: #000;
     background: #0c0;
     -webkit-box-shadow: 0 0 5px rgba(0, 100, 0, 50);
