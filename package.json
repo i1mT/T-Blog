@@ -13,7 +13,7 @@
     "axios": "^0.18.0",
     "blueimp-md5": "^2.10.0",
     "highlight": "^0.2.4",
-    "highlight.js": "^9.12.0",
+    "highlight.js": "^10.1.2",
     "js-base64": "^2.5.0",
     "markdown-it": "^8.4.2",
     "upyun": "^3.3.5",
