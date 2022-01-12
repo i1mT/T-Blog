@@ -15,7 +15,7 @@
     "highlight": "^0.2.4",
     "highlight.js": "^9.12.0",
     "js-base64": "^2.5.0",
-    "markdown-it": "^8.4.2",
+    "markdown-it": "^12.3.2",
     "upyun": "^3.3.5",
     "vue": "^2.5.2",
     "vue-eagle-modal": "^1.0.0",
